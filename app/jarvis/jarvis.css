@@ -139,11 +139,6 @@
   .gate .phone-slot .phone { transform: scale(.78); transform-origin: center; }
 
   /* ---------- 09 where Jarvis lives ---------- */
-  .strip { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px var(--pad); border: 1px solid var(--line); border-radius: 24px; }
-  .strip p { margin: 0; font-size: 16px; line-height: 24px; color: var(--ink2); }
-  .strip b { font-weight: 600; color: var(--deep); }
-  .strip .wa { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--tide); white-space: nowrap; }
-  .strip .wa i { width: 10px; height: 10px; border-radius: 50%; background: #25d366; }
 
   @media (max-width: 900px) {
     .jhero-m { display: block; margin: var(--gutter); border-radius: 32px; overflow: hidden; isolation: isolate; color: #fff; padding: 120px 24px 0;
@@ -174,7 +169,6 @@
     .vs3 .lab { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
     .vs3 .row > .j { padding: 12px 14px !important; border: 1px solid var(--line); border-radius: 16px !important; margin: 4px 0 0 !important; }
     .bento, .moments { grid-template-columns: 1fr; }
-    .strip { flex-direction: column; align-items: flex-start; }
   }
 }
 @keyframes jp-caret { to { opacity: 0; } }

@@ -14,7 +14,6 @@ import { Different } from "@/components/jarvis/Different";
 import { Moments } from "@/components/jarvis/Moments";
 import { Quiet } from "@/components/jarvis/Quiet";
 import { Gate } from "@/components/jarvis/Gate";
-import { Where } from "@/components/jarvis/Where";
 
 export const metadata: Metadata = {
   title: "Jarvis — the wealthy have always had someone in their corner. Now you do too.",
@@ -51,8 +50,7 @@ export default function JarvisPage() {
       <Moments />
       <Quiet />
       <Gate />
-      <Where />
-      <FigmaFooter disclaimer={DISCLAIMER} button="Request access" product={["Jarvis", "/jarvis"]} cta={["Request access", "#gate"]} />
+      <FigmaFooter disclaimer={DISCLAIMER} button="Request access" product={["Jarvis", "/jarvis"]} cta={["Request access", "#gate"]} where />
       <MobileCta label="Request access" href="#gate" hideAt="#gate" />
     </div>
   );

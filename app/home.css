@@ -216,8 +216,20 @@
   .frame-wrap { position: relative; width: 100%; overflow: hidden; }
   .frame { position: relative; width: 1440px; transform-origin: top left; margin: 0 auto; }
   .abs { position: absolute; }
-  .f-foot { height: 816px; background: var(--deep950); }
-  .f-foot .panelbg { position: absolute; inset: 0; background: var(--deep950); overflow: hidden; }
+  .f-foot { height: 816px; background: transparent; border-radius: 56px 56px 0 0; overflow: hidden; }
+  .f-foot .panelbg { position: absolute; inset: 0; background: var(--deep950); overflow: hidden; border-radius: 56px 56px 0 0; }
+  .f-foot .pulse { left: 0; top: 132px; width: 1440px; height: 430px; }
+  .pulse { position: relative; overflow: hidden; }
+  .pulse canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .pulse .biglogo { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); height: auto; opacity: .96; }
+  .f-foot .where { left: 1000px; top: 592px; width: 328px; }
+  .where .k { margin: 0 0 10px; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); opacity: .3; }
+  .where .tile { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; margin-bottom: 8px; border: 1px solid rgba(0, 253, 255, .16); border-radius: 14px; background: rgba(0, 46, 81, .5); color: #fff; }
+  .where .tile:hover { border-color: rgba(0, 253, 255, .45); }
+  .where .tile .ic { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex: none; background: var(--deep); color: var(--foam); }
+  .where .tile.wa .ic { background: #25d366; color: #fff; }
+  .where .tile b { display: block; font-weight: 700; font-size: 12px; line-height: 1.2; text-transform: uppercase; letter-spacing: .04em; }
+  .where .tile small { display: block; margin-top: 2px; font-size: 11px; line-height: 1.3; color: rgba(242, 251, 253, .6); }
   .f-foot .panelbg::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
   .f-foot .h1 { left: 112px; top: 54px; width: 480px; margin: 0; font-weight: 600; font-size: 56px; line-height: 1; color: #fff; }
   .f-foot .email { left: 863px; top: 76px; width: 327px; height: 48px; border-radius: 18px; background: var(--deep); border: 1px solid rgba(0, 90, 158, .5); color: var(--aqua); padding: 0 22px; font-family: var(--micro); font-weight: 600; font-size: 14px; line-height: 16px; text-transform: uppercase; box-shadow: 0 1px 2px rgba(5, 20, 27, .06), 0 4px 12px rgba(5, 20, 27, .05); }
@@ -226,9 +238,6 @@
   .f-foot .subscribe { left: 1146px; top: 84px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--aqua); color: var(--deep950); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; transition: transform .16s ease; }
   .f-foot .subscribe:hover { transform: scale(1.06); }
   .f-foot .email { padding-right: 56px; }
-  .f-foot .lockup { left: 1168px; top: 738px; width: 160px; height: 30px; opacity: .9; }
-  .f-foot .dotmatrix { left: 0; top: 132px; width: 1440px; height: 430px; background: url(/figma/footer-dotmatrix-canvas.png) center/contain no-repeat; }
-  .f-foot .dotfade { left: 0; top: 132px; width: 1440px; height: 430px; background: linear-gradient(180deg, #001526 0%, rgba(0, 21, 38, 0) 22%, rgba(0, 0, 0, 0) 82%, #001526 100%); }
   .f-foot .lbl { top: 622px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); opacity: .3; }
   .f-foot .lnk { top: 644px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); white-space: nowrap; border: 0; padding: 0; letter-spacing: 0; opacity: 1; }
   .f-foot .legal { left: 112px; top: 742px; margin: 0; font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(242, 251, 253, .42); white-space: nowrap; }
@@ -237,14 +246,15 @@
 
   /* footer · stacked version of the same frame for phones and tablets */
   .mfoot { display: none; padding: 0; }
-  .mfoot .panel { background: var(--deep950); border-radius: 0; padding: 48px 28px 32px; color: #fff; position: relative; overflow: hidden; }
+  .mfoot .panel { background: var(--deep950); border-radius: 32px 32px 0 0; padding: 48px 28px 32px; color: #fff; position: relative; overflow: hidden; }
+  .mfoot .pulse { height: 220px; margin: 28px -28px 0; }
+  .mfoot .where { margin-top: 28px; }
   .mfoot .panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
   .mfoot h2 { margin: 0 0 24px; font-weight: 600; font-size: clamp(36px, 10vw, 48px); line-height: 1; }
   .mfoot .email2 { flex-direction: row !important; align-items: center; }
   .mfoot .email2 input { flex: 1 1 auto; height: 48px; background: var(--deep); border-color: rgba(0, 90, 158, .5); color: var(--aqua); }
   .mfoot .email2 input::placeholder { color: var(--aqua); opacity: .35; }
   .mfoot .sub { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: var(--aqua); color: var(--deep950); flex: none; }
-  .mfoot .lockup { display: block; margin: 40px 0 0; opacity: .9; }
   .mfoot .sub-old { height: 48px; padding: 0 22px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, .9); background: transparent; color: #fff; font-weight: 700; font-size: 13px; text-transform: uppercase; }
   .mfoot .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 48px; }
   .mfoot .lbl { margin: 0 0 10px; font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--foam); opacity: .3; }

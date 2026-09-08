@@ -45,9 +45,9 @@ app/
   jarvis/jarvis.css   Jarvis-only rules (.jp)
 components/
   home/               HomeNav, Hero, Reason, Build, Jarvis + Phone, NextUp, Built,
-                      CloseLine, FigmaFooter, HomeMotion, MobileCta, useDotField
+                      CloseLine, FigmaFooter (+ FooterPulse, the pixel waveform), HomeMotion, MobileCta, useDotField
   jarvis/             JarvisHero, Screen (app screens), Idea, Proof, Versus, Different,
-                      Moments, Quiet, Gate, Where, chat.ts, logos.tsx (orbit mark, OpenAI, Claude)
+                      Moments, Quiet, Gate, chat.ts, logos.tsx (orbit mark, OpenAI, Claude, WhatsApp)
 lib/
   gsap.ts             registers the GSAP plugins once
   dotfield.ts         the dot-matrix canvas
