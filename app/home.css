@@ -225,16 +225,8 @@
   .where .tile { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; margin-bottom: 8px; border: 1px solid rgba(0, 253, 255, .16); border-radius: 14px; background: rgba(0, 46, 81, .5); color: #fff; }
   .where .tile:hover { border-color: rgba(0, 253, 255, .45); }
   .where .tile .ic { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex: none; background: var(--deep); color: var(--foam); }
-  .where .tile.wa .ic { background: #25d366; color: #fff; }
   .where .tile b { display: block; font-weight: 700; font-size: 12px; line-height: 1.2; text-transform: uppercase; letter-spacing: .04em; }
   .where .tile small { display: block; margin-top: 2px; font-size: 11px; line-height: 1.3; color: rgba(242, 251, 253, .6); }
-  /* the "extended footer" band (Jarvis page): curved on top, the flat footer continues below it */
-  .whereband { background: var(--deep); border-radius: 56px 56px 0 0; padding: 44px var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 40px; color: #fff; }
-  .whereband .k { margin: 0; font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--aqua); }
-  .whereband .line { margin: 10px 0 0; font-weight: 600; font-size: 22px; line-height: 1.3; max-width: 640px; }
-  .whereband .doors { display: flex; gap: 12px; flex: none; }
-  .whereband .doors .tile { margin: 0; min-width: 236px; }
-  .jp .f-foot, .jp .f-foot .panelbg, .jp .mfoot .panel { border-radius: 0; }
   .f-foot .panelbg::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
   .f-foot .h1 { left: 112px; top: 54px; width: 480px; margin: 0; font-weight: 600; font-size: 56px; line-height: 1; color: #fff; }
   .f-foot .email { left: 863px; top: 76px; width: 327px; height: 48px; border-radius: 18px; background: var(--deep); border: 1px solid rgba(0, 90, 158, .5); color: var(--aqua); padding: 0 22px; font-family: var(--micro); font-weight: 600; font-size: 14px; line-height: 16px; text-transform: uppercase; box-shadow: 0 1px 2px rgba(5, 20, 27, .06), 0 4px 12px rgba(5, 20, 27, .05); }
@@ -243,6 +235,7 @@
   .f-foot .subscribe { left: 1146px; top: 84px; width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--aqua); color: var(--deep950); display: flex; align-items: center; justify-content: center; padding: 0; cursor: pointer; transition: transform .16s ease; }
   .f-foot .subscribe:hover { transform: scale(1.06); }
   .f-foot .email { padding-right: 56px; }
+  .f-foot .where { left: 112px; top: 190px; width: 330px; }
   .f-foot .lbl { top: 452px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); opacity: .3; }
   .f-foot .lnk { top: 474px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); white-space: nowrap; border: 0; padding: 0; letter-spacing: 0; opacity: 1; }
   .f-foot .legal { left: 112px; top: 548px; margin: 0; font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(242, 251, 253, .42); white-space: nowrap; }
@@ -254,6 +247,7 @@
   .mfoot .panel { background: var(--deep950); border-radius: 32px 32px 0 0; padding: 48px 28px 32px; color: #fff; position: relative; overflow: hidden; }
   .mfoot .pulse { position: absolute; inset: 0; z-index: 0; }
   .mfoot .panel > :not(.pulse) { position: relative; z-index: 1; }
+  .mfoot .where { margin-top: 28px; }
   .mfoot .panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
   .mfoot h2 { margin: 0 0 24px; font-weight: 600; font-size: clamp(36px, 10vw, 48px); line-height: 1; }
   .mfoot .email2 { flex-direction: row !important; align-items: center; }

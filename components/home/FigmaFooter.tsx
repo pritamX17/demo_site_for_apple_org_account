@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import { FooterPulse } from "@/components/home/FooterPulse";
+import { OrbitMark } from "@/components/jarvis/logos";
 
 const DISCLAIMER =
   "OneStop AI provides education, information, and automation support — never financial advice. Jarvis, our first product, does not sell products or recommend securities. What comes next, beyond Money, is still being decided.";
@@ -16,11 +17,21 @@ const HREF: Record<string, string> = { Home: "/" };
  *  v2 (2026-09-08, Saurabh: "the footer is not there yet"): keeps the Figma geometry and adds an arrow submit inside the email box,
  *  a Product link group (Jarvis · CTA) and the disclaimer line under the legal line.
  *  v3 (2026-09-08): the static dot image becomes FooterPulse (the orbit mark in pixels, pulsing in its own shape),
- *  the top corners are curved, and the frame shrinks to 620px. The Jarvis page's "Where Jarvis lives today" band (WhereBand) sits on top of it.
+ *  the top corners are curved, and the frame shrinks to 620px. On the Jarvis page (`where`) a small "Where Jarvis lives today" block with the app door sits under the headline.
  *  Above 900px it is the exact frame,
  *  laid out at 1440 with Figma coordinates and scaled to the viewport. Below
  *  900px the same content stacks into a readable column. */
-export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", product = ["Jarvis", "/jarvis"], cta = ["Try Jarvis", "/jarvis"] }: { disclaimer?: string; button?: string; product?: [string, string]; cta?: [string, string] } = {}) {
+/** "Where Jarvis lives today" — the app door (Jarvis page only, `where`). Lines are locked copy: v5 strip title + the beta line. */
+function Where({ href }: { href: string }) {
+  return (
+    <>
+      <p className="k">Where Jarvis lives today.</p>
+      <a className="tile" href={href} data-to={href.startsWith("#") ? "" : undefined}><span className="ic"><OrbitMark size={16} /></span><span><b>The Jarvis app</b><small>Jarvis is in invite-only beta.</small></span></a>
+    </>
+  );
+}
+
+export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", product = ["Jarvis", "/jarvis"], cta = ["Try Jarvis", "/jarvis"], where = false }: { disclaimer?: string; button?: string; product?: [string, string]; cta?: [string, string]; where?: boolean } = {}) {
   const wrap = useRef<HTMLDivElement>(null);
   const frame = useRef<HTMLDivElement>(null);
   const [sent, setSent] = useState(false);
@@ -60,6 +71,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
           </form>
+          {where && <div className="abs where"><Where href={cta[1]} /></div>}
           <p className="abs lbl" style={{ left: 112 }}>Site</p>
           <Link className="abs lnk" style={{ left: 112 }} href={HREF.Home}>Home</Link>
           <a className="abs lnk" style={{ left: 170 }} href="#">About</a>
@@ -90,6 +102,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
               <button className="sub" type="submit" aria-label={button}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
             </form>
           )}
+          {where && <div className="where"><Where href={cta[1]} /></div>}
           <div className="cols">
             <div><p className="lbl">Site</p><div className="lnks">{SITE.map((n) => (HREF[n] ? <Link key={n} href={HREF[n]}>{n}</Link> : <a key={n} href="#">{n}</a>))}</div></div>
             <div><p className="lbl">Socials</p><div className="lnks">{SOCIAL.map((n) => <a key={n} href="#">{n}</a>)}</div></div>
