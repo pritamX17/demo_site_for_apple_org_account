@@ -18,7 +18,7 @@ export function Quiet() {
     <section ref={ref} id="quiet" className="sheet gut" style={{ paddingBottom: "var(--gutter)" }}>
       <div className="p56 on-dark quietp photo-panel">
         {/* brand book p03 · a couple walking side by side under 70% sky — "quietly beside you". Copy sits top-left in the sky, the phone top-right; the couple stays uncovered in the lower centre. */}
-        <div className="hero-photo" style={{ backgroundImage: "url(/img/couple.jpg)", backgroundPosition: "center 40%", zIndex: -2 }} />
+        <div className="hero-photo" style={{ zIndex: -2 }} />
         <div className="scrim2" style={{ background: "linear-gradient(180deg,rgba(0,21,38,.45),rgba(0,21,38,.05) 45%,rgba(0,21,38,.35))", zIndex: -1 }} />
         <div className="grain2" />
         <div className="quietg">

@@ -18,12 +18,13 @@
   .hp .lnk { white-space: normal; text-align: center; }
 
   /* ── HOME · hero: copy in the "sky" (deep gradient) on top, the photo as a band below,
-     so the human sits in the lower half and never under the copy (hero-mobile.jpg 1004×1800,
-     face sits in the lower third → a 480px band at 85% shows the whole head and shoulders). ── */
+     so the human sits in the lower half and never under the copy (hero-mobile.jpg 800×988 is
+     the exact band crop for phones; 85% only matters for tablets, which still use hero-wide.jpg). ── */
   .hp .hero-panel { min-height: 0; display: flex; flex-direction: column; align-items: stretch; background: linear-gradient(180deg, #001526 0%, #002e51 55%); }
   .hp .hero-panel .hero-img { position: relative; inset: auto; order: 2; height: 480px; z-index: 0 !important; background-position: center 85%; }
   .hp .hero-panel .scrim2 { top: auto; bottom: 0; height: 480px; z-index: 1 !important; background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, 0) 32%, rgba(0, 21, 38, .4) 100%) !important; }
   .hp .hero-copy { order: 1; padding: 124px 24px 32px; z-index: 1; }
+  @media (max-width: 760px) { .hp .hero-panel .hero-img { background-position: center; } }
   .hp .h11 { font-size: clamp(38px, 11vw, 46px); line-height: 1; }
   .hp .hero-grid { gap: 22px; margin-top: 26px; }
   .hp .hero-grid .st2 { font-size: 20px; }

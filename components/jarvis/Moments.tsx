@@ -4,10 +4,11 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 /* Purpose-cut 810×880 derivatives of the brand-book photos (boulder p04 · pottery p26 · window p29): faces sit in the upper half, above the glass card. */
-const MOMENTS: [string, string, string][] = [
-  ["/img/jarvis/moment-rest.jpg", "Then your reason still stands. Close the app, go for a walk.", "Fewer tabs open."],
-  ["/img/jarvis/moment-hands.jpg", "Did the company get worse today, or just the price?", "A clearer head."],
-  ["/img/jarvis/moment-window.jpg", "Want to see which names overlap, or leave it for the weekend?", "Decisions, not doubt."],
+const MOMENTS: [string, string, string, string][] = [
+  // [desktop crop 810×880, phone crop 0.76, the Jarvis line, the tag]
+  ["/img/jarvis/moment-rest.jpg", "/img/jarvis/moment-rest-mobile.jpg", "Then your reason still stands. Close the app, go for a walk.", "Fewer tabs open."],
+  ["/img/jarvis/moment-hands.jpg", "/img/jarvis/moment-hands-mobile.jpg", "Did the company get worse today, or just the price?", "A clearer head."],
+  ["/img/jarvis/moment-window.jpg", "/img/jarvis/moment-window-mobile.jpg", "Want to see which names overlap, or leave it for the weekend?", "Decisions, not doubt."],
 ];
 
 /** 06 · Moments. Treatment "Pop · Ken Burns": each photo drifts in scale on scroll; the glass bubble pops up with an elastic ease. */
@@ -32,9 +33,9 @@ export function Moments() {
     <section ref={ref} id="moments" className="sheet pad" style={{ paddingBottom: 150 }}>
       <h2 className="hh" style={{ maxWidth: 820 }} data-r>What good advice actually buys you: your evenings back.</h2>
       <div className="moments">
-        {MOMENTS.map(([img, line, tag]) => (
+        {MOMENTS.map(([img, imgm, line, tag]) => (
           <div className="moment" key={tag} data-x>
-            <div className="img" style={{ backgroundImage: `url(${img})` }} />
+            <div className="img" style={{ "--img": `url(${img})`, "--imgm": `url(${imgm})` } as React.CSSProperties} />
             <div className="glass" data-x><p className="m j">{line}</p><p className="tag">{tag}</p></div>
           </div>
         ))}
