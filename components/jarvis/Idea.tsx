@@ -33,7 +33,7 @@ export function Idea() {
       <div className="p56 on-dark photo-panel idea-panel" style={{ isolation: "isolate", overflow: "hidden" }}>
         {/* brand book p36 · two friends in conversation under open sky — the "conversation" the copy describes. Subject stays in the left half. */}
         <div className="hero-photo" style={{ zIndex: -2 }} />
-        <div className="scrim2" style={{ background: "linear-gradient(90deg,rgba(0,21,38,.15),rgba(0,21,38,.05) 45%,rgba(0,21,38,.55)), linear-gradient(180deg,rgba(0,21,38,.25),rgba(0,21,38,0) 30%,rgba(0,21,38,.35))", zIndex: -1 }} />
+        <div className="scrim2" style={{ background: "linear-gradient(90deg,rgba(0,21,38,.10),rgba(0,21,38,0) 40%,rgba(0,46,81,.42) 100%), linear-gradient(180deg,rgba(0,46,81,.12),rgba(0,21,38,0) 30%,rgba(0,21,38,.22))", zIndex: -1 }} />
         <div className="grain2" />
         <div className="idea3">
           <div className="spacer" aria-hidden="true" />
