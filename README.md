@@ -45,7 +45,7 @@ app/
   jarvis/jarvis.css   Jarvis-only rules (.jp)
 components/
   home/               HomeNav, Hero, Reason, Build, Jarvis + Phone, NextUp, Built,
-                      CloseLine, FigmaFooter (+ FooterPulse, the pixel waveform), HomeMotion, MobileCta, useDotField
+                      CloseLine, FigmaFooter (+ FooterPulse, the orbit mark in pixels), HomeMotion, MobileCta, useDotField
   jarvis/             JarvisHero, Screen (app screens), Idea, Proof, Versus, Different,
                       Moments, Quiet, Gate, chat.ts, logos.tsx (orbit mark, OpenAI, Claude, WhatsApp)
 lib/

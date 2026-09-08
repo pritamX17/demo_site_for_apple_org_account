@@ -16,7 +16,7 @@ const HREF: Record<string, string> = { Home: "/" };
  *  headline 112/54, the email box alone at 863/76 (no button — Enter submits), links at 622/644, legal at 742. No disclaimer line.
  *  v2 (2026-09-08, Saurabh: "the footer is not there yet"): keeps the Figma geometry and adds an arrow submit inside the email box,
  *  a Product link group (Jarvis · CTA) and the disclaimer line under the legal line.
- *  v3 (2026-09-08): the static dot image becomes FooterPulse (a pixel waveform pulsing from the centred lockup),
+ *  v3 (2026-09-08): the static dot image becomes FooterPulse (the orbit mark in pixels, pulsing in its own shape),
  *  the top corners are curved, and the Jarvis page's "Where Jarvis lives today" strip moves in here as two tiles (`where`).
  *  Above 900px it is the exact frame,
  *  laid out at 1440 with Figma coordinates and scaled to the viewport. Below
@@ -102,7 +102,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
               <button className="sub" type="submit" aria-label={button}><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
             </form>
           )}
-          <FooterPulse cell={11} logo={200} />
+          <FooterPulse cell={8} mark={170} />
           {where && <div className="where"><Where appHref={cta[1]} /></div>}
           <div className="cols">
             <div><p className="lbl">Site</p><div className="lnks">{SITE.map((n) => (HREF[n] ? <Link key={n} href={HREF[n]}>{n}</Link> : <a key={n} href="#">{n}</a>))}</div></div>
