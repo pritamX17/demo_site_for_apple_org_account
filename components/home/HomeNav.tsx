@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
+import { Magnetic } from "@/components/motion/Magnetic";
 
 /* The Figma nav (212:1248): lockup at (77,61), CTA pill + MENU (two 34×2 bars) at the right.
    Transparent over the hero, glass once scrolled. MENU opens a full deep950 panel (clip-path circle from the button). */
@@ -51,6 +52,9 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
+    // Lenis keeps scrolling through overflow:hidden — pause it while the menu is open.
+    if (open) window.__lenis?.stop();
+    else window.__lenis?.start();
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
     return () => {
@@ -70,7 +74,9 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
           </Link>
           <div className="right">
             {/* TODO(launch): point at the live Jarvis product URL */}
-            {ctaHref.startsWith("#") ? <a className="pill" href={ctaHref} data-to>{cta}</a> : <Link className="pill" href={ctaHref}>{cta}</Link>}
+            <Magnetic strength={0.22} reach={16}>
+              {ctaHref.startsWith("#") ? <a className="pill" href={ctaHref} data-to>{cta}</a> : <Link className="pill" href={ctaHref}>{cta}</Link>}
+            </Magnetic>
             <button className="menu" type="button" aria-expanded={open} aria-controls="menu-panel" onClick={() => setOpen((o) => !o)}>
               Menu <i />
             </button>

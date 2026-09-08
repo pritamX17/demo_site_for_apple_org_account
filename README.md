@@ -75,3 +75,11 @@ Search the code for these tags:
 - `TODO(counsel)` — the shared-success line in "How we're built".
 - `TODO(compliance)` — real tickers in the phone mock.
 - `TODO(figma)` — only the Portfolio app screen was measured from Figma; the others are extensions.
+
+## Motion explorations (branch `explore/motion`)
+
+Sixteen micro-motion candidates, ten applied on `/` and `/jarvis`, all live at `/lab`.
+Adds Motion 13 (`motion/react`), Lenis 1.3 and NumberFlow next to GSAP.
+Read `docs/motion-explorations.md` for the stack decision, the rules and the open calls.
+Publish the branch beside the main site with
+`HUB_SLUG=onestop-site-motion HUB_TITLE="OneStop website — motion explorations" sh scripts/export-review.sh --publish`.

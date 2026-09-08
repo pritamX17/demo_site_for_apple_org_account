@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./home.css";
+import "./motion.css";
 import "./mobile.css";
 import { HomeMotion } from "@/components/home/HomeMotion";
+import { MotionLayer } from "@/components/motion/MotionLayer";
 import { HomeNav } from "@/components/home/HomeNav";
 import { Hero } from "@/components/home/Hero";
 import { Reason } from "@/components/home/Reason";
@@ -31,6 +33,7 @@ export default function HomePage() {
   return (
     <div className="hp">
       <HomeMotion />
+      <MotionLayer />
       <HomeNav />
       <main>
         <Hero />

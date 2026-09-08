@@ -36,6 +36,12 @@ export function HomeMotion() {
       const href = a?.getAttribute("href");
       if (!a || !href || href[0] !== "#") return;
       e.preventDefault();
+      // Lenis owns the scroll when it is mounted (components/motion/SmoothScroll).
+      const lenis = window.__lenis;
+      if (lenis) {
+        lenis.scrollTo(href, { duration: 1.1, easing: (t: number) => 1 - Math.pow(1 - t, 3) });
+        return;
+      }
       gsap.to(window, {
         duration: 1,
         scrollTo: { y: href, offsetY: 0 },

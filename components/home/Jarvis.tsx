@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Phone } from "./Phone";
+import { Tilt } from "@/components/motion/Tilt";
 
 /** 04 · Proof: Jarvis — morning panel. The phone rises into frame, the two chat
  *  bubbles pop, the handled cards drift in parallax. */
@@ -37,14 +38,14 @@ export function Jarvis() {
     <section id="jarvis" ref={ref} className="sheet gut" style={{ paddingTop: "var(--gutter)" }}>
       <div className="p56 jarvis-panel">
         <div className="dm" style={{ top: 380, opacity: 0.45 }} />
-        <div className="hcard flow" style={{ right: "2%", top: 120, zIndex: 3 }} data-float="1">
+        <div className="hslot" style={{ position: "absolute", right: "2%", top: 120, zIndex: 3 }} data-float="1"><Tilt className="hcard flow tilt" style={{ position: "relative", right: "auto", top: "auto" }}>
           <Image className="mk" src="/figma/card-icon.svg" alt="" width={11} height={11} />
           <div><p>A cash crunch is coming on the 24th. Here is the fix.</p><small>Handled by Jarvis</small></div>
-        </div>
-        <div className="hcard flow" style={{ right: "30%", top: 620, zIndex: 3 }} data-float="2">
+        </Tilt></div>
+        <div className="hslot" style={{ position: "absolute", right: "30%", top: 620, zIndex: 3 }} data-float="2"><Tilt className="hcard flow tilt" style={{ position: "relative", right: "auto", top: "auto" }}>
           <Image className="mk" src="/figma/card-icon.svg" alt="" width={11} height={11} />
           <div><p>Three holdings moved more than usual today. Nothing needs you.</p><small>Handled by Jarvis</small></div>
-        </div>
+        </Tilt></div>
         <div className="pad jarvis-copy">
           <p className="k2" style={{ color: "var(--tide)" }} data-j>Live now · the first companion</p>
           <h2 className="hh" data-j>Meet Jarvis. Your money, finally on your side.</h2>

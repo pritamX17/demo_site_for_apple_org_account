@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import { Magnetic } from "@/components/motion/Magnetic";
 import { gsap, useGSAP, ScrollTrigger, SplitText, CustomEase } from "@/lib/gsap";
 
 /** 01 · Hero — boxed panel. Headline lines rise behind a mask, the photo settles
@@ -76,7 +77,7 @@ export function Hero() {
             <div data-h>
               <p className="st2">On your side. Always.</p>
               <div className="hero-ctas">
-                <Link className="cta2 light" href="/jarvis">Try Jarvis — Live now</Link>
+                <Magnetic><Link className="cta2 light" href="/jarvis">Try Jarvis — Live now</Link></Magnetic>
                 <a className="lnk" href="#next" data-to>See what’s coming →</a>
               </div>
               <p className="trust" style={{ marginTop: 28 }}>No product to sell you. No agenda but yours.</p>

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "../home.css";
 import "./jarvis.css";
+import "../motion.css";
 import "../mobile.css";
 import { HomeMotion } from "@/components/home/HomeMotion";
+import { MotionLayer } from "@/components/motion/MotionLayer";
 import { HomeNav } from "@/components/home/HomeNav";
 import { FigmaFooter } from "@/components/home/FigmaFooter";
 import { MobileCta } from "@/components/home/MobileCta";
@@ -41,6 +43,7 @@ export default function JarvisPage() {
   return (
     <div className="hp jp">
       <HomeMotion />
+      <MotionLayer />
       <HomeNav cta="Request access" ctaHref="#gate" links={LINKS} />
       <JarvisHero />
       <Idea />

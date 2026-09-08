@@ -3,6 +3,7 @@
 import { type FormEvent, useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { Screen } from "./Screen";
+import { Magnetic } from "@/components/motion/Magnetic";
 
 const HEADLINE = "The problem is the password.";
 
@@ -42,7 +43,7 @@ export function Gate() {
             <form onSubmit={onSubmit} data-r>
               <textarea placeholder="The decision you’re wrestling with" aria-label="Your decision" value={typed} onChange={(e) => setTyped(e.target.value)} required disabled={sent} />
               <input type="tel" placeholder="Your phone number" aria-label="Your phone number" required disabled={sent} />
-              <button className="cta2 light" type="submit" style={{ alignSelf: "flex-start" }} disabled={sent}>Request access</button>
+              <Magnetic className="self-start"><button className="cta2 light" type="submit" disabled={sent}>Request access</button></Magnetic>
             </form>
             <p className="fine" data-r>Free while in beta. Never sells you anything. Never tells you what to buy.</p>
             <p className="st2" style={{ color: "#fff", marginTop: 24 }} data-r>On your side. Always.</p>

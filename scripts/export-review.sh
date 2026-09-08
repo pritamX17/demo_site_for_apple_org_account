@@ -7,9 +7,10 @@
 # rewrite those absolute /img and /figma paths after the build.
 set -e
 cd "$(dirname "$0")/.."
-BASE="/onestop-share/onestop-site"
+SLUG="${HUB_SLUG:-onestop-site}"
+BASE="/onestop-share/$SLUG"
 rm -rf out .next-export
-HUB_EXPORT=1 npm run build
+HUB_EXPORT=1 HUB_SLUG="$SLUG" npm run build
 OUT=out; [ -d out ] || OUT=.next-export
 find "$OUT" \( -name '*.html' -o -name '*.css' -o -name '*.js' \) -print0 \
   | xargs -0 perl -0pi -e "s#([\"'(])/(img|figma)/#\$1$BASE/\$2/#g"
@@ -18,6 +19,6 @@ find "$OUT" -name '*.html' -print0 \
   | xargs -0 perl -0pi -e 's#<head>#<head><meta name="robots" content="noindex,nofollow"/>#'
 echo "export ready in $OUT/"
 if [ "$1" = "--publish" ]; then
-  python3 "$HOME/onestop-site/tools/publish.py" --title "OneStop website — homepage + Jarvis" --slug onestop-site \
+  python3 "$HOME/onestop-site/tools/publish.py" --title "${HUB_TITLE:-OneStop website — homepage + Jarvis}" --slug "$SLUG" \
     --dir "$PWD/$OUT" --blurb "The real site: / (homepage) and /jarvis (product page, copy v5). Desktop + phone." --push
 fi

@@ -6,7 +6,8 @@ import type { NextConfig } from "next";
 const isExport = process.env.JARVIS_EXPORT === "1";
 // HUB_EXPORT=1 npm run build → static export for the team review hub
 // (saurabh-labofone.github.io/onestop-share/onestop-site/). See scripts/export-review.sh.
-const HUB_BASE = "/onestop-share/onestop-site";
+const HUB_SLUG = process.env.HUB_SLUG ?? "onestop-site";
+const HUB_BASE = `/onestop-share/${HUB_SLUG}`;
 const isHub = process.env.HUB_EXPORT === "1";
 
 const nextConfig: NextConfig = {

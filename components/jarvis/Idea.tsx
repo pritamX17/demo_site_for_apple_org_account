@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { gsap, useGSAP, SplitText } from "@/lib/gsap";
+import { NumberRoll } from "@/components/motion/NumberRoll";
 
 /** 02 · The idea: the headline rises line by line, the receipt fades in.
  *  The sky photo settles from a slow zoom on scroll. */
@@ -47,7 +48,7 @@ export function Idea() {
               <div className="li"><span>Unhurried conversation</span><b>✓ &nbsp;·&nbsp; ✓</b></div>
               <div className="li"><span>Informed, on your whole picture</span><b>✓ &nbsp;·&nbsp; ✓</b></div>
               <div className="li"><span>Loyal only to you</span><b>✓ &nbsp;·&nbsp; ✓</b></div>
-              <div className="tot"><span>Total</span><strong><span>$5,000</span> <span>/ month</span> &nbsp;·&nbsp; <span>less than a coffee</span></strong></div>
+              <div className="tot"><span>Total</span><strong><NumberRoll value={5000} prefix="$" /> <span>/ month</span> &nbsp;·&nbsp; <span>less than a coffee</span></strong></div>
             </div>
           </div>
         </div>

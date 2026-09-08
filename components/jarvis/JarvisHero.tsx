@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, useGSAP, SplitText, CustomEase } from "@/lib/gsap";
+import { Magnetic } from "@/components/motion/Magnetic";
 import { Screen } from "./Screen";
 import { playChat, typingBubble } from "./chat";
 
@@ -90,7 +91,7 @@ export function JarvisHero() {
         <h1 data-r>{H1}</h1>
         <p className="statement" data-r>{STATEMENT}</p>
         <p className="sub" data-r>{SUB}</p>
-        <a className="cta2 light" href="#gate" data-to data-r>Request access</a>
+        <Magnetic><a className="cta2 light" href="#gate" data-to data-r>Request access</a></Magnetic>
         <p className="beta" data-r>Invite-only beta</p>
         <div className="mphone" data-r><Screen name="chat-hero" /></div>
       </div>
