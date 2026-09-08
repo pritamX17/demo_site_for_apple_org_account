@@ -95,7 +95,7 @@
   .nav2 .menu { display: flex; align-items: center; gap: 12px; padding: 10px 6px 10px 14px; color: #fff; font-weight: 700; font-size: 13px; text-transform: uppercase; line-height: 16px; background: none; border: 0; cursor: pointer; transition: color .3s ease; }
   .nav2 .menu i { display: flex; flex-direction: column; gap: 7px; width: 34px; }
   .nav2 .menu i::before, .nav2 .menu i::after { content: ""; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s ease; }
-  .nav2.solid { height: 96px; background: rgba(255, 255, 255, .72); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 0 rgba(0, 46, 81, .08); }
+  .nav2.solid { height: 96px; background: #fff; /* opaque: the frosted glass let the hero headline ghost through */ box-shadow: 0 1px 0 rgba(0, 46, 81, .08); }
   .nav2.solid .logo { top: 29px; filter: brightness(0) saturate(100%) invert(11%) sepia(60%) saturate(1800%) hue-rotate(190deg) brightness(90%); }
   .nav2.solid .right { top: 28px; }
   .nav2.solid .menu { color: var(--deep); }
