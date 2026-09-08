@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 
 const DISCLAIMER =
@@ -57,7 +58,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
             </button>
           </form>
           <p className="abs lbl" style={{ left: 112 }}>Site</p>
-          <a className="abs lnk" style={{ left: 112 }} href={HREF.Home}>Home</a>
+          <Link className="abs lnk" style={{ left: 112 }} href={HREF.Home}>Home</Link>
           <a className="abs lnk" style={{ left: 170 }} href="#">About</a>
           <a className="abs lnk" style={{ left: 234 }} href="#">Contact</a>
           <a className="abs lnk" style={{ left: 314 }} href="#">Careers</a>
@@ -66,7 +67,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
           <a className="abs lnk" style={{ left: 500 }} href="#">Twitter</a>
           <a className="abs lnk" style={{ left: 575 }} href="#">LinkedIn</a>
           <p className="abs lbl" style={{ left: 704 }}>Product</p>
-          <a className="abs lnk" style={{ left: 704 }} href={product[1]}>{product[0]}</a>
+          <Link className="abs lnk" style={{ left: 704 }} href={product[1]}>{product[0]}</Link>
           <a className="abs lnk" style={{ left: 704 + 64 }} href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a>
           <Image className="abs lockup" src="/figma/nav-logo.svg" alt="OneStop AI" width={160} height={30} />
           <p className="abs legal">© 2026 OneStop. All rights reserved &nbsp;|&nbsp; <b>Privacy Policy &nbsp;|&nbsp; Terms of Service</b></p>
@@ -87,9 +88,9 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
             </form>
           )}
           <div className="cols">
-            <div><p className="lbl">Site</p><div className="lnks">{SITE.map((n) => <a key={n} href={HREF[n] ?? "#"}>{n}</a>)}</div></div>
+            <div><p className="lbl">Site</p><div className="lnks">{SITE.map((n) => (HREF[n] ? <Link key={n} href={HREF[n]}>{n}</Link> : <a key={n} href="#">{n}</a>))}</div></div>
             <div><p className="lbl">Socials</p><div className="lnks">{SOCIAL.map((n) => <a key={n} href="#">{n}</a>)}</div></div>
-            <div><p className="lbl">Product</p><div className="lnks"><a href={product[1]}>{product[0]}</a><a href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a></div></div>
+            <div><p className="lbl">Product</p><div className="lnks"><Link href={product[1]}>{product[0]}</Link><a href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a></div></div>
           </div>
           <Image className="lockup" src="/figma/nav-logo.svg" alt="OneStop AI" width={140} height={26} />
           <p className="legal">© 2026 OneStop. All rights reserved<br /><b>Privacy Policy &nbsp;|&nbsp; Terms of Service</b></p>

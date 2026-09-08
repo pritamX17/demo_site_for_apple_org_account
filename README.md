@@ -23,6 +23,11 @@ npm run build    # production build (also runs the type check)
 npm run lint
 ```
 
+Team review link: `sh scripts/export-review.sh --publish` builds a static export with
+`basePath /onestop-share/onestop-site`, rewrites the absolute `/img` and `/figma` paths, and
+publishes it to the review hub at https://saurabh-labofone.github.io/onestop-share/onestop-site/
+(needs the `~/onestop-site` staging repo). Re-run to update the same link.
+
 Optional: `JARVIS_EXPORT=1 npm run build` writes a static export to `.next-export/`
 with `basePath /Jarvis` (for the `canvasxai/landing-pages` repo). The Jarvis page now
 lives at `/jarvis`, so revisit that `basePath` before the next export.
