@@ -69,6 +69,7 @@ export function JarvisHero() {
         <div className="frame f-hero" ref={frame}>
           <div className="panelbg">
             <div className="cloud c1" /><div className="cloud c2" />
+            <div className="rscrim" />
             <div className="dotmatrix" />
             <div className="grain" />
           </div>

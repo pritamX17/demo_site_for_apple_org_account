@@ -5,6 +5,7 @@ import "../mobile.css";
 import { HomeMotion } from "@/components/home/HomeMotion";
 import { HomeNav } from "@/components/home/HomeNav";
 import { FigmaFooter } from "@/components/home/FigmaFooter";
+import { WhereBand } from "@/components/jarvis/WhereBand";
 import { MobileCta } from "@/components/home/MobileCta";
 import { JarvisHero } from "@/components/jarvis/JarvisHero";
 import { Idea } from "@/components/jarvis/Idea";
@@ -50,7 +51,8 @@ export default function JarvisPage() {
       <Moments />
       <Quiet />
       <Gate />
-      <FigmaFooter disclaimer={DISCLAIMER} button="Request access" product={["Jarvis", "/jarvis"]} cta={["Request access", "#gate"]} where />
+      <WhereBand />
+      <FigmaFooter disclaimer={DISCLAIMER} button="Request access" product={["Jarvis", "/jarvis"]} cta={["Request access", "#gate"]} />
       <MobileCta label="Request access" href="#gate" hideAt="#gate" />
     </div>
   );

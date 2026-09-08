@@ -8,7 +8,8 @@ import { inOrbitMark } from "@/lib/dotfield";
  *  A wave travels outward through the mark's dots, and echoes of the mark's own
  *  silhouette expand out of it and fade — so the pulse keeps the shape of the logo.
  *  Pure canvas, driven by the GSAP ticker only while the footer is on screen.
- *  Brightness is quantised to three steps so it reads as pixels, not a glow. */
+ *  Brightness is quantised to three steps so it reads as pixels, not a glow.
+ *  Muted and slow on purpose: it is a background, the footer content sits on top of it. */
 export function FooterPulse({ className = "", cell = 10, mark = 300 }: { className?: string; cell?: number; mark?: number }) {
   const box = useRef<HTMLDivElement>(null);
   const cv = useRef<HTMLCanvasElement>(null);
@@ -32,8 +33,8 @@ export function FooterPulse({ className = "", cell = 10, mark = 300 }: { classNa
       cols = Math.floor(W / cell); rows = Math.floor(H / cell);
     };
     const frac = (n: number) => n - Math.floor(n);
-    const LEVELS = ["rgba(0,90,158,.7)", "rgba(0,160,204,.9)", "rgba(0,208,255,1)"];
-    const ECHO = ["rgba(0,90,158,.28)", "rgba(0,160,204,.5)", "rgba(0,208,255,.8)"];
+    const LEVELS = ["rgba(0,90,158,.4)", "rgba(0,160,204,.5)", "rgba(0,208,255,.62)"];
+    const ECHO = ["rgba(0,90,158,.16)", "rgba(0,160,204,.24)", "rgba(0,208,255,.34)"];
     // thin outline of the mark, scaled by s
     const inShell = (px: number, py: number, s: number) => inOrbitMark(px / s, py / s) && !inOrbitMark(px / (s * 0.9), py / (s * 0.9));
 
@@ -42,7 +43,7 @@ export function FooterPulse({ className = "", cell = 10, mark = 300 }: { classNa
       const ox = (W - cols * cell) / 2 + cell / 2, oy = (H - rows * cell) / 2 + cell / 2;
       const cx = (cols - 1) / 2, cy = (rows - 1) / 2;
       // a breath: the mark's wave swells and settles
-      const breath = 0.55 + 0.45 * Math.sin(t * 1.6);
+      const breath = 0.6 + 0.4 * Math.sin(t * 0.55);
       for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
           const px = ((i - cx) * cell) / S, py = ((j - cy) * cell) / S;
@@ -50,7 +51,7 @@ export function FooterPulse({ className = "", cell = 10, mark = 300 }: { classNa
           const r = Math.hypot(px, py);
           if (inOrbitMark(px, py)) {
             // wave travelling outward through the ring
-            const w = 0.5 + 0.5 * Math.sin(r * 34 - t * 5);
+            const w = 0.5 + 0.5 * Math.sin(r * 34 - t * 1.7);
             const q = Math.min(2, Math.floor((0.35 + 0.65 * w * breath) * 3));
             ctx.fillStyle = LEVELS[q];
             const s = dot + q * 1.5;
@@ -60,8 +61,8 @@ export function FooterPulse({ className = "", cell = 10, mark = 300 }: { classNa
           // echoes: three expanding outlines of the mark, fading as they grow
           let lvl = -1;
           for (let k = 0; k < 3; k++) {
-            const f = frac(t * 0.28 + k / 3);
-            const sc = 1.08 + f * 2.2;
+            const f = frac(t * 0.09 + k / 3);
+            const sc = 1.08 + f * 3.4;
             if (r < 0.333 * sc && r > 0.15 && inShell(px, py, sc)) {
               const q = Math.min(2, Math.floor((1 - f) * 3));
               lvl = Math.max(lvl, q);
@@ -71,7 +72,7 @@ export function FooterPulse({ className = "", cell = 10, mark = 300 }: { classNa
             ctx.fillStyle = ECHO[lvl];
             ctx.fillRect(x - dot / 2, y - dot / 2, dot, dot);
           } else {
-            ctx.fillStyle = "rgba(0,208,255,.1)";
+            ctx.fillStyle = "rgba(0,208,255,.07)";
             ctx.fillRect(x - dot / 2 + 1, y - dot / 2 + 1, dot - 2, dot - 2);
           }
         }

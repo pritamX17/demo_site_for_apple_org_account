@@ -15,6 +15,10 @@
   .f-hero .cloud { position: absolute; overflow: hidden; background-image: url(/figma/clouds-1348.png); background-size: 1348px 1011px; background-repeat: no-repeat; }
   .f-hero .cloud.c1 { left: 788px; top: 387px; width: 706px; height: 338px; background-position: 0 -673px; }
   .f-hero .cloud.c2 { left: -68px; top: 669px; width: 531px; height: 308px; background-position: -700px -8px; }
+  /* readability: the right column (statement · sub · beta) sits on the brightest clouds — a deep scrim under it */
+  .f-hero .rscrim { position: absolute; right: 0; top: 0; bottom: 0; width: 720px; background: linear-gradient(90deg, rgba(0, 46, 81, 0) 0%, rgba(0, 46, 81, .34) 45%, rgba(0, 46, 81, .62) 100%); }
+  .f-hero .cloud.c1 { opacity: .75; }
+  .f-hero .statement, .f-hero .sub, .f-hero .beta { text-shadow: 0 1px 2px rgba(0, 21, 38, .45), 0 10px 30px rgba(0, 21, 38, .35); }
   .f-hero .dotmatrix { position: absolute; left: 0; top: 45px; width: 1440px; height: 900px; background: url(/figma/hero-dotmatrix-canvas.png) center/contain no-repeat; }
   .f-hero .h1 { left: 83px; top: 207px; width: 600px; margin: 0; font-weight: 600; font-size: 56px; line-height: 1.04; color: #fff; font-kerning: none; }
   .f-hero .statement { left: 1074px; top: 600px; width: 300px; margin: 0; font-weight: 600; font-size: 28px; line-height: 1.1; color: #fff; }

@@ -68,7 +68,10 @@
   .hp .close14 .ctas { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 18px; margin-top: 28px; }
   .hp .close14 .lnk { align-self: center; }
   .hp .mfoot .panel { padding: 48px 24px 40px; }
-  .hp .mfoot .pulse { margin-left: -24px; margin-right: -24px; }
+  .hp .whereband { border-radius: 32px 32px 0 0; padding: 32px 24px; flex-direction: column; align-items: stretch; gap: 20px; }
+  .hp .whereband .line { font-size: 18px; }
+  .hp .whereband .doors { flex-direction: column; gap: 8px; }
+  .hp .whereband .doors .tile { min-width: 0; }
 
   /* ── sticky bottom CTA (both pages) ── */
   .hp .mcta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(248, 252, 254, .84); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-top: 1px solid rgba(0, 46, 81, .08); transform: translateY(110%); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
