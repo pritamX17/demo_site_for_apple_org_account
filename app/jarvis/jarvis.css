@@ -70,7 +70,6 @@
   .glass .tot span { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; }
   .glass .tot strong { font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
   .glass .tot strong span { font-family: inherit; font-size: inherit; letter-spacing: inherit; text-transform: none; }
-  .cup { display: block; width: 96px; height: 72px; color: var(--tide); margin: 18px 0 0; overflow: visible; }
 
   /* ---------- 03 the proof · the 6:40 exchange beside the Home screen ---------- */
   .talk { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 100px var(--pad); min-height: 860px; }
