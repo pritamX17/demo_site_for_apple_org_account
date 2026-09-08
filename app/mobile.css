@@ -1,0 +1,142 @@
+/* mobile.css — the phone layer for / and /jarvis (≤900px).
+   Loaded after home.css (+ jarvis.css), so equal-specificity rules here win.
+   Everything below is phone-first: one column, 24px sides, full-width CTAs,
+   phones cropped to a "peek" (scaled from top centre, layout box trimmed with a
+   negative margin or a fixed-height slot), and a sticky bottom CTA (.mcta). */
+
+@media (max-width: 900px) {
+  .hp { --pad: 24px; }
+
+  /* type rhythm */
+  .hp .hh { font-size: clamp(32px, 9.2vw, 40px); line-height: 1.04; }
+  .hp .hh.xl { font-size: clamp(38px, 11vw, 46px); line-height: 1; }
+  .hp .bd { font-size: 16px; line-height: 1.55; }
+  .hp .bd.lg { font-size: 17px; }
+  .hp .st2 { font-size: 22px; }
+  .hp .k2 { margin-bottom: 14px; }
+  .hp .cta2 { height: 52px; border-radius: 16px; }
+  .hp .lnk { white-space: normal; text-align: center; }
+
+  /* ── HOME · hero: copy in the "sky" (deep gradient) on top, the photo as a band below,
+     so the human sits in the lower half and never under the copy (hero-mobile.jpg 1004×1800,
+     face sits in the lower third → a 480px band at 85% shows the whole head and shoulders). ── */
+  .hp .hero-panel { min-height: 0; display: flex; flex-direction: column; align-items: stretch; background: linear-gradient(180deg, #001526 0%, #002e51 55%); }
+  .hp .hero-panel .hero-img { position: relative; inset: auto; order: 2; height: 480px; z-index: 0 !important; background-position: center 85%; }
+  .hp .hero-panel .scrim2 { top: auto; bottom: 0; height: 480px; z-index: 1 !important; background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, 0) 32%, rgba(0, 21, 38, .4) 100%) !important; }
+  .hp .hero-copy { order: 1; padding: 124px 24px 32px; z-index: 1; }
+  .hp .h11 { font-size: clamp(38px, 11vw, 46px); line-height: 1; }
+  .hp .hero-grid { gap: 22px; margin-top: 26px; }
+  .hp .hero-grid .st2 { font-size: 20px; }
+  .hp .hero-ctas { flex-direction: column; align-items: stretch; gap: 18px; margin-top: 20px; }
+  .hp .hero-ctas .cta2 { width: 100%; }
+  .hp .hero-ctas .lnk { align-self: center; }
+  .hp .hero-copy .trust { margin-top: 22px !important; font-size: 11px; line-height: 1.6; }
+
+  /* ── HOME · the reason ── */
+  .hp #coo > .sheet:first-child { padding-top: 88px !important; padding-bottom: 36px !important; }
+  .hp #coo > .sheet:last-child { padding-top: 36px !important; padding-bottom: 88px !important; }
+  .hp .reason-p { margin-top: 24px !important; }
+  .hp .row10 .g { height: 40px; padding: 0 14px; font-size: 13px; }
+
+  /* ── HOME · what we build ── */
+  .hp .build-panel { min-height: 0; padding: 260px 24px 48px; text-align: left; }
+  .hp .build-panel .bd.lg { margin: 20px 0 0 !important; }
+
+  /* ── HOME · meet Jarvis: copy, the two bubbles as a real chat, then the phone peeking out ── */
+  .hp .jarvis-copy { padding: 56px 24px 24px; }
+  .hp .jarvis-copy .bd { margin-top: 18px !important; }
+  .hp .jarvis-copy > div[data-j]:last-child { flex-direction: column; align-items: stretch !important; gap: 16px !important; margin-top: 24px !important; }
+  .hp .jarvis-copy .cta2 { width: 100%; }
+  .hp .jarvis-copy .lnk { align-self: center; }
+  .hp .phone11 { position: relative; right: auto; bottom: auto; width: auto; height: auto; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 24px 0; overflow: visible; transform: none; }
+  .hp .phone11 .bub { display: block; position: static; order: -1; font-size: 16px; line-height: 24px; padding: 14px 18px; }
+  .hp .phone11 .bub.you { align-self: flex-end; max-width: 80% !important; }
+  .hp .phone11 .bub.os { align-self: flex-start; max-width: 92% !important; }
+  .hp .phone11 .phone { order: 1; flex: none; margin: 14px 0 -484px; transform: scale(.7); transform-origin: top center; }
+  .hp .phone11::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(180deg, rgba(212, 247, 255, 0), #d4f7ff); z-index: 5; pointer-events: none; }
+
+  /* ── HOME · next / rules / close ── */
+  .hp .next14 { padding: 36px 22px; border-radius: 24px; }
+  .hp .next14 .hh { font-size: 30px; }
+  .hp .email2 .cta2 { width: 100%; }
+  .hp .rules-grid { padding-top: 64px; padding-bottom: 64px; }
+  .hp .rules-grid .bd { margin-bottom: 32px !important; }
+  .hp .rule { grid-template-columns: 40px 1fr; padding: 16px 0; }
+  .hp .rule .t { font-size: 18px; }
+  .hp .close14 { padding-top: 80px; padding-bottom: 80px; text-align: left; }
+  .hp .close14 .hh { margin: 0; }
+  .hp .close14 .ctas { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 18px; margin-top: 28px; }
+  .hp .close14 .lnk { align-self: center; }
+  .hp .mfoot .panel { padding: 48px 24px 40px; }
+
+  /* ── sticky bottom CTA (both pages) ── */
+  .hp .mcta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(248, 252, 254, .84); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-top: 1px solid rgba(0, 46, 81, .08); transform: translateY(110%); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+  .hp .mcta.on:not(.off) { transform: none; }
+  .hp .mcta .cta2 { width: 100%; }
+
+  /* ── JARVIS · hero ── */
+  .hp.jp .jhero-m { padding: 116px 24px 0; }
+  .hp.jp .jhero-m h1 { font-size: clamp(34px, 9.6vw, 40px); }
+  .hp.jp .jhero-m .cta2 { display: flex; width: 100%; margin-top: 26px; }
+  .hp.jp .jhero-m .beta { text-align: center; }
+  .hp.jp .jhero-m .mphone { height: 400px; margin-top: 28px; }
+  .hp.jp .jhero-m .mphone .phone { transform: scale(.7); }
+
+  /* ── JARVIS · photo panels (idea, quiet): a 300px photo band, then the copy on deep950 ── */
+  .hp.jp .photo-panel .hero-photo { height: 300px; }
+  .hp.jp .photo-panel .scrim2 { background: linear-gradient(180deg, rgba(0, 21, 38, .15), rgba(0, 21, 38, .35) 200px, var(--deep950) 300px) !important; }
+  .hp.jp .idea3, .hp.jp .quietg { padding: 324px 24px 48px; }
+  .hp.jp .glass { padding: 22px; border-radius: 22px; max-width: none; width: 100%; }
+
+  /* ── JARVIS · unprompted (proof): chat, then the home screen peeking out ── */
+  .hp.jp #proof { padding-bottom: 96px !important; }
+  .hp.jp .talk { padding: 48px 24px 0; gap: 28px; }
+  .hp.jp .talk .bub { max-width: 92%; font-size: 16px; line-height: 24px; padding: 14px 18px; }
+  .hp.jp .talk .phone-slot { position: relative; height: 380px; overflow: hidden; justify-content: center; align-items: flex-start; }
+  .hp.jp .talk .phone-slot .phone { transform: scale(.7); transform-origin: top center; }
+  .hp.jp .talk .phone-slot::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(180deg, rgba(0, 21, 38, 0), #001526); z-index: 5; pointer-events: none; }
+
+  /* ── JARVIS · versus: per question, the Jarvis answer as a card, the two others small underneath ── */
+  .hp.jp #versus { padding-top: 96px !important; padding-bottom: 96px !important; }
+  .hp.jp .vs3 { margin-top: 40px; }
+  .hp.jp .vs3 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 20px 0 24px; border-top: 1px solid var(--line); background: transparent; }
+  .hp.jp .vs3 .row.hd { display: none; }
+  .hp.jp .vs3 .row > div { padding: 0; }
+  .hp.jp .vs3 .lab { grid-column: 1 / -1; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .hp.jp .vs3 .cell { order: 2; display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; line-height: 19px; color: var(--muted); }
+  .hp.jp .vs3 .cell .mk { flex: none; margin-top: 2px; }
+  .hp.jp .vs3 .row > .cell.j { grid-column: 1 / -1; order: 1; margin: 0; padding: 14px 16px; background: #fff; border: 1px solid var(--line); border-radius: 16px; font-size: 16px; line-height: 23px; font-weight: 600; color: var(--deep); box-shadow: 0 14px 32px -18px rgba(0, 46, 81, .3); }
+  .hp.jp #versus > .bd { margin-top: 28px !important; }
+
+  /* ── JARVIS · different (bento) ── */
+  .hp.jp #different { padding-bottom: 96px !important; }
+  .hp.jp .bento { margin-top: 32px; gap: 12px; }
+  .hp.jp .card { padding: 24px 22px; border-radius: 24px; }
+  .hp.jp .card .t { font-size: 22px; }
+  .hp.jp .card .b { font-size: 16px; line-height: 24px; }
+
+  /* ── JARVIS · moments: a swipe carousel, snap per card ── */
+  .hp.jp #moments { padding-bottom: 96px !important; }
+  .hp.jp .moments { display: flex; gap: 12px; margin: 32px calc(-1 * var(--pad)) 0; padding: 0 var(--pad) 6px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding: 0 var(--pad); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .hp.jp .moments::-webkit-scrollbar { display: none; }
+  .hp.jp .moment { flex: 0 0 min(82%, 340px); scroll-snap-align: start; min-height: 0; height: 420px; border-radius: 24px; padding: 16px; }
+  .hp.jp .moment .glass { padding: 14px 16px; }
+
+  /* ── JARVIS · quiet ── */
+  .hp.jp .quietg { padding-bottom: 0; gap: 28px; }
+  .hp.jp .quietg .cta2 { display: flex; width: 100%; }
+  .hp.jp .quietg .phone-slot { position: relative; height: 360px; overflow: hidden; align-items: flex-start; justify-content: center; }
+  .hp.jp .quietg .phone-slot .phone { transform: scale(.7); transform-origin: top center; }
+  .hp.jp .quietg .phone-slot::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(180deg, rgba(0, 21, 38, 0), var(--deep950)); z-index: 5; pointer-events: none; }
+
+  /* ── JARVIS · gate: the form is the thing; the mirrored phone stays desktop-only ── */
+  .hp.jp .gate { padding: 64px 24px 56px; gap: 0; }
+  .hp.jp .gate .phone-slot { display: none; }
+  .hp.jp .gate form { margin-top: 28px; }
+  .hp.jp .gate .cta2 { width: 100%; }
+
+  /* ── JARVIS · where ── */
+  .hp.jp #where { padding-top: 64px !important; padding-bottom: 64px !important; }
+  .hp.jp .strip { padding: 22px 20px; gap: 16px; }
+}
+@media (min-width: 901px) { .hp .mcta { display: none; } }
