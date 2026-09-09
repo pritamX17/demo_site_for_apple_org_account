@@ -18,12 +18,11 @@
   .hp .lnk { white-space: normal; text-align: center; }
 
   /* ── HOME · hero: copy in the "sky" (deep gradient) on top, the photo as a band below,
-     so the human sits in the lower half and never under the copy (hero-mobile.jpg 800×988 is
-     the exact band crop for phones; 85% only matters for tablets, which still use hero-wide.jpg). ── */
+     so the human sits in the lower half and never under the copy (hero-mobile.jpg 800×590 is     the exact band crop for phones; 85% only matters for tablets, which still use hero-wide.jpg). ── */
   .hp .hero-panel { min-height: 0; display: flex; flex-direction: column; align-items: stretch; background: linear-gradient(180deg, #001526 0%, #002e51 55%); }
-  .hp .hero-panel .hero-img { position: relative; inset: auto; order: 2; height: 480px; z-index: 0 !important; background-position: center 85%; }
-  .hp .hero-panel .scrim2 { top: auto; bottom: 0; height: 480px; z-index: 1 !important; background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, 0) 32%, rgba(0, 21, 38, .4) 100%) !important; }
-  .hp .hero-copy { order: 1; padding: 124px 24px 32px; z-index: 1; }
+  .hp .hero-panel .hero-img { position: relative; inset: auto; order: 2; height: 420px; z-index: 0 !important; background-position: center 85%; }
+  .hp .hero-panel .scrim2 { top: auto; bottom: 0; height: 420px; z-index: 1 !important; background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, 0) 16%, rgba(0, 21, 38, .4) 100%) !important; }
+  .hp .hero-copy { order: 1; padding: 124px 24px 8px; z-index: 1; }
   @media (max-width: 760px) { .hp .hero-panel .hero-img { background-position: center; } }
   .hp .h11 { font-size: clamp(38px, 11vw, 46px); line-height: 1; }
   .hp .hero-grid { gap: 22px; margin-top: 26px; }
@@ -137,3 +136,27 @@
   .hp.jp .gate .cta2 { width: 100%; }
 }
 @media (min-width: 901px) { .hp .mcta { display: none; } }
+
+/* ── phone pass 2 (2026-09-09, from full-page phone screenshots of both pages) ── */
+@media (max-width: 900px) {
+  /* HOME · the dot fields were sitting on top of the copy in the two dark panels */
+  .hp .build-panel .dots, .hp .rules-panel .dots { opacity: .35; }
+  /* HOME · the tab-storm rows run off both edges — fade them out instead of a hard cut */
+  .hp #coo div:has(> .row10) { -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+  /* HOME · rhythm + the close CTAs stacked full-width like the hero */
+  .hp #next { padding-top: 56px !important; padding-bottom: 56px !important; }
+  .hp .close14 .ctas { flex-direction: column; align-items: stretch; gap: 18px; margin-top: 28px; }
+  .hp .close14 .ctas .cta2 { width: 100%; display: flex; justify-content: center; }
+  .hp .close14 .ctas .lnk { align-self: center; }
+  /* JARVIS · section rhythm: the desktop 150px gaps read as holes on a phone */
+  .hp.jp #idea { padding-top: 40px !important; padding-bottom: 56px !important; }
+  .hp.jp #proof, .hp.jp #different, .hp.jp #moments { padding-bottom: 56px !important; }
+  .hp.jp #versus { padding-top: 56px !important; padding-bottom: 56px !important; }
+  /* JARVIS · the receipt sits on the deep panel here, not on the sky: a white card, no wraps */
+  .hp.jp .idea-panel .glass { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; border-color: #fff; }
+  .hp.jp .glass .li.hd { gap: 12px; }
+  .hp.jp .glass .li.hd .k { font-size: 9.5px; letter-spacing: 1.3px; white-space: nowrap; }
+  .hp.jp .glass .li b { white-space: nowrap; }
+  .hp.jp .glass .tot { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .hp.jp .glass .tot strong { font-size: 19px; }
+}
