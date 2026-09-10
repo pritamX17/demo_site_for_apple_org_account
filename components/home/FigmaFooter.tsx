@@ -9,7 +9,8 @@ const DISCLAIMER =
   "OneStop AI provides education, information, and automation support — never financial advice. Jarvis, our first product, does not sell products or recommend securities. What comes next, beyond Money, is still being decided.";
 const SITE = ["Home", "About", "Contact", "Careers"];
 const SOCIAL = ["Instagram", "Twitter", "LinkedIn"];
-// TODO(launch): real hrefs for About / Contact / Careers / socials / Privacy / Terms.
+// TODO(launch): real hrefs for About / Contact / Careers / socials.
+// Privacy / Terms now point at /privacy and /terms.
 const HREF: Record<string, string> = { Home: "/" };
 
 /** The Figma footer (208:1250, 1440×816), re-checked against Figma on 2026-09-08: full-bleed deep950, 1px tint line on top,
@@ -84,7 +85,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
           <p className="abs lbl" style={{ left: 704 }}>Product</p>
           <Link className="abs lnk" style={{ left: 704 }} href={product[1]}>{product[0]}</Link>
           <a className="abs lnk" style={{ left: 704 + 64 }} href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a>
-          <p className="abs legal">© 2026 OneStop. All rights reserved &nbsp;|&nbsp; <b>Privacy Policy &nbsp;|&nbsp; Terms of Service</b></p>
+          <p className="abs legal">© 2026 OneStop. All rights reserved &nbsp;|&nbsp; <b><Link href="/privacy">Privacy Policy</Link> &nbsp;|&nbsp; <Link href="/terms">Terms of Service</Link></b></p>
           <p className="abs disc">{disclaimer}</p>
         </div>
       </div>
@@ -108,7 +109,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
             <div><p className="lbl">Socials</p><div className="lnks">{SOCIAL.map((n) => <a key={n} href="#">{n}</a>)}</div></div>
             <div><p className="lbl">Product</p><div className="lnks"><Link href={product[1]}>{product[0]}</Link><a href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a></div></div>
           </div>
-          <p className="legal">© 2026 OneStop. All rights reserved<br /><b>Privacy Policy &nbsp;|&nbsp; Terms of Service</b></p>
+          <p className="legal">© 2026 OneStop. All rights reserved<br /><b><Link href="/privacy">Privacy Policy</Link> &nbsp;|&nbsp; <Link href="/terms">Terms of Service</Link></b></p>
           <p className="disc">{disclaimer}</p>
         </div>
       </div>
