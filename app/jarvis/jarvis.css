@@ -146,9 +146,14 @@
   .gate form { display: flex; flex-direction: column; gap: 12px; margin-top: 36px; }
   .gate textarea, .gate input { width: 100%; border-radius: 18px; border: 1px solid rgba(0, 208, 255, .35); background: rgba(255, 255, 255, .06); color: #fff; padding: 16px 20px; font-family: var(--font); font-size: 16px; line-height: 24px; }
   .gate textarea { min-height: 130px; resize: vertical; }
+  .gate .phone-row { display: flex; gap: 12px; }
+  .gate .phone-row select { flex: 0 0 auto; width: 200px; height: 58px; border-radius: 18px; border: 1px solid rgba(0, 208, 255, .35); background: rgba(255, 255, 255, .06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%2300d0ff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") right 18px center no-repeat; color: #fff; padding: 0 40px 0 20px; font-family: var(--font); font-size: 16px; -webkit-appearance: none; appearance: none; cursor: pointer; }
+  .gate .phone-row select option { color: var(--deep); background: #fff; }
+  .gate .phone-row select:focus { outline: none; border-color: var(--aqua); }
+  .gate .phone-row input { flex: 1; min-width: 0; }
   .gate textarea:focus, .gate input:focus { outline: none; border-color: var(--aqua); }
   .gate ::placeholder { color: rgba(242, 251, 253, .45); }
-  .gate textarea:disabled, .gate input:disabled, .gate button:disabled { opacity: .55; cursor: default; }
+  .gate textarea:disabled, .gate input:disabled, .gate select:disabled, .gate button:disabled { opacity: .55; cursor: default; }
   .gate .fine { margin: 12px 0 0; font-size: 13px; line-height: 20px; color: rgba(242, 251, 253, .55); }
   .gate .phone-slot { display: flex; justify-content: center; align-items: center; }
   .gate .phone-slot .phone { transform: scale(.78); transform-origin: center; }

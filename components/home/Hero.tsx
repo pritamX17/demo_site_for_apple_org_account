@@ -80,7 +80,7 @@ export function Hero() {
                 <Magnetic><Link className="cta2 light" href="/jarvis">Try Jarvis — Live now</Link></Magnetic>
                 <a className="lnk" href="#next" data-to>See what’s coming →</a>
               </div>
-              <p className="trust" style={{ marginTop: 28 }}>No product to sell you. No agenda but yours.</p>
+              <p className="trust chip" style={{ marginTop: 20 }}><i aria-hidden="true" />No product to sell you. No agenda but yours.</p>
             </div>
           </div>
         </div>

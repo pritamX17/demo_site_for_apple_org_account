@@ -8,13 +8,12 @@ import { Magnetic } from "@/components/motion/Magnetic";
 
 /* The Figma nav (212:1248): lockup at (77,61), CTA pill + MENU (two 34×2 bars) at the right.
    Transparent over the hero, glass once scrolled. MENU opens a full deep950 panel (clip-path circle from the button). */
-/* The site has two pages. The menu names both, marks the one you are on, and lists the sections of that page below. */
+/* Plain menu (Saurabh, 2026-09-15: no background art, keep it simple): the two pages, the one you are on marked, then the sections of that page. */
 const PAGES: { key: PageKey; label: string; href: string; sub: string }[] = [
   { key: "home", label: "OneStop AI", href: "/", sub: "The company" },
   { key: "jarvis", label: "Jarvis", href: "/jarvis", sub: "Money · Live now" },
 ];
 export type PageKey = "home" | "jarvis";
-const TITLE: Record<PageKey, string> = { home: "OneStop AI — the company page", jarvis: "Jarvis — the money companion" };
 const LINKS: [string, string, string?][] = [
   ["Why we exist", "#coo"],
   ["What’s next", "#next"],
@@ -91,10 +90,8 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
         </div>
       </nav>
       <div ref={panel} className={`menu-panel${open ? " on" : ""}`} id="menu-panel" aria-hidden={!open}>
-        <div className="dmn" /><div className="fade" /><div className="grain" />
         <div className="in">
           <div className="links">
-            <p className="grp">Pages</p>
             {PAGES.map((pg) =>
               pg.key === page ? (
                 <a key={pg.key} className="cur" href="#hero" data-to aria-current="page" onClick={close}>{pg.label}<small>You are here</small></a>
@@ -102,7 +99,6 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
                 <Link key={pg.key} href={pg.href} onClick={close}>{pg.label}<small>{pg.sub} →</small></Link>
               ),
             )}
-            <p className="grp">On this page</p>
             <div className="sub">
               {links.map(([label, href, tag]) =>
                 href.startsWith("#") ? (
@@ -114,8 +110,6 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
             </div>
           </div>
           <div className="side">
-            <p className="k">You are on</p>
-            <p>{TITLE[page]}</p>
             {ctaHref.startsWith("#") ? <a className="cta" href={ctaHref} data-to onClick={close}>{cta}</a> : <Link className="cta" href={ctaHref} onClick={close}>{cta}</Link>}
             <p className="disc">Jarvis provides education and information, not financial advice. Jarvis does not sell financial products or recommend securities.</p>
           </div>

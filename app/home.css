@@ -82,6 +82,9 @@
   .on-dark .lnk { color: #fff; opacity: .85; }
   .trust { font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .75; margin: 0; }
   .on-dark .trust { color: #fff; opacity: .85; text-shadow: 0 1px 2px rgba(0, 21, 38, .45); }
+  /* the hero promise line as a frosted chip: it is a claim, not a link, and it must read at a glance */
+  .trust.chip { display: inline-flex; align-items: center; gap: 10px; height: 38px; padding: 0 18px 0 14px; border-radius: 12px; background: rgba(242, 251, 253, .14); border: 1px solid rgba(242, 251, 253, .28); backdrop-filter: blur(14px) saturate(120%); -webkit-backdrop-filter: blur(14px) saturate(120%); color: #fff; opacity: 1; font-size: 12px; letter-spacing: .05em; white-space: nowrap; }
+  .trust.chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 0 4px rgba(0, 208, 255, .22); flex: none; }
   .email2 { display: flex; gap: 12px; }
   .email2 input { flex: 1; min-width: 0; height: 48px; border-radius: 18px; border: 1px solid rgba(0, 90, 158, .3); background: #fff; padding: 0 22px; font-family: var(--micro); font-weight: 600; font-size: 13px; text-transform: uppercase; color: var(--tide); }
   .email2 input::placeholder { color: rgba(0, 90, 158, .6); }
@@ -109,20 +112,15 @@
   .nav2.open { background: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
   .menu-panel { position: fixed; inset: 0; z-index: 55; background: var(--deep950); color: #fff; clip-path: circle(0 at calc(100% - 120px) 80px); pointer-events: none; overflow: hidden; }
   .menu-panel.on { pointer-events: auto; }
-  .menu-panel .dmn { position: absolute; left: 0; right: 0; top: 20%; height: 430px; background: url(/figma/footer-dotmatrix-canvas.png) center/contain no-repeat; opacity: .9; }
-  .menu-panel .fade { position: absolute; inset: 0; background: linear-gradient(180deg, var(--deep950) 0%, rgba(0, 21, 38, 0) 30%, rgba(0, 21, 38, 0) 70%, var(--deep950) 100%); }
-  .menu-panel .grain { position: absolute; inset: 0; background: url(/figma/grain-512.png) 0 0/512px; opacity: .05; mix-blend-mode: overlay; }
-  .menu-panel .in { position: relative; width: min(100%, 1440px); margin: 0 auto; padding: 200px 77px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; min-height: 100%; }
+  .menu-panel .in { position: relative; width: min(100%, 1440px); margin: 0 auto; padding: 200px 77px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; min-height: 100%; }
   .menu-panel .links { display: flex; flex-direction: column; gap: 8px; }
   .menu-panel .links a { font-weight: 600; font-size: clamp(36px, 4.5vw, 64px); line-height: 1.08; color: #fff; opacity: .92; }
-  .menu-panel .links a small { display: inline-block; margin-left: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--aqua); vertical-align: middle; opacity: .9; }
+  .menu-panel .links a small { display: inline-block; margin-left: 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; vertical-align: middle; opacity: .9; }
   .menu-panel .links a:hover { opacity: 1; color: var(--aqua); }
-  .menu-panel .links .grp { margin: 0 0 4px; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: rgba(242, 251, 253, .5); }
-  .menu-panel .links .grp + .grp, .menu-panel .links .sub + .grp, .menu-panel .links a + .grp { margin-top: 36px; }
-  .menu-panel .links a.cur { position: relative; padding-left: 28px; color: var(--aqua); opacity: 1; cursor: default; }
-  .menu-panel .links a.cur::before { content: ""; position: absolute; left: 0; top: .58em; width: 12px; height: 12px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 0 6px rgba(0, 208, 255, .18); }
-  .menu-panel .links a.cur small { color: rgba(242, 251, 253, .7); }
-  .menu-panel .links .sub { display: flex; flex-direction: column; gap: 6px; }
+  .menu-panel .links a small { color: rgba(242, 251, 253, .55); }
+  .menu-panel .links a.cur { color: #fff; opacity: 1; cursor: default; }
+  .menu-panel .links a.cur small { color: var(--aqua); }
+  .menu-panel .links .sub { display: flex; flex-direction: column; gap: 6px; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(242, 251, 253, .16); }
   .menu-panel .links .sub a { font-weight: 500; font-size: clamp(20px, 2vw, 28px); line-height: 1.2; opacity: .8; }
   .menu-panel .side { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
   .menu-panel .side p { margin: 0; font-weight: 600; font-size: 28px; line-height: 1.2; max-width: 360px; }
@@ -298,11 +296,10 @@
     .nav2 .right { right: 16px; top: 28px; gap: 12px; }
     .nav2 .pill { display: none; }
     .menu-panel { clip-path: circle(0 at calc(100% - 48px) 48px); }
-    .menu-panel .in { grid-template-columns: 1fr; padding: 120px 24px 40px; gap: 40px; }
+    .menu-panel .in { grid-template-columns: 1fr; padding: 120px 24px 40px; gap: 40px; align-items: end; }
     .menu-panel .links a { font-size: clamp(30px, 8vw, 36px); }
-    .menu-panel .links a.cur { padding-left: 22px; }
-    .menu-panel .links a.cur::before { width: 10px; height: 10px; top: .5em; box-shadow: 0 0 0 4px rgba(0, 208, 255, .18); }
-    .menu-panel .links .grp + .grp, .menu-panel .links .sub + .grp, .menu-panel .links a + .grp { margin-top: 24px; }
+    .menu-panel .links a small { display: block; margin: 4px 0 0; }
+    .menu-panel .links .sub { margin-top: 24px; padding-top: 20px; }
     .menu-panel .links .sub a { font-size: 19px; }
     .hero-copy { padding: 220px var(--pad) 56px; }
     .hero-grid { grid-template-columns: 1fr; gap: 32px; }
