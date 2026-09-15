@@ -57,7 +57,7 @@ export function Built() {
             <p className="k2" data-r>How we’re built</p>
             <h2 className="hh" data-r>Not built to please a platform. Built for you.</h2>
             <p className="bd" style={{ marginTop: 24, maxWidth: 480, marginBottom: 40 }} data-r>
-              No data sold. No products pushed. No commissions. The company is bootstrapped and angel-backed, with no institutional funding, so decisions answer to the people who use it, not to outside shareholders.
+              No data sold. No products pushed. No commissions. Call it a movement: the value AI creates should go to the people who use it, not just to the corporations spending billions to build it. So decisions here answer to you, not to outside shareholders.
             </p>
             {RULES.map((t, i) => (
               <div className={`rule${i === RULES.length - 1 ? " last" : ""}`} data-rule key={t}>

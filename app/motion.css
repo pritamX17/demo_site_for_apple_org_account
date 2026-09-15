@@ -15,6 +15,8 @@ html.lenis, html.lenis body { height: auto; }
 
 /* 3 · press ripple (MotionLayer) — ink spreads from the pointer, 520ms */
 .hp :is(.cta2, .pill, .cta) { position: relative; overflow: hidden; isolation: isolate; }
+/* Figma-frame CTAs are laid out with absolute coordinates — the ripple container must not pull them into flow (the Jarvis hero button floated as an empty bar). */
+.hp .abs.cta { position: absolute; }
 .hp :is(.subscribe, .mcta a) { overflow: hidden; isolation: isolate; }
 .hp .ripple { position: absolute; border-radius: 50%; pointer-events: none; z-index: 1; background: currentColor; opacity: .16; transform: scale(0); animation: ripple .52s cubic-bezier(.2,.8,.2,1) forwards; }
 @keyframes ripple { to { transform: scale(1); opacity: 0; } }
@@ -74,9 +76,9 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* Magnetic wrapper (components/motion/Magnetic.tsx) */
-.hp .gate form .self-start { align-self: flex-start; }
+.hp .gate form .self-start, .hp .ideas-form .self-start { align-self: flex-start; }
 @media (max-width: 900px) {
   /* full-width CTAs on phones: the wrapper must be a block, the pull is a no-op there anyway */
   .hp .mag { display: block !important; padding: 0 !important; margin: 0 !important; }
-  .hp .gate form .self-start { align-self: stretch; }
+  .hp .gate form .self-start, .hp .ideas-form .self-start { align-self: stretch; }
 }

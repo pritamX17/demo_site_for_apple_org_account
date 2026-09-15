@@ -157,6 +157,8 @@
   .hp.jp .glass .li.hd { gap: 12px; }
   .hp.jp .glass .li.hd .k { font-size: 9.5px; letter-spacing: 1.3px; white-space: nowrap; }
   .hp.jp .glass .li b { white-space: nowrap; }
-  .hp.jp .glass .tot { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .hp.jp .glass .tot strong { font-size: 19px; }
+  .hp.jp .glass.rc .li, .hp.jp .glass.rc .tot { grid-template-columns: minmax(0, 1fr) 84px 60px; column-gap: 8px; }
+  .hp.jp .glass.rc .li.hd .k { font-size: 8.5px; letter-spacing: 1px; white-space: normal; }
+  .hp.jp .glass.rc .li { font-size: 15px; line-height: 20px; }
+  .hp.jp .glass.rc .tot strong { font-size: 16px; }
 }
