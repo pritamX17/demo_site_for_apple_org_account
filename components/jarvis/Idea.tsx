@@ -43,12 +43,13 @@ export function Idea() {
               <h2 className="hh" data-x>The rich pay $5,000 a month for someone in their corner. Yours costs less than a coffee.</h2>
               <p className="bd" style={{ marginTop: 28, maxWidth: 480 }} data-x>Private bankers sell conversations — unhurried, informed, loyal only to their client. Jarvis brings that conversation to your portfolio.</p>
             </div>
-            <div className="glass" data-x>
-              <div className="li hd"><span className="k">Private banking · Monthly</span><span className="k">Jarvis</span></div>
-              <div className="li"><span>Unhurried conversation</span><b>✓ &nbsp;·&nbsp; ✓</b></div>
-              <div className="li"><span>Informed, on your whole picture</span><b>✓ &nbsp;·&nbsp; ✓</b></div>
-              <div className="li"><span>Loyal only to you</span><b>✓ &nbsp;·&nbsp; ✓</b></div>
-              <div className="tot"><span>Total</span><strong><NumberRoll value={5000} prefix="$" /> <span>/ month</span> &nbsp;·&nbsp; <span>less than a coffee</span></strong></div>
+            {/* Two columns, one tick each: what a private banker gives, what Jarvis gives. */}
+            <div className="glass rc" data-x>
+              <div className="li hd"><span className="k">Compared on</span><span className="k c">Private banker</span><span className="k c">Jarvis</span></div>
+              <div className="li"><span>Unhurried conversation</span><b className="c">✓</b><b className="c">✓</b></div>
+              <div className="li"><span>Informed, on your whole picture</span><b className="c">✓</b><b className="c">✓</b></div>
+              <div className="li"><span>Loyal only to you</span><b className="c">✓</b><b className="c">✓</b></div>
+              <div className="tot"><span>Per month</span><strong className="c"><NumberRoll value={5000} prefix="$" /></strong><strong className="c">a coffee</strong></div>
             </div>
           </div>
         </div>

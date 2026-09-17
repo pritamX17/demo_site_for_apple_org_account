@@ -11,6 +11,7 @@ import { Build } from "@/components/home/Build";
 import { Jarvis } from "@/components/home/Jarvis";
 import { NextUp } from "@/components/home/NextUp";
 import { Built } from "@/components/home/Built";
+import { Ideas } from "@/components/home/Ideas";
 import { CloseLine } from "@/components/home/CloseLine";
 import { FigmaFooter } from "@/components/home/FigmaFooter";
 import { MobileCta } from "@/components/home/MobileCta";
@@ -42,6 +43,7 @@ export default function HomePage() {
         <Jarvis />
         <NextUp />
         <Built />
+        <Ideas />
         <CloseLine />
       </main>
       <FigmaFooter />

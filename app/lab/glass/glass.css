@@ -1,0 +1,90 @@
+/* /lab/glass — the liquid-glass prototype. Scenes borrow the site's own surfaces. */
+.hp.lab .glab { display: flex; flex-direction: column; gap: 18px; }
+.hp.lab .glab > .k2 { margin: 36px 0 0; }
+
+/* controls */
+.hp.lab .gctl { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; padding: 18px 22px; border: 1px solid var(--line); border-radius: 18px; background: #fff; }
+.hp.lab .gctl .modes { display: flex; gap: 6px; }
+.hp.lab .gctl .modes button { font-family: var(--mono); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer; }
+.hp.lab .gctl .modes button.on { background: var(--deep); border-color: var(--deep); color: var(--aqua); }
+.hp.lab .gctl label { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+.hp.lab .gctl label input { width: 120px; accent-color: var(--tide); }
+.hp.lab .gctl label b { min-width: 34px; font-family: var(--mono); font-weight: 500; font-size: 12px; color: var(--deep); }
+
+/* scenes */
+.hp.lab .scene { position: relative; overflow: hidden; border-radius: 40px; isolation: isolate; }
+.hp.lab .scene.hero { height: 640px; color: #fff; }
+.hp.lab .scene.hero .cloud { position: absolute; background-image: url(/figma/clouds-1348.png); background-size: 1348px 1011px; background-repeat: no-repeat; overflow: hidden; pointer-events: none; }
+.hp.lab .scene.hero .cloud.c1 { left: 58%; top: 34%; width: 706px; height: 338px; background-position: 0 -673px; opacity: .75; }
+.hp.lab .scene.hero .cloud.c2 { left: -68px; top: 62%; width: 531px; height: 308px; background-position: -700px -8px; }
+.hp.lab .scene.hero .rscrim { position: absolute; right: 0; top: 0; bottom: 0; width: 50%; background: linear-gradient(90deg, rgba(0, 46, 81, 0) 0%, rgba(0, 46, 81, .34) 45%, rgba(0, 46, 81, .62) 100%); pointer-events: none; }
+.hp.lab .scene.hero .navrow { position: absolute; left: 40px; right: 40px; top: 30px; display: flex; justify-content: space-between; align-items: center; }
+.hp.lab .scene.hero .lockup { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; letter-spacing: .32em; }
+.hp.lab .scene.hero .pills { display: flex; gap: 14px; align-items: center; }
+.hp.lab .scene.hero .pill { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 13px; text-transform: uppercase; white-space: nowrap; color: #fff; }
+.hp.lab .scene.hero .pill i { display: inline-block; width: 26px; height: 10px; border-top: 2px solid currentColor; border-bottom: 2px solid currentColor; }
+.hp.lab .scene.hero .h1 { position: absolute; left: 48px; top: 130px; width: 520px; margin: 0; font-weight: 600; font-size: 44px; line-height: 1.06; color: #fff; text-shadow: 0 1px 2px rgba(0, 21, 38, .35); }
+.hp.lab .scene.hero .card { position: absolute; width: 260px; }
+.hp.lab .scene.hero .card.ca { left: 200px; top: 420px; }
+.hp.lab .scene.hero .card.cb { left: 590px; top: 260px; }
+.hp.lab .scene.hero .hc { display: flex; flex-direction: column; gap: 10px; color: #fff; text-shadow: 0 1px 2px rgba(0, 21, 38, .35); }
+.hp.lab .scene.hero .hc p { margin: 0; font-weight: 600; font-size: 14.5px; line-height: 20px; }
+.hp.lab .scene.hero .hc small { font-family: var(--mono); font-size: 9.5px; letter-spacing: 1.6px; text-transform: uppercase; opacity: .85; }
+.hp.lab .scene.hero .right { position: absolute; right: 48px; top: 360px; width: 280px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.hp.lab .scene.hero .statement { margin: 0; font-weight: 600; font-size: 24px; line-height: 1.12; text-shadow: 0 1px 2px rgba(0, 21, 38, .45); }
+.hp.lab .scene.hero .cta { font-weight: 700; font-size: 13.5px; text-transform: uppercase; color: #fff; white-space: nowrap; }
+.hp.lab .scene.hero .beta { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: rgba(255, 255, 255, .75); }
+
+.hp.lab .scene.idea { height: 640px; color: #fff; }
+.hp.lab .scene.idea .photo { position: absolute; inset: 0; background: url(/img/friends.jpg) 70% 30% / cover no-repeat; z-index: -2; }
+.hp.lab .scene.idea .scrim { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(0, 21, 38, .10), rgba(0, 21, 38, 0) 40%, rgba(0, 46, 81, .5) 100%), linear-gradient(180deg, rgba(0, 46, 81, .12), rgba(0, 21, 38, 0) 30%, rgba(0, 21, 38, .22)); }
+.hp.lab .scene.idea .copy { position: absolute; left: 56px; top: 64px; width: 420px; }
+.hp.lab .scene.idea .copy .hh { font-size: 38px; line-height: 1.08; color: #fff; margin-top: 14px; text-shadow: 0 1px 2px rgba(0, 21, 38, .45); }
+.hp.lab .scene.idea .slab { position: absolute; right: 56px; top: 50%; transform: translateY(-50%); width: 440px; }
+.hp.lab .slip { color: #fff; width: 100%; text-shadow: 0 1px 2px rgba(0, 21, 38, .35); }
+.hp.lab .slip .k { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--aqua); }
+.hp.lab .slip .li { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-top: 1px solid rgba(255, 255, 255, .22); font-size: 16px; line-height: 23px; }
+.hp.lab .slip .li.hd { border: 0; padding-top: 0; }
+.hp.lab .slip .li b { font-weight: 600; white-space: nowrap; }
+.hp.lab .slip .tot { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-top: 18px; margin-top: 4px; border-top: 2px solid rgba(255, 255, 255, .8); }
+.hp.lab .slip .tot span { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; }
+.hp.lab .slip .tot strong { font-weight: 700; font-size: 18px; letter-spacing: -.01em; }
+
+.hp.lab .phonewrap { display: flex; justify-content: center; padding: 8px 0 24px; }
+.hp.lab .scene.phone { width: 390px; height: 720px; border-radius: 44px; box-shadow: 0 30px 80px -30px rgba(0, 46, 81, .5); }
+.hp.lab .scene.phone .photo { position: absolute; inset: 0; background: url(/img/thesis-close-mobile.jpg) center 60% / cover no-repeat; z-index: -1; } /* the horizon: no face under the bubbles */
+.hp.lab .scene.phone .chat { position: absolute; left: 18px; right: 18px; bottom: 96px; display: flex; flex-direction: column; gap: 10px; }
+.hp.lab .scene.phone .you { font-weight: 500; font-size: 15.5px; line-height: 22px; color: var(--deep); }
+.hp.lab .scene.phone .j { font-weight: 500; font-size: 15.5px; line-height: 22px; color: #fff; text-shadow: 0 1px 2px rgba(0, 21, 38, .4); }
+.hp.lab .scene.phone .bar { position: absolute; left: 16px; right: 16px; bottom: 18px; }
+.hp.lab .scene.phone .mcta { display: flex; align-items: center; justify-content: center; height: 54px; width: 100%; font-weight: 700; font-size: 14px; text-transform: uppercase; color: #fff; text-shadow: 0 1px 2px rgba(0, 21, 38, .4); }
+
+@media (max-width: 900px) {
+  .hp.lab .scene.hero, .hp.lab .scene.idea { height: auto; min-height: 560px; }
+  .hp.lab .scene.hero .h1 { width: auto; right: 24px; left: 24px; font-size: 30px; top: 96px; }
+  .hp.lab .scene.hero .card.ca { left: 24px; top: 300px; }
+  .hp.lab .scene.hero .card.cb { left: auto; right: 24px; top: 400px; }
+  .hp.lab .scene.hero .right { position: relative; right: auto; top: auto; margin: 520px 24px 40px; width: auto; }
+  .hp.lab .scene.idea .copy { position: relative; left: auto; top: auto; margin: 40px 24px 0; width: auto; }
+  .hp.lab .scene.idea .slab { position: relative; right: auto; top: auto; transform: none; margin: 28px 24px 40px; width: auto; }
+}
+
+/* The library centres its layers on the parent (top/left 50% + translate -50%), so each slab gets a
+   wrapper that hugs it, and the content inside carries an explicit width. */
+.hp.lab .gw { position: relative; width: fit-content; }
+.hp.lab .gw .ghost { visibility: hidden; pointer-events: none; }
+.hp.lab .scene.hero .hc { width: 224px; }
+.hp.lab .slip { width: 384px; }
+.hp.lab .scene.phone .chat > .gw:nth-child(odd) { align-self: flex-end; }
+.hp.lab .scene.phone .chat > .gw:nth-child(even) { align-self: flex-start; }
+.hp.lab .scene.phone .you, .hp.lab .scene.phone .j { display: block; width: max-content; max-width: 250px; }
+.hp.lab .scene.phone .bar .gw { width: 100%; }
+.hp.lab .scene.phone .mcta { width: 358px; }
+
+/* Glass finish on top of the library: a faint white tint and a 1px inner highlight so the slab reads as
+   glass on a mid-blue sky (the library alone reads grey there); the drop shadow goes deep-blue. */
+.hp.lab .gw .glass { background: rgba(255, 255, 255, .10); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .38), inset 0 1px 0 rgba(255, 255, 255, .5), 0 14px 40px -10px rgba(0, 21, 38, .45) !important; }
+.hp.lab .gw .glass > div { font: inherit !important; }
+/* "you" bubbles: a brighter glass, deep ink */
+.hp.lab .gw.light .glass { background: rgba(255, 255, 255, .55); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7), 0 14px 40px -10px rgba(0, 21, 38, .35) !important; }
+.hp.lab .gw.light .glass > div { text-shadow: none !important; }

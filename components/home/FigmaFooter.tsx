@@ -76,7 +76,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
           <p className="abs lbl" style={{ left: 112 }}>Site</p>
           <Link className="abs lnk" style={{ left: 112 }} href={HREF.Home}>Home</Link>
           <a className="abs lnk" style={{ left: 170 }} href="#">About</a>
-          <a className="abs lnk" style={{ left: 234 }} href="#">Contact</a>
+          <Link className="abs lnk" style={{ left: 234 }} href="/#ideas">Contact</Link>
           <a className="abs lnk" style={{ left: 314 }} href="#">Careers</a>
           <p className="abs lbl" style={{ left: 408 }}>Socials</p>
           <a className="abs lnk" style={{ left: 408 }} href="#">Instagram</a>

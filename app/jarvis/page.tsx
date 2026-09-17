@@ -29,10 +29,10 @@ export const metadata: Metadata = {
 };
 
 const LINKS: [string, string, string?][] = [
-  ["Why we exist", "/#coo"],
-  ["Money · Jarvis", "/jarvis", "Live now"],
-  ["What’s next", "/#next"],
-  ["About", "#"], // TODO(launch): About page
+  ["The idea", "#idea"],
+  ["Compared", "#versus"],
+  ["Moments", "#moments"],
+  ["Request access", "#gate"],
 ];
 const DISCLAIMER =
   "Jarvis is a OneStop product. Jarvis is in invite-only beta. Jarvis provides education and information, not financial advice. We don’t sell financial products or recommend securities.";
@@ -44,7 +44,7 @@ export default function JarvisPage() {
     <div className="hp jp">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav cta="Request access" ctaHref="#gate" links={LINKS} />
+      <HomeNav cta="Request access" ctaHref="#gate" links={LINKS} page="jarvis" />
       <JarvisHero />
       <Idea />
       <Proof />

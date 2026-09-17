@@ -8,14 +8,20 @@ import { Magnetic } from "@/components/motion/Magnetic";
 
 /* The Figma nav (212:1248): lockup at (77,61), CTA pill + MENU (two 34×2 bars) at the right.
    Transparent over the hero, glass once scrolled. MENU opens a full deep950 panel (clip-path circle from the button). */
+/* Plain menu (Saurabh, 2026-09-15: no background art, keep it simple): the two pages, the one you are on marked, then the sections of that page. */
+const PAGES: { key: PageKey; label: string; href: string; sub: string }[] = [
+  { key: "home", label: "OneStop AI", href: "/", sub: "The company" },
+  { key: "jarvis", label: "Jarvis", href: "/jarvis", sub: "Money · Live now" },
+];
+export type PageKey = "home" | "jarvis";
 const LINKS: [string, string, string?][] = [
   ["Why we exist", "#coo"],
-  ["Money · Jarvis", "/jarvis", "Live now"],
   ["What’s next", "#next"],
-  ["About", "#"], // TODO(launch): About page
+  ["How we’re built", "#rules"],
+  ["Send an idea", "#ideas"],
 ];
 
-export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS }: { cta?: string; ctaHref?: string; links?: [string, string, string?][] } = {}) {
+export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS, page = "home" }: { cta?: string; ctaHref?: string; links?: [string, string, string?][]; page?: PageKey } = {}) {
   const ref = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   const [solid, setSolid] = useState(false);
@@ -41,7 +47,7 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
       });
       if (open) {
         gsap.fromTo(
-          p.querySelectorAll(".links a, .side > *"),
+          p.querySelectorAll(".links > *, .side > *"),
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.7, stagger: 0.05, ease: "power3.out", delay: 0.25 },
         );
@@ -84,20 +90,26 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS
         </div>
       </nav>
       <div ref={panel} className={`menu-panel${open ? " on" : ""}`} id="menu-panel" aria-hidden={!open}>
-        <div className="dmn" /><div className="fade" /><div className="grain" />
         <div className="in">
           <div className="links">
-            {links.map(([label, href, tag]) =>
-              href.startsWith("#") ? (
-                <a key={label} href={href} data-to onClick={close}>{label}{tag && <small>{tag}</small>}</a>
+            {PAGES.map((pg) =>
+              pg.key === page ? (
+                <a key={pg.key} className="cur" href="#hero" data-to aria-current="page" onClick={close}>{pg.label}<small>You are here</small></a>
               ) : (
-                <Link key={label} href={href} onClick={close}>{label}{tag && <small>{tag}</small>}</Link>
+                <Link key={pg.key} href={pg.href} onClick={close}>{pg.label}<small>{pg.sub} →</small></Link>
               ),
             )}
+            <div className="sub">
+              {links.map(([label, href, tag]) =>
+                href.startsWith("#") ? (
+                  <a key={label} href={href} data-to onClick={close}>{label}{tag && <small>{tag}</small>}</a>
+                ) : (
+                  <Link key={label} href={href} onClick={close}>{label}{tag && <small>{tag}</small>}</Link>
+                ),
+              )}
+            </div>
           </div>
           <div className="side">
-            <p className="k">OneStop AI</p>
-            <p>One companion. Every decision.</p>
             {ctaHref.startsWith("#") ? <a className="cta" href={ctaHref} data-to onClick={close}>{cta}</a> : <Link className="cta" href={ctaHref} onClick={close}>{cta}</Link>}
             <p className="disc">Jarvis provides education and information, not financial advice. Jarvis does not sell financial products or recommend securities.</p>
           </div>
