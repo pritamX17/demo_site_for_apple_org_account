@@ -217,7 +217,7 @@
   .ideas-panel { background: linear-gradient(180deg, #f2fbfd 0%, #d4f7ff 100%); border: 1px solid rgba(0, 90, 158, .12); }
   .ideas-grid { grid-template-columns: 6fr 6fr; gap: 72px; align-items: center; position: relative; padding-top: 96px; padding-bottom: 96px; }
   .ideas-form { display: flex; flex-direction: column; gap: 12px; max-width: 520px; }
-  .ideas-form .kind { display: flex; gap: 8px; margin-bottom: 4px; }
+  .ideas-form .kind { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
   .ideas-form .kind button { height: 40px; padding: 0 18px; border-radius: 12px; border: 1px solid rgba(0, 90, 158, .3); background: transparent; color: var(--tide); font-family: var(--micro); font-weight: 600; font-size: 13px; text-transform: uppercase; cursor: pointer; transition: background .16s ease, color .16s ease, border-color .16s ease; }
   .ideas-form .kind button.on { background: var(--deep); border-color: var(--deep); color: #fff; }
   .ideas-form textarea, .ideas-form input { width: 100%; border-radius: 18px; border: 1px solid rgba(0, 90, 158, .3); background: #fff; padding: 14px 22px; font-family: var(--font); font-size: 16px; line-height: 1.5; color: var(--deep); }
@@ -228,6 +228,9 @@
   .ideas-form .cta2 { margin-top: 4px; }
   .ideas-form .fine { margin: 4px 0 0; font-size: 13px; line-height: 20px; color: var(--muted); }
   .ideas-done .st2 { color: var(--tide); }
+  .ideas-door { align-items: end; }
+  .ideas-cta { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .ideas-cta .fine { margin: 0; font-size: 13px; line-height: 20px; color: var(--muted); }
 
   /* ---------- 07 close ---------- */
   .close14 { padding-top: 120px; padding-bottom: 120px; text-align: center; }
@@ -315,7 +318,11 @@
     .rules-panel { min-height: 0; }
     .ideas-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 56px; padding-bottom: 56px; }
     .ideas-form { max-width: none; }
+    .ideas-form .kind button { height: 36px; padding: 0 13px; font-size: 11.5px; white-space: nowrap; }
     .ideas-form .cta2 { display: flex; width: 100%; }
+    .ideas-cta { align-items: stretch; }
+    .ideas-cta .cta2 { display: flex; width: 100%; }
+    .ideas-cta .fine { text-align: center; }
     .rules-grid { grid-template-columns: 1fr; gap: 0; padding-top: 72px; padding-bottom: 72px; }
     .rules-grid > div:last-child { display: none; }
     .rule { grid-template-columns: 44px 1fr; }

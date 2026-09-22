@@ -12,13 +12,14 @@ import { Magnetic } from "@/components/motion/Magnetic";
 const PAGES: { key: PageKey; label: string; href: string; sub: string }[] = [
   { key: "home", label: "OneStop AI", href: "/", sub: "The company" },
   { key: "jarvis", label: "Jarvis", href: "/jarvis", sub: "Money · Live now" },
+  { key: "movement", label: "The movement", href: "/movement", sub: "Build it with us" },
 ];
-export type PageKey = "home" | "jarvis";
+export type PageKey = "home" | "jarvis" | "movement";
 const LINKS: [string, string, string?][] = [
   ["Why we exist", "#coo"],
   ["What’s next", "#next"],
   ["How we’re built", "#rules"],
-  ["Send an idea", "#ideas"],
+  ["Build it with us", "#ideas"],
 ];
 
 export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", links = LINKS, page = "home" }: { cta?: string; ctaHref?: string; links?: [string, string, string?][]; page?: PageKey } = {}) {

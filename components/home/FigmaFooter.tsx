@@ -7,10 +7,10 @@ import { OrbitMark } from "@/components/jarvis/logos";
 
 const DISCLAIMER =
   "OneStop AI provides education, information, and automation support — never financial advice. Jarvis, our first product, does not sell products or recommend securities. What comes next, beyond Money, is still being decided.";
-const SITE = ["Home", "About", "Contact", "Careers"];
+const SITE = ["Home", "About", "Contact"];
 const SOCIAL = ["Instagram", "Twitter", "LinkedIn"];
-// TODO(launch): real hrefs for About / Contact / Careers / socials / Privacy / Terms.
-const HREF: Record<string, string> = { Home: "/" };
+// TODO(launch): real hrefs for About / socials / Privacy / Terms. Careers removed on the team call (week of 2026-09-15): no hiring yet.
+const HREF: Record<string, string> = { Home: "/", Contact: "/movement#door" };
 
 /** The Figma footer (208:1250, 1440×816), re-checked against Figma on 2026-09-08: full-bleed deep950, 1px tint line on top,
  *  headline 112/54, the email box alone at 863/76 (no button — Enter submits), links at 622/644, legal at 742. No disclaimer line.
@@ -75,8 +75,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
           <p className="abs lbl" style={{ left: 112 }}>Site</p>
           <Link className="abs lnk" style={{ left: 112 }} href={HREF.Home}>Home</Link>
           <a className="abs lnk" style={{ left: 170 }} href="#">About</a>
-          <Link className="abs lnk" style={{ left: 234 }} href="/#ideas">Contact</Link>
-          <a className="abs lnk" style={{ left: 314 }} href="#">Careers</a>
+          <Link className="abs lnk" style={{ left: 234 }} href={HREF.Contact}>Contact</Link>
           <p className="abs lbl" style={{ left: 408 }}>Socials</p>
           <a className="abs lnk" style={{ left: 408 }} href="#">Instagram</a>
           <a className="abs lnk" style={{ left: 500 }} href="#">Twitter</a>

@@ -1,0 +1,91 @@
+/* ============================================================
+   The movement page (/movement) · additions on top of home.css, scoped under .mp
+   Rhythm, tokens, nav, footer, form styles all come from home.css; this file only
+   adds the page's own scenes: field hero, night premise, three doors, the loop.
+   ============================================================ */
+.hp.mp {
+  /* reveal guards for this page's own sequences */
+  [data-door], [data-step], .loop-dot { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-door], [data-step], .loop-dot { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* ---------- 01 hero: the field photo, one column of copy on the left ---------- */
+  .hero-img.field-img { background-image: url(/img/field.jpg); background-position: right 40%; }
+  .mv-grid { grid-template-columns: 1fr; max-width: 640px; gap: 28px; }
+  .h11 { max-width: 760px; }
+
+  /* ---------- 02 premise: night sky, mark gathers above the copy ---------- */
+  .sky-night { background: radial-gradient(ellipse 2200px 1300px at 50% 120%, #005a9e 0%, #002e51 42%, #001526 78%, #000c17 100%); }
+  .why-panel { min-height: clamp(760px, 100svh, 1000px); display: grid; align-items: end; text-align: center; padding: 420px var(--pad) 96px; }
+  .why-in { position: relative; max-width: 860px; margin: 0 auto; }
+  .why-in .bd.lg { margin: 24px auto 0; max-width: 640px; }
+  .beats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, .18); text-align: left; }
+  .beat .t { margin: 0; font-weight: 600; font-size: 24px; line-height: 1.15; color: #fff; }
+  .beat .s { margin: 10px 0 0; font-size: 15px; line-height: 24px; color: rgba(242, 251, 253, .7); }
+  .why-in .soft { margin: 48px auto 0; max-width: 560px; font-size: 15px; line-height: 24px; opacity: .7; }
+
+  /* ---------- 03 doors: three tiles on the sheet ---------- */
+  .doors-sec { padding-top: 140px; padding-bottom: 120px; }
+  .doors-head { padding: 0 var(--pad); max-width: 820px; }
+  .doors-head .bd { margin-top: 24px; max-width: 560px; }
+  .doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gutter); margin-top: 64px; }
+  .door { display: flex; flex-direction: column; min-height: 320px; padding: 36px 36px 32px; border-radius: 40px; border: 1px solid var(--line); background: var(--canvas); transition: transform .35s cubic-bezier(.2, .7, .2, 1), border-color .25s ease, background .25s ease, box-shadow .35s ease; }
+  .door:hover { transform: translateY(-6px); border-color: rgba(0, 208, 255, .7); background: #fff; box-shadow: 0 24px 60px -30px rgba(0, 46, 81, .35); }
+  .door .n { margin: 0 0 auto; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; color: var(--aqua); }
+  .door .t { margin: 56px 0 0; font-weight: 600; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.05; color: var(--deep); }
+  .door .s { margin: 14px 0 0; font-size: 17px; line-height: 26px; color: var(--ink2); }
+  .door .go { display: inline-block; margin-top: 32px; font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--tide); }
+  .door:hover .go { color: var(--current); }
+
+  /* ---------- 04 the door: the form panel, one notch bigger than on the homepage ---------- */
+  .door-panel .ideas-grid { padding-top: 120px; padding-bottom: 120px; }
+  .door-panel .ideas-form { max-width: 560px; }
+  .door-panel .ideas-form textarea { min-height: 160px; }
+
+  /* ---------- 05 loop: four steps on one drawn line ---------- */
+  .loop-sec { padding-top: 140px; padding-bottom: 140px; }
+  .loop-head { padding: 0 var(--pad); max-width: 820px; }
+  .loop { position: relative; margin: 72px var(--pad) 0; }
+  .loop-svg { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 40px; display: block; overflow: visible; }
+  .loop-svg.v { display: none; }
+  .loop-track, .loop-line { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+  .loop-track { stroke: var(--line); }
+  .loop-line { stroke: var(--aqua); }
+  .loop-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  .step { position: relative; padding-top: 48px; }
+  .loop-dot { position: absolute; left: -10px; top: 10px; }
+  .loop-dot circle { fill: var(--aqua); stroke: #fff; stroke-width: 3; }
+  .step .n { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; color: var(--muted); }
+  .step .t { margin: 10px 0 0; font-weight: 600; font-size: clamp(26px, 2.4vw, 32px); line-height: 1.1; color: var(--deep); }
+  .step .s { margin: 12px 0 0; font-size: 16px; line-height: 25px; color: var(--ink2); max-width: 260px; }
+  .step:first-child .loop-dot { left: 0; }
+  .step:first-child { padding-left: 0; }
+
+  /* ---------- tablets and phones ---------- */
+  @media (max-width: 900px) {
+    .hero-img.field-img { background-position: center 85%; }
+    .beats { grid-template-columns: 1fr; gap: 24px; margin-top: 40px; padding-top: 28px; }
+    .why-panel { min-height: 0; padding: 360px 24px 56px; }
+    .why-in .soft { margin-top: 32px; }
+    .doors-sec { padding-top: 80px; padding-bottom: 72px; }
+    .doors-head, .loop-head { padding: 0 24px; }
+    .doors { grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
+    .door { min-height: 0; padding: 28px 24px 26px; border-radius: 28px; }
+    .door .t { margin-top: 28px; font-size: 26px; }
+    .door .go { margin-top: 22px; }
+    .door-panel .ideas-grid { padding-top: 56px; padding-bottom: 56px; }
+    .loop-sec { padding-top: 80px; padding-bottom: 80px; }
+    .loop { margin: 40px 24px 0; }
+    .loop-svg.h { display: none; }
+    .loop-svg.v { display: block; width: 20px; height: 100%; left: 0; top: 0; }
+    .loop-steps { grid-template-columns: 1fr; gap: 36px; }
+    .step { padding: 0 0 0 40px; }
+    .loop-dot { left: 0 !important; top: 2px; }
+    .step:first-child { padding-left: 40px; }
+    .step .s { max-width: none; }
+  }
+  @media (max-width: 760px) {
+    .hero-img.field-img { background-image: url(/img/field-mobile.jpg); background-position: center; }
+  }
+}
