@@ -15,15 +15,17 @@
   .mv-grid { grid-template-columns: 1fr; max-width: 640px; gap: 28px; }
   .h11 { max-width: 760px; }
 
-  /* ---------- 02 premise: night sky, mark gathers above the copy ---------- */
-  .sky-night { background: radial-gradient(ellipse 2200px 1300px at 50% 120%, #005a9e 0%, #002e51 42%, #001526 78%, #000c17 100%); }
-  .why-panel { min-height: clamp(760px, 100svh, 1000px); display: grid; align-items: end; text-align: center; padding: 420px var(--pad) 96px; }
-  .why-in { position: relative; max-width: 860px; margin: 0 auto; }
-  .why-in .bd.lg { margin: 24px auto 0; max-width: 640px; }
-  .beats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, .18); text-align: left; }
-  .beat .t { margin: 0; font-weight: 600; font-size: 24px; line-height: 1.15; color: #fff; }
-  .beat .s { margin: 10px 0 0; font-size: 15px; line-height: 24px; color: rgba(242, 251, 253, .7); }
-  .why-in .soft { margin: 48px auto 0; max-width: 560px; font-size: 15px; line-height: 24px; opacity: .7; }
+  /* ---------- 02 premise: on the white sheet, copy left, the mark gathers on the right ---------- */
+  .why-sec { position: relative; padding: 168px var(--pad) 128px; overflow: hidden; }
+  .why-sec .dots { z-index: 0; }
+  .why-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 6fr 6fr; gap: 72px; align-items: center; }
+  .why-copy .hh { font-size: clamp(40px, 4.4vw, 64px); }
+  .why-copy .bd.lg { margin-top: 28px; max-width: 520px; }
+  .why-mark { aspect-ratio: 1 / 1; max-height: 560px; justify-self: center; width: min(100%, 560px); }
+  .beats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 96px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .beat .t { margin: 0; font-weight: 600; font-size: 24px; line-height: 1.15; color: var(--deep); }
+  .beat .s { margin: 10px 0 0; font-size: 15px; line-height: 24px; color: var(--ink2); }
+  .why-sec .soft { position: relative; z-index: 1; margin: 48px 0 0; max-width: 560px; font-size: 15px; line-height: 24px; color: var(--muted); }
 
   /* ---------- 03 doors: three tiles on the sheet ---------- */
   .doors-sec { padding-top: 140px; padding-bottom: 120px; }
@@ -65,9 +67,13 @@
   /* ---------- tablets and phones ---------- */
   @media (max-width: 900px) {
     .hero-img.field-img { background-position: center 85%; }
-    .beats { grid-template-columns: 1fr; gap: 24px; margin-top: 40px; padding-top: 28px; }
-    .why-panel { min-height: 0; padding: 360px 24px 56px; }
-    .why-in .soft { margin-top: 32px; }
+    .beats { grid-template-columns: 1fr; gap: 24px; margin-top: 48px; padding-top: 28px; }
+    .why-sec { padding: 72px 24px 72px; }
+    .why-sec .dots { opacity: .6; }
+    .why-grid { grid-template-columns: 1fr; gap: 24px; }
+    .why-mark { order: -1; width: min(100%, 300px); }
+    .why-copy .hh { font-size: clamp(32px, 9.2vw, 40px); }
+    .why-sec .soft { margin-top: 32px; }
     .doors-sec { padding-top: 80px; padding-bottom: 72px; }
     .doors-head, .loop-head { padding: 0 24px; }
     .doors { grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }

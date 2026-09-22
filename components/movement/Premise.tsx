@@ -11,8 +11,9 @@ const BEATS: [string, string][] = [
   ["Answers to you.", "Decisions here answer to you, not to outside shareholders."],
 ];
 
-/** 02 · Why a movement — night sky. Scattered dots (people) gather into the orbit mark
- *  above the headline as the panel scrolls in. The three beats are the approved "How we're built" lines. */
+/** 02 · Why a movement — on the white sheet, not a second box under the hero (Saurabh, 2026-09-22).
+ *  Copy left; on the right, scattered dots gather into the orbit mark as the section scrolls in.
+ *  The three beats sit on one hairline row below; they are the approved "How we're built" lines. */
 export function Premise() {
   const ref = useRef<HTMLElement>(null);
   const cv = useRef<HTMLCanvasElement>(null);
@@ -20,17 +21,24 @@ export function Premise() {
   useDotField(
     cv,
     ref,
-    { n: 1300, color: "0,253,255", radius: 1.9, alpha: 0.95, wander: 0.5 },
+    { n: 1300, color: "0,160,204", radius: 1.9, alpha: 0.9, wander: 0.5 },
     (f) => {
       const W = f.W, H = f.H;
-      const mobile = W < 900;
-      const R = mobile ? Math.min(W * 0.8, 420) : Math.min(W * 0.34, 520);
+      const sec = ref.current, slot = sec?.querySelector<HTMLElement>(".why-mark");
+      // The mark lands in the spacer column; everything else on the section is the scatter.
+      let cx = W * 0.74, cy = H * 0.3, R = Math.min(W * 0.4, 560);
+      if (sec && slot) {
+        const s = slot.getBoundingClientRect(), c = sec.getBoundingClientRect();
+        cx = s.left - c.left + s.width / 2;
+        cy = s.top - c.top + s.height / 2;
+        R = Math.min(s.width, s.height) * 1.25;
+      }
       return [
-        DotForms.scatter(f.n, { x: -W * 0.1, y: -H * 0.2, w: W * 1.2, h: H * 1.1 }, 29),
-        DotForms.mark(f.n, W / 2, mobile ? 150 : 190, R, 31, 0),
+        DotForms.scatter(f.n, { x: -W * 0.05, y: -H * 0.1, w: W * 1.1, h: H * 1.2 }, 29),
+        DotForms.mark(f.n, cx, cy, R, 31, 0),
       ];
     },
-    { to: 1, start: "top 90%", end: "top 15%" },
+    { to: 1, start: "top 85%", end: "top 25%" },
   );
 
   useGSAP(
@@ -46,7 +54,7 @@ export function Premise() {
       const run = contextSafe?.(() => {
         const sv = SplitText.create(h, { type: "lines", mask: "lines" });
         gsap
-          .timeline({ scrollTrigger: { trigger: sec, start: "top 45%", once: true } })
+          .timeline({ scrollTrigger: { trigger: sec, start: "top 60%", once: true } })
           .from(sv.lines, { yPercent: 110, duration: 1.1, stagger: 0.14, ease: "expo.out" })
           .fromTo(sec.querySelectorAll("[data-v]"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: "power3.out" }, 0.3);
       });
@@ -56,31 +64,30 @@ export function Premise() {
   );
 
   return (
-    <section id="why" ref={ref} className="sheet gut">
-      <div className="p56 on-dark why-panel">
-        <div className="bg sky-night" />
-        <canvas className="dots" ref={cv} aria-hidden="true" />
-        <div className="grain2" />
-        <div className="why-in">
-          <p className="k2 aqua" data-v>Why a movement</p>
+    <section id="why" ref={ref} className="sheet why-sec">
+      <canvas className="dots" ref={cv} aria-hidden="true" />
+      <div className="why-grid">
+        <div className="why-copy">
+          <p className="k2" data-v>Why a movement</p>
           <h2 className="hh why-h">The value AI creates should reach the people who use it.</h2>
           <p className="bd lg" data-v>
             Not just the corporations spending billions to build it. That is the whole idea, and it changes how the company is run.
           </p>
-          <div className="beats">
-            {BEATS.map(([t, s]) => (
-              <div className="beat" key={t} data-v>
-                <p className="t">{t}</p>
-                <p className="s">{s}</p>
-              </div>
-            ))}
-          </div>
-          {/* TODO(counsel): review before publish, even in this soft form (team doc, July 2026). */}
-          <p className="bd soft" data-v>
-            If OneStop succeeds, we want that success to reach the people who helped build it, not just outside investors.
-          </p>
         </div>
+        <div className="why-mark" aria-hidden="true" />
       </div>
+      <div className="beats">
+        {BEATS.map(([t, s]) => (
+          <div className="beat" key={t} data-v>
+            <p className="t">{t}</p>
+            <p className="s">{s}</p>
+          </div>
+        ))}
+      </div>
+      {/* TODO(counsel): review before publish, even in this soft form (team doc, July 2026). */}
+      <p className="bd soft" data-v>
+        If OneStop succeeds, we want that success to reach the people who helped build it, not just outside investors.
+      </p>
     </section>
   );
 }
