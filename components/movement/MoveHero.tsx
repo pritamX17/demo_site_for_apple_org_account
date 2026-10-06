@@ -36,7 +36,9 @@ export function MoveHero() {
       }
 
       gsap.to(photo, { yPercent: 10, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
-      gsap.to(copy, { y: -120, opacity: 0.2, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
+      // 2026-10-06: ≤900px the copy keeps full opacity while it parallaxes out (see Hero.tsx)
+      const phone = matchMedia("(max-width: 900px)").matches;
+      gsap.to(copy, { y: phone ? -60 : -120, opacity: phone ? 1 : 0.2, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true } });
       ScrollTrigger.refresh();
     },
     { scope: ref },

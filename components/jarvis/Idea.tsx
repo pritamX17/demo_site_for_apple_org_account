@@ -21,9 +21,10 @@ export function Idea() {
       gsap.fromTo(photo, { scale: 1.1 }, { scale: 1, ease: "none", scrollTrigger: { trigger: sec, start: "top bottom", end: "bottom top", scrub: 0.8 } });
       const split = SplitText.create(h, { type: "lines", mask: "lines" });
       gsap.set(h, { opacity: 1 });
-      gsap.timeline({ scrollTrigger: { trigger: sec, start: "top 65%", once: true } })
-        .from(split.lines, { yPercent: 110, duration: 1, stagger: 0.12, ease: "expo.out" })
-        .fromTo(rest, { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }, 0.3);
+      // 2026-10-06: fires at "top 85%" (was 65%); the lines keep their rise, the rest runs 280 ms
+      gsap.timeline({ scrollTrigger: { trigger: sec, start: "top 85%", once: true } })
+        .from(split.lines, { yPercent: 110, duration: 0.9, stagger: 0.1, ease: "expo.out" })
+        .fromTo(rest, { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, stagger: 0.06, ease: "power3.out" }, 0.15);
     },
     { scope: ref },
   );

@@ -340,3 +340,18 @@
 @keyframes sa-pop { to { transform: scale(1); } }
 @keyframes sa-mark { to { opacity: 1; transform: scale(1); } }
 @keyframes s-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* ---------- big screens (>1440px, app/scale.css zooms .hp by --z): viewport units divided by the zoom ---------- */
+@media (min-width: 1441px) {
+  /* .s-top is position: absolute with no positioned ancestor, so it spanned the viewport; above 2560px the frame is
+     narrower than the viewport, so the bar must take the frame as its box (no change ≤2560: the frame is the viewport) */
+  .hp.sp { position: relative; }
+  .hp.sp .hh { font-size: clamp(40px, 4.4vw / var(--z, 1), 64px); }
+  .hp.sp .s-hero { grid-template-columns: minmax(0, 1fr) clamp(380px, 36vw / var(--z, 1), 520px); }
+  .hp.sp .s-hero .hero-copy { padding-top: clamp(260px, 36vh / var(--z, 1), 380px); }
+  .hp.sp .s-hero .h11 { font-size: clamp(44px, 4.8vw / var(--z, 1), 72px); }
+  .hp.sp .s-story-step { min-height: calc(62vh / var(--z, 1)); }
+  .hp.sp .s-story-step:first-child { min-height: calc(54vh / var(--z, 1)); }
+  .hp.sp .s-line { font-size: clamp(44px, 4.6vw / var(--z, 1), 68px); }
+  .hp.sp .s-story-art { top: calc(13vh / var(--z, 1)); }
+}

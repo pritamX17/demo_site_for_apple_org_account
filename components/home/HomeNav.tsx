@@ -16,7 +16,11 @@ const PAGES: { key: PageKey; label: string; href: string }[] = [
 ];
 export type PageKey = "home" | "jarvis" | "movement";
 
-export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", page = "home", plain = false }: { cta?: string; ctaHref?: string; page?: PageKey | null; /** no hero under the bar: stay white from the top */ plain?: boolean } = {}) {
+/* One nav everywhere (Saurabh, 2026-10-06 screen recording): the same three links and the same "Try Jarvis" button
+   on every page, so nothing shifts between / , /jarvis and /movement. On /jarvis the button scrolls to the access
+   form (#gate); elsewhere it links to /jarvis. The lab pages still pass their own "Back to site" label. */
+export function HomeNav({ cta = "Try Jarvis", ctaHref, page = "home", plain = false }: { cta?: string; ctaHref?: string; page?: PageKey | null; /** no hero under the bar: stay white from the top */ plain?: boolean } = {}) {
+  const href = ctaHref ?? (page === "jarvis" ? "#gate" : "/jarvis");
   const ref = useRef<HTMLDivElement>(null);
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
@@ -40,7 +44,7 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref = "/jarvis", page = "home"
     <Link key={pg.key} href={pg.href} aria-current={pg.key === page ? "page" : undefined} onClick={close}>{pg.label}</Link>
   ));
   const button = (cls: string) =>
-    ctaHref.startsWith("#") ? <a className={cls} href={ctaHref} data-to onClick={close}>{cta}</a> : <Link className={cls} href={ctaHref} onClick={close}>{cta}</Link>;
+    href.startsWith("#") ? <a className={cls} href={href} data-to onClick={close}>{cta}</a> : <Link className={cls} href={href} onClick={close}>{cta}</Link>;
 
   return (
     <div ref={ref}>

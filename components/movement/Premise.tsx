@@ -32,9 +32,11 @@ export function Premise() {
       let cx = W * 0.74, cy = H * 0.3, R = Math.min(W * 0.4, 560);
       if (sec && slot) {
         const s = slot.getBoundingClientRect(), c = sec.getBoundingClientRect();
-        cx = s.left - c.left + s.width / 2;
-        cy = s.top - c.top + s.height / 2;
-        R = Math.min(s.width, s.height) * 1.25;
+        // getBoundingClientRect is in zoomed px above 1440 (app/scale.css); the canvas draws in CSS px
+        const z = sec.offsetWidth ? c.width / sec.offsetWidth : 1;
+        cx = (s.left - c.left + s.width / 2) / z;
+        cy = (s.top - c.top + s.height / 2) / z;
+        R = (Math.min(s.width, s.height) / z) * 1.25;
       }
       return [
         DotForms.scatter(f.n, { x: -W * 0.05, y: -H * 0.1, w: W * 1.1, h: H * 1.2 }, 29),
@@ -57,9 +59,10 @@ export function Premise() {
       const run = contextSafe?.(() => {
         const sv = SplitText.create(h, { type: "lines", mask: "lines" });
         gsap
-          .timeline({ scrollTrigger: { trigger: sec, start: "top 60%", once: true } })
-          .from(sv.lines, { yPercent: 110, duration: 1.1, stagger: 0.14, ease: "expo.out" })
-          .fromTo(sec.querySelectorAll("[data-v]"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: "power3.out" }, 0.3);
+          // 2026-10-06: fires at "top 85%" (was 60%); the lines keep their rise, the copy and beats run 280 ms
+          .timeline({ scrollTrigger: { trigger: sec, start: "top 85%", once: true } })
+          .from(sv.lines, { yPercent: 110, duration: 0.9, stagger: 0.1, ease: "expo.out" })
+          .fromTo(sec.querySelectorAll("[data-v]"), { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, stagger: 0.06, ease: "power3.out" }, 0.15);
       });
       Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]).then(() => run?.());
     },

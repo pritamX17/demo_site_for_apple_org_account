@@ -42,9 +42,10 @@ export function Build() {
       const run = contextSafe?.(() => {
         const sv = SplitText.create(h, { type: "lines", mask: "lines" });
         gsap
-          .timeline({ scrollTrigger: { trigger: sec, start: "top 50%", once: true } })
-          .from(sv.lines, { yPercent: 110, duration: 1.1, stagger: 0.14, ease: "expo.out" })
-          .fromTo(sec.querySelectorAll("[data-v]"), { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out" }, 0.3);
+          // 2026-10-06: fires at "top 85%" (was 50%); the lines keep their rise, the copy runs 280 ms
+          .timeline({ scrollTrigger: { trigger: sec, start: "top 85%", once: true } })
+          .from(sv.lines, { yPercent: 110, duration: 0.9, stagger: 0.1, ease: "expo.out" })
+          .fromTo(sec.querySelectorAll("[data-v]"), { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.28, stagger: 0.06, ease: "power3.out" }, 0.15);
       });
       Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]).then(() => run?.());
     },

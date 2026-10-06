@@ -34,7 +34,7 @@ export default function HomePage() {
     <div className="hp">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav />
+      <HomeNav page="home" />
       <main>
         <Hero />
         <Reason />

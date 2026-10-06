@@ -97,7 +97,8 @@
   .nav2 .pages a { position: relative; padding: 10px 0; font-weight: 600; font-size: 15px; line-height: 20px; color: #fff; opacity: .88; white-space: nowrap; text-shadow: 0 1px 2px rgba(0, 21, 38, .35); transition: opacity .2s ease, color .3s ease; }
   .nav2 .pages a:hover, .nav2 .pages a[aria-current] { opacity: 1; }
   .nav2 .pages a[aria-current]::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; border-radius: 2px; background: var(--aqua); }
-  .nav2 .pill { height: 40px; padding: 0 20px; border-radius: 12px; background: var(--foam); color: var(--deep); display: flex; align-items: center; font-weight: 700; font-size: 13px; text-transform: uppercase; white-space: nowrap; transition: background .3s ease, color .3s ease; }
+  /* fixed width (2026-10-06): the button is the same size on every page, so the page links never shift */
+  .nav2 .pill { height: 40px; min-width: 136px; padding: 0 20px; border-radius: 12px; background: var(--foam); color: var(--deep); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; text-transform: uppercase; white-space: nowrap; transition: background .3s ease, color .3s ease; }
   .nav2 .menu { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; padding: 0; color: #fff; background: none; border: 0; cursor: pointer; transition: color .3s ease; }
   .nav2 .menu i { display: flex; flex-direction: column; gap: 7px; width: 26px; }
   .nav2 .menu i::before, .nav2 .menu i::after { content: ""; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s ease; }
@@ -243,15 +244,20 @@
   .ideas-cta .fine { margin: 0; font-size: 13px; line-height: 20px; color: var(--muted); }
 
 
-  /* ---------- footer · the Figma frame (208:1250) · 1440×816, scaled to the viewport ---------- */
-  .frame-wrap { position: relative; width: 100%; overflow: hidden; }
+  /* ---------- footer · the Figma frame (208:1250) · 1440 wide, scaled to the viewport ---------- */
+  /* Round 4 (2026-10-06): the wrap carries the deep950 panel + tint line, so above 1440 there are no white bands. */
+  .frame-wrap { position: relative; width: 100%; overflow: hidden; background: var(--deep950); border-radius: 56px 56px 0 0; }
+  .frame-wrap::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); z-index: 2; }
   .frame { position: relative; width: 1440px; transform-origin: top left; margin: 0 auto; }
   .abs { position: absolute; }
-  /* Round 3 (2026-10-06): the email field + arrow are gone; the frame closes up from 620 to 480 and the link rows move up. */
-  .f-foot { height: 480px; background: transparent; border-radius: 56px 56px 0 0; overflow: hidden; }
+  /* Round 4: the frame closes from 480 to 408 (480 with the Jarvis `where` tile); rows: headline 56 → links 212/234 → legal 304 → disclaimer 330. */
+  .f-foot { height: 408px; background: transparent; border-radius: 56px 56px 0 0; overflow: hidden; }
+  .f-foot.has-where { height: 480px; }
   .f-foot .panelbg { position: absolute; inset: 0; background: var(--deep950); overflow: hidden; border-radius: 56px 56px 0 0; }
-  .f-foot .pulse { left: 520px; top: 0; width: 920px; height: 480px; } /* Round 3c: ring centred at x≈980, clear of the link rows at 112–840 */
-  .pulse { position: relative; overflow: hidden; }
+  .f-foot .panelbg::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
+  /* the ring: right of every text row (the widest link ends at x≈893, the disclaimer at 872), centred at x 1170 */
+  .f-foot .pulse { left: 900px; top: 0; width: 540px; height: 100%; }
+  .pulse { position: relative; overflow: hidden; -webkit-mask-image: radial-gradient(ellipse at center, #000 48%, transparent 74%); mask-image: radial-gradient(ellipse at center, #000 48%, transparent 74%); }
   .pulse canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
   .where .k { margin: 0 0 10px; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); opacity: .3; }
   .where .tile { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; margin-bottom: 8px; border: 1px solid rgba(0, 253, 255, .16); border-radius: 14px; background: rgba(0, 46, 81, .5); color: #fff; }
@@ -259,30 +265,36 @@
   .where .tile .ic { width: 32px; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex: none; background: var(--deep); color: var(--foam); }
   .where .tile b { display: block; font-weight: 700; font-size: 12px; line-height: 1.2; text-transform: uppercase; letter-spacing: .04em; }
   .where .tile small { display: block; margin-top: 2px; font-size: 11px; line-height: 1.3; color: rgba(242, 251, 253, .6); }
-  .f-foot .panelbg::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
-  .f-foot .h1 { left: 112px; top: 54px; width: 480px; margin: 0; font-weight: 600; font-size: 56px; line-height: 1; color: #fff; }
-  .f-foot .where { left: 112px; top: 190px; width: 330px; }
-  .f-foot .lbl { top: 312px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); opacity: .3; }
-  .f-foot .lnk { top: 334px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); white-space: nowrap; border: 0; padding: 0; letter-spacing: 0; opacity: 1; }
-  .f-foot .legal { left: 112px; top: 408px; margin: 0; font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(242, 251, 253, .42); white-space: nowrap; }
+  .f-foot .h1 { left: 112px; top: 56px; width: 480px; margin: 0; font-weight: 600; font-size: 56px; line-height: 1; color: #fff; }
+  .f-foot .where { left: 112px; top: 188px; width: 330px; }
+  .f-foot .lbl { top: 212px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); opacity: .3; }
+  .f-foot .lnk { top: 234px; margin: 0; font-weight: 600; font-size: 12px; line-height: normal; text-transform: uppercase; color: var(--foam); white-space: nowrap; border: 0; padding: 0; letter-spacing: 0; opacity: 1; }
+  .f-foot .legal { left: 112px; top: 304px; margin: 0; font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(242, 251, 253, .42); white-space: nowrap; }
   .f-foot .legal b { font-weight: 700; }
-  .f-foot .disc { left: 112px; top: 434px; margin: 0; font-size: 11px; line-height: 16px; letter-spacing: .2px; color: rgba(242, 251, 253, .42); width: 900px; }
+  .f-foot .disc { left: 112px; top: 330px; margin: 0; font-size: 11px; line-height: 16px; letter-spacing: .2px; color: rgba(242, 251, 253, .42); width: 760px; }
+  /* the Jarvis page: the `where` tile sits under the headline, the rows move down by 84 */
+  .f-foot.has-where .lbl { top: 296px; }
+  .f-foot.has-where .lnk { top: 318px; }
+  .f-foot.has-where .legal { top: 380px; }
+  .f-foot.has-where .disc { top: 406px; }
 
-  /* footer · stacked version of the same frame for phones and tablets */
+  /* footer · stacked version of the same frame for phones and tablets (≤900px) */
+  /* Round 4 (2026-10-06): headline → ring band (a flow element, bleeding off the right edge, never behind text) →
+     Site / Socials / Product in one row, bottom-aligned, 44px tap rows → `where` tile → legal → disclaimer. */
   .mfoot { display: none; padding: 0; }
-  .mfoot .panel { background: var(--deep950); border-radius: 32px 32px 0 0; padding: 48px 28px 32px; color: #fff; position: relative; overflow: hidden; }
-  .mfoot .pulse { position: absolute; inset: 0; z-index: 0; }
-  .mfoot .panel > :not(.pulse) { position: relative; z-index: 1; }
-  .mfoot .where { margin-top: 28px; }
+  .mfoot .panel { background: var(--deep950); border-radius: 32px 32px 0 0; padding: 48px 28px calc(40px + env(safe-area-inset-bottom, 0px)); color: #fff; position: relative; overflow: hidden; }
   .mfoot .panel::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: rgba(0, 253, 255, .12); }
   .mfoot h2 { margin: 0; font-weight: 600; font-size: clamp(36px, 10vw, 48px); line-height: 1; }
-  .mfoot .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 40px; }
-  .mfoot .lbl { margin: 0 0 10px; font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--foam); opacity: .3; }
-  .mfoot .lnks { display: flex; flex-direction: column; gap: 10px; }
-  .mfoot .lnks a, .mfoot .lnks span { font-weight: 600; font-size: 12px; text-transform: uppercase; color: var(--foam); }
+  .mfoot .pulse { width: 276px; height: 212px; margin: 8px calc(-28px - 44px) 0 auto; }
+  .mfoot .cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 0 12px; align-items: end; margin-top: 8px; } /* Product keeps its content width so "Join the movement" never wraps */
+  .mfoot .cols > div { min-width: 0; }
+  .mfoot .lbl { margin: 0; font-weight: 600; font-size: 12px; line-height: 20px; text-transform: uppercase; color: var(--foam); opacity: .3; }
+  .mfoot .lnks { display: flex; flex-direction: column; gap: 0; }
+  .mfoot .lnks a, .mfoot .lnks span { display: flex; align-items: center; min-height: 44px; font-weight: 600; font-size: 12px; line-height: 1.2; text-transform: uppercase; color: var(--foam); }
   /* a social without a URL yet: plain text, not a link */
   .f-foot span.lnk, .mfoot .lnks span { opacity: .5; cursor: default; background-image: none !important; }
-  .mfoot .legal { margin: 40px 0 0; font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(242, 251, 253, .42); line-height: 1.8; }
+  .mfoot .where { margin-top: 32px; max-width: 380px; } /* phones: full width; tablets: the tile does not stretch across the panel */
+  .mfoot .legal { margin: 32px 0 0; font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(242, 251, 253, .42); line-height: 1.8; }
   .mfoot .disc { margin: 12px 0 0; font-size: 11px; letter-spacing: .2px; color: rgba(242, 251, 253, .42); line-height: 1.6; }
 
   /* ---------- responsive ---------- */
@@ -348,6 +360,20 @@
   @media (max-width: 520px) {
     .phone11 { height: 480px; }
     .phone11 .phone { transform: scale(.62); }
-    .mfoot .cols { grid-template-columns: 1fr; }
   }
+  /* footer · under 430px three columns would wrap "Join the movement": Site + Socials share a row, Product goes under */
+  @media (max-width: 429px) {
+    .mfoot .cols { grid-template-columns: 1fr 1fr; }
+    .mfoot .cols .prod { grid-column: 1 / -1; margin-top: 16px; }
+  }
+}
+
+/* ---------- big screens (>1440px, app/scale.css zooms .hp by --z) ----------
+   zoom does not scale viewport units, so the vh/svh/vw values that are not saturated by their clamp() at 1440
+   are divided by --z here: the hero still fills exactly one screen, the headline keeps its 1440 size × zoom. */
+@media (min-width: 1441px) {
+  .hp .hero-panel { min-height: calc(100svh / var(--z, 1) - 2 * var(--gutter)); }
+  .hp .hero-copy { padding-top: clamp(280px, 40vh / var(--z, 1), 520px); }
+  .hp .h11 { font-size: clamp(44px, 6.5vw / var(--z, 1), 96px); }
+  .hp .build-panel { min-height: clamp(640px, 100svh / var(--z, 1), 900px); }
 }

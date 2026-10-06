@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
+import "./scale.css";
 
 const manrope = Manrope({
   subsets: ["latin"],

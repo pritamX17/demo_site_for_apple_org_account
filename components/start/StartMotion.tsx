@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap-lite";
+import { gsap, useGSAP, ScrollTrigger, reveal } from "@/lib/gsap-lite";
 import { WaIcon } from "./WaIcon";
 
 /* /start motion + the WhatsApp link.
@@ -42,18 +42,14 @@ export function StartMotion() {
     ScrollTrigger.config({ ignoreMobileResize: true });
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const items = gsap.utils.toArray<HTMLElement>(".sp [data-r]");
-    if (reduced) gsap.set(items, { opacity: 1 });
-    else
-      items.forEach((el) =>
-        // fromTo, never from(): the CSS guard already holds these at opacity 0.
-        gsap.fromTo(el, { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%", once: true } }),
-      );
+    // the same reveal as the other pages (lib/gsap-lite reveal(): first pixel in view, 280 ms, once; reduced motion = final state).
+    // Saurabh's recording, 6 Oct: the old 800 ms from "top 85%" left lines half-faded while he scrolled.
+    reveal(".sp [data-r]");
     document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
     const bubs = gsap.utils.toArray<HTMLElement>(".sp [data-bub]");
     if (reduced) gsap.set(bubs, { opacity: 1 });
-    else gsap.fromTo(bubs, { opacity: 0, y: 14, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.35, ease: "power3.out", scrollTrigger: { trigger: ".sp .phone", start: "top 75%", once: true } });
+    else gsap.fromTo(bubs, { opacity: 0, y: 14, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.28, stagger: 0.2, ease: "power3.out", scrollTrigger: { trigger: ".sp .phone", start: "top 90%", once: true } });
 
     const bar = ref.current;
     if (!bar) return;

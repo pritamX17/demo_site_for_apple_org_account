@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, reveal } from "@/lib/gsap";
 import type { Kind } from "./Door";
 
 export const DOORS: { kind: Kind; n: string; title: string; line: string; cta: string }[] = [
@@ -24,7 +24,8 @@ export function Doors() {
         gsap.set(doors, { opacity: 1 });
         return;
       }
-      gsap.fromTo(doors, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.14, ease: "power3.out", scrollTrigger: { trigger: sec, start: "top 62%", once: true } });
+      // 2026-10-06: the doors are links — each reveals on its own edge, 280 ms, no stagger (was 800 ms from "top 62%")
+      reveal(doors);
     },
     { scope: ref },
   );

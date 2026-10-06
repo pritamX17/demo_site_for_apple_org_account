@@ -32,7 +32,12 @@ const social = (n: string, cls?: string, left?: number) =>
  *  the top corners are curved, and the frame shrinks. On the Jarvis page (`where`) a small "Where Jarvis lives today" block with the app door sits under the headline.
  *  Above 900px it is the exact frame,
  *  laid out at 1440 with Figma coordinates and scaled to the viewport. Below
- *  900px the same content stacks into a readable column. */
+ *  900px the same content stacks into a readable column.
+ *  Round 4 (2026-10-06, Saurabh's screen recording: "fix the footer"): the frame tightens to 408px (480 with the Jarvis
+ *  `where` tile) — headline 56, link rows 212/234, legal 304, disclaimer 330 at 760px wide — and the ring box moves to
+ *  x ≥ 900 so no text (disclaimer included) sits under it. On phones the ring is a flow band bleeding off the right
+ *  edge under the headline, then Site / Socials / Product in one bottom-aligned row (two + one under 430px),
+ *  then the `where` tile, legal, disclaimer; bottom padding respects the safe area. */
 /** "Where Jarvis lives today" — the app door (Jarvis page only, `where`). Lines are locked copy: v5 strip title + the beta line. */
 function Where({ href }: { href: string }) {
   return (
@@ -66,7 +71,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, product = ["Jarvis", "/ja
     <footer>
       {/* desktop: the exact frame */}
       <div className="frame-wrap" ref={wrap}>
-        <div className="frame f-foot" ref={frame}>
+        <div className={`frame f-foot${where ? " has-where" : ""}`} ref={frame}>
           <div className="panelbg" />
           <FooterPulse className="abs" mark={240} />
           <h2 className="abs h1">On your side. Always.</h2>
@@ -88,14 +93,15 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, product = ["Jarvis", "/ja
       {/* phones and tablets: the same content, stacked */}
       <div className="mfoot">
         <div className="panel">
-          <FooterPulse cell={8} mark={150} />
           <h2>On your side. Always.</h2>
-          {where && <div className="where"><Where href={cta[1]} /></div>}
+          {/* the ring is a flow element here (a band bleeding off the right edge), never behind text */}
+          <FooterPulse cell={8} mark={180} />
           <div className="cols">
             <div><p className="lbl">Site</p><div className="lnks">{SITE.map((n) => <Link key={n} href={HREF[n]}>{n}</Link>)}</div></div>
             <div><p className="lbl">Socials</p><div className="lnks">{SOCIAL.map((n) => social(n))}</div></div>
-            <div><p className="lbl">Product</p><div className="lnks"><Link href={product[1]}>{product[0]}</Link><a href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a></div></div>
+            <div className="prod"><p className="lbl">Product</p><div className="lnks"><Link href={product[1]}>{product[0]}</Link><a href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a></div></div>
           </div>
+          {where && <div className="where"><Where href={cta[1]} /></div>}
           <p className="legal">© 2026 OneStop. All rights reserved<br /><b>Privacy Policy &nbsp;|&nbsp; Terms of Service</b></p>
           <p className="disc">{disclaimer}</p>
         </div>

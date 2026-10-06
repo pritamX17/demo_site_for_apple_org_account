@@ -38,7 +38,7 @@ export default function JarvisPage() {
     <div className="hp jp">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav cta="Request access" ctaHref="#gate" page="jarvis" />
+      <HomeNav page="jarvis" />
       <JarvisHero />
       <Idea />
       <Proof />

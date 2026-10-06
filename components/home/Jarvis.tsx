@@ -4,7 +4,7 @@ import { useRef } from "react";
 /* Round 3b (2026-10-06): the Handled-card mark is the inline CardIcon (no image fetch). */
 import Link from "next/link";
 import { CardIcon } from "@/components/jarvis/PhoneIcons";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, reveal } from "@/lib/gsap";
 import { Phone } from "./Phone";
 import { Tilt } from "@/components/motion/Tilt";
 
@@ -27,9 +27,12 @@ export function Jarvis({ compact = false }: { compact?: boolean } = {}) {
         return;
       }
       gsap.fromTo(".phone11", { y: 160 }, { y: 0, ease: "none", scrollTrigger: { trigger: jv, start: "top 85%", end: "top 15%", scrub: 0.6 } });
-      gsap.fromTo(copy, { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power3.out", scrollTrigger: { trigger: jv, start: "top 85%", once: true } });
+      // 2026-10-06: each copy line (and the CTA row) reveals on its own edge, 280 ms — the one section-level tween
+      // (800 ms + stagger, from "top 85%") left "Try Jarvis →" at ~30% while a phone scrolled it into view.
+      reveal(copy);
       if (compact) return;
-      gsap.fromTo(bubs, { opacity: 0, y: 18, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, stagger: 0.5, ease: "power3.out", scrollTrigger: { trigger: jv, start: "top 45%", once: true } });
+      // the two chat bubbles keep their beat (you, then Jarvis), but start when the first bubble is in view
+      gsap.fromTo(bubs, { opacity: 0, y: 14, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, stagger: 0.08, ease: "power3.out", scrollTrigger: { trigger: bubs[0] ?? jv, start: "top bottom+=40", once: true } });
       jv.querySelectorAll<HTMLElement>("[data-float]").forEach((c) => {
         const k = Number(c.dataset.float);
         gsap.fromTo(c, { y: 60 * k }, { y: -60 * k, ease: "none", scrollTrigger: { trigger: jv, start: "top bottom", end: "bottom top", scrub: 0.6 } });

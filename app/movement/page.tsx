@@ -37,7 +37,7 @@ export default function MovementPage() {
     <div className="hp mp">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav cta="Join the movement" ctaHref="#door" page="movement" />
+      <HomeNav page="movement" />
       <main>
         <MoveHero />
         <Building />

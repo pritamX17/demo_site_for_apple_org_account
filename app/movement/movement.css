@@ -96,7 +96,11 @@
   /* ---------- tablets and phones ---------- */
   @media (max-width: 900px) {
     --edge: 24px;
-    .hero-img.field-img { background-position: center 85%; }
+    /* seam fix (2026-10-06): the field's sky is multiplied into Tide so the band's top is the panel colour, and the
+       panel-coloured scrim (below) fades over the top 44% of the band; the man's head sits at ~23% of the band, so the
+       tint and most of the fade are spent on sky. Shared structure with the homepage hero (app/mobile.css). */
+    .hero-img.field-img { background-image: linear-gradient(180deg, rgba(0, 90, 158, .9) 0%, rgba(0, 90, 158, .65) 10%, rgba(0, 90, 158, .35) 18%, rgba(0, 90, 158, .12) 26%, rgba(0, 90, 158, 0) 34%), url(/img/field.jpg); background-blend-mode: multiply, normal; background-size: auto, cover; background-position: center top; }
+    .hero-panel .scrim2 { background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, .85) 6%, rgba(0, 46, 81, .55) 13%, rgba(0, 46, 81, .3) 21%, rgba(0, 46, 81, .14) 30%, rgba(0, 46, 81, .05) 38%, rgba(0, 46, 81, 0) 48%, rgba(0, 21, 38, 0) 72%, rgba(0, 21, 38, .4) 100%) !important; }
     .build-sec { padding: 80px var(--edge) 40px; }
     .build-head .hh, .why-copy .hh { font-size: clamp(32px, 9.2vw, 40px); }
     .build-head .bd.lg { margin-top: 20px; }
@@ -131,7 +135,8 @@
     .door-panel .ideas-grid { padding-top: 56px; padding-bottom: 56px; }
   }
   @media (max-width: 760px) {
-    .hero-img.field-img { background-image: url(/img/field-mobile.jpg); background-position: center; }
+    /* field-mobile.jpg is re-cropped 800×889 from field.jpg (the man centred, the full sky above him) */
+    .hero-img.field-img { background-image: linear-gradient(180deg, rgba(0, 90, 158, .9) 0%, rgba(0, 90, 158, .65) 10%, rgba(0, 90, 158, .35) 18%, rgba(0, 90, 158, .12) 26%, rgba(0, 90, 158, 0) 34%), url(/img/field-mobile.jpg); background-position: center; }
   }
   /* Round 3b (2026-10-06) · phones ≤700px (the shared rules are in app/mobile.css; these must sit here because this
      file is emitted after mobile.css in the production bundle): 20px gutter, 56–72px section rhythm, headlines ≤34px,
@@ -144,7 +149,7 @@
     .door .go { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0; margin-top: 8px; line-height: 20px; }
     .ideas-form .topic { height: 44px; border-radius: 12px; padding-right: 4px; }
     .ideas-form .topic button { width: 40px; height: 40px; border-radius: 8px; }
-    .close14 { padding-top: 80px; padding-bottom: 80px; text-align: left; }
+    .close14 { padding-top: 56px; padding-bottom: 48px; text-align: left; } /* 2026-10-06: was 80/80 — 85px and 89px of empty white above and below the close on a 390 phone */
     .close14 .hh { margin: 0; }
     .close14 .ctas { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 18px; margin-top: 28px; }
     .close14 .ctas .cta2 { width: 100%; display: flex; justify-content: center; }
@@ -154,10 +159,14 @@
     --edge: 20px;
     .build-head .hh, .why-copy .hh { font-size: clamp(30px, 8.7vw, 34px); line-height: 1.06; }
     .build-sec { padding: 64px var(--edge) 40px; }
-    .next-sec { padding: 56px var(--edge) 24px; }
-    .why-sec { padding: 64px var(--edge) 0; }
+    /* spacing pass (2026-10-06, Saurabh's recording, "What else? … Tell us →"): 152px of white sat between the link and
+       the dot mark. The columns end on their own hairline rhythm (28px), the mark's slot starts right after, and the
+       mark brings its own air. 152 → ~70px. The same pass closes the doors → form (106 → ~74) and form → close (85 → ~61) gaps. */
+    .next-sec { padding: 56px var(--edge) 0; }
+    .why-sec { padding: 16px var(--edge) 0; }
+    .why-mark { margin-top: -20px; } /* the ring sits ~40px inside its square; this closes the last of the white */
     .dec-sec { padding: 64px var(--edge) 0; }
-    .doors-sec { padding: 64px var(--edge) 64px; }
+    .doors-sec { padding: 64px var(--edge) 32px; }
   }
 }
 
@@ -166,4 +175,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .hp.mp .dec-panel { animation: none; }
+}
+
+/* ---------- big screens (>1440px, app/scale.css zooms .hp by --z): viewport units divided by the zoom ---------- */
+@media (min-width: 1441px) {
+  .hp.mp #hero .hero-copy { padding-top: clamp(190px, 25vh / var(--z, 1), 420px); }
+  .hp.mp .build-head .hh, .hp.mp .why-copy .hh { font-size: clamp(40px, 4.4vw / var(--z, 1), 64px); }
 }

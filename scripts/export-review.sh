@@ -20,5 +20,5 @@ find "$OUT" -name '*.html' -print0 \
 echo "export ready in $OUT/"
 if [ "$1" = "--publish" ]; then
   python3 "$HOME/onestop-site/tools/publish.py" --title "${HUB_TITLE:-OneStop website — homepage + Jarvis + the movement + /start}" --slug "$SLUG" \
-    --dir "$PWD/$OUT" --blurb "The real site: / (homepage), /jarvis (product page), /movement (the movement page) and /start (the Instagram-ads landing page). Plus the /lab prototypes (/lab, /lab/glass). Desktop + phone. Round 3 applied (homepage list, Jarvis + movement mobile pass, new /start), 6 Oct 2026." --push
+    --dir "$PWD/$OUT" --blurb "The real site: / (homepage), /jarvis (product page), /movement (the movement page) and /start (the Instagram-ads landing page). Plus the /lab prototypes (/lab, /lab/glass). Desktop + phone. Round 4 (7 Oct 2026): one nav on every page, big-screen scaling, new footer, hero seam + faster reveals." --push
 fi

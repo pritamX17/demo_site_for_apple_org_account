@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP, ScrollTrigger, SplitText } from "@/lib/gsap";
+import { gsap, useGSAP, ScrollTrigger, SplitText, reveal } from "@/lib/gsap";
 
 const ROW_A = [
   "Zerodha · Portfolio", "Groww · SIP", "Amazon · Cart (4)", "Google Flights · 3 tabs", "ChatGPT · “should I sell”",
@@ -85,8 +85,8 @@ export function Reason() {
         });
       });
       Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]).then(() => run?.());
-      gsap.fromTo(p, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: p, start: "top 85%", once: true } });
-      gsap.fromTo(close, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: close, start: "top 85%", once: true } });
+      // 2026-10-06: 280 ms from "top 95%" (was 900–1000 ms from "top 85%")
+      reveal([p, close].filter((e): e is HTMLElement => !!e));
     },
     { scope: ref },
   );

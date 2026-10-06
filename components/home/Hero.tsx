@@ -42,9 +42,12 @@ export function Hero() {
         ease: "none",
         scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
       });
+      // 2026-10-06: on phones and tablets (≤900px, the copy sits above the photo band) the copy keeps full opacity while
+      // it parallaxes out — the scrubbed fade read as "the buttons are half-transparent while I scroll" in the recording.
+      const phone = matchMedia("(max-width: 900px)").matches;
       gsap.to(copy, {
-        y: -120,
-        opacity: 0.2,
+        y: phone ? -60 : -120,
+        opacity: phone ? 1 : 0.2,
         ease: "none",
         scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
       });

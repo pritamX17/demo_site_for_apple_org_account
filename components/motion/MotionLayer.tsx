@@ -44,8 +44,10 @@ export function MotionLayer({ smooth = true }: { smooth?: boolean }) {
       }
       if (!p) return;
       const r = p.getBoundingClientRect();
-      p.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      p.style.setProperty("--my", `${e.clientY - r.top}px`);
+      // --mx/--my are CSS px inside the panel; above 1440 the page is zoomed (app/scale.css) and the rect is in zoomed px
+      const z = p.offsetWidth ? r.width / p.offsetWidth : 1;
+      p.style.setProperty("--mx", `${(e.clientX - r.left) / z}px`);
+      p.style.setProperty("--my", `${(e.clientY - r.top) / z}px`);
     };
 
     document.addEventListener("pointerdown", onDown);

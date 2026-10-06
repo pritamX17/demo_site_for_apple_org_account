@@ -21,12 +21,22 @@
   .hp .lnk { white-space: normal; text-align: center; }
 
   /* ── HOME · hero: copy in the "sky" (deep gradient) on top, the photo as a band below,
-     so the human sits in the lower half and never under the copy (hero-mobile.jpg 800×590 is     the exact band crop for phones; 85% only matters for tablets, which still use hero-wide.jpg). ── */
+     so the human sits in the lower half and never under the copy.
+     Seam fix (2026-10-06, Saurabh's recording: "the image and the background colour are not merging"): the photo's own
+     sky is multiplied into the brand blue (background-blend-mode on a gradient layer over the photo), so the top of the
+     band IS the panel colour; .scrim2 then fades the exact panel colour (#002e51) over the top 44% of the band. The eye
+     reads one surface: deep panel → deep sky → the man. hero-mobile.jpg is re-cropped 800×889 (same photo, more sky,
+     head at 38%) so the fade sits on sky, never on the face. Tablets (761–900px) keep hero-wide.jpg, top-aligned, with
+     the tint in Current (its sky is already deep). ── */
   .hp .hero-panel { min-height: 0; display: flex; flex-direction: column; align-items: stretch; background: linear-gradient(180deg, #001526 0%, #002e51 55%); }
-  .hp .hero-panel .hero-img { position: relative; inset: auto; order: 2; height: 420px; z-index: 0 !important; background-position: center 85%; }
-  .hp .hero-panel .scrim2 { top: auto; bottom: 0; height: 420px; z-index: 1 !important; background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, 0) 16%, rgba(0, 21, 38, .4) 100%) !important; }
+  .hp .hero-panel .hero-img { position: relative; inset: auto; order: 2; height: 420px; z-index: 0 !important;
+    background-image: linear-gradient(180deg, var(--current) 0%, rgba(0, 160, 204, .8) 12%, rgba(0, 160, 204, .35) 24%, rgba(0, 160, 204, 0) 36%), url(/img/hero-wide.jpg);
+    background-blend-mode: multiply, normal; background-size: auto, cover; background-position: center top; }
+  .hp .hero-panel .scrim2 { top: auto; bottom: 0; height: 420px; z-index: 1 !important; background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, .85) 8%, rgba(0, 46, 81, .5) 18%, rgba(0, 46, 81, .2) 30%, rgba(0, 46, 81, 0) 44%, rgba(0, 21, 38, 0) 72%, rgba(0, 21, 38, .4) 100%) !important; }
   .hp .hero-copy { order: 1; padding: 124px var(--pad) 8px; z-index: 1; }
-  @media (max-width: 760px) { .hp .hero-panel .hero-img { background-position: center; } }
+  @media (max-width: 760px) {
+    .hp .hero-panel .hero-img { background-image: linear-gradient(180deg, var(--tide) 0%, rgba(0, 90, 158, .85) 12%, rgba(0, 90, 158, .4) 24%, rgba(0, 90, 158, 0) 36%), url(/img/hero-mobile.jpg); background-position: center; }
+  }
   .hp .h11 { font-size: clamp(38px, 11vw, 46px); line-height: 1; }
   .hp .hero-grid { gap: 22px; margin-top: 26px; }
   .hp .hero-grid .st2 { font-size: 20px; }
@@ -66,7 +76,7 @@
   .hp .rules-grid .bd { margin-bottom: 32px !important; }
   .hp .rule { grid-template-columns: 40px 1fr; padding: 16px 0; }
   .hp .rule .t { font-size: 18px; }
-  .hp .mfoot .panel { padding: 48px var(--pad) 40px; }
+  .hp .mfoot .panel { padding: 48px var(--pad) calc(40px + env(safe-area-inset-bottom, 0px)); }
 
   /* ── sticky bottom CTA (both pages) ── */
   .hp .mcta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(248, 252, 254, .84); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-top: 1px solid rgba(0, 46, 81, .08); transform: translateY(110%); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
@@ -186,10 +196,8 @@
   .hp .col .go { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0; margin-top: 8px; line-height: 20px; }
   .hp .ideas-form .kind button { height: 44px; padding: 0 14px; }
   .hp .nav-drop { padding: 4px var(--pad) 24px; }
-  .hp .mfoot .cols { gap: 8px; }
-  .hp .mfoot .lbl { margin-bottom: 0; }
-  .hp .mfoot .lnks { gap: 0; }
-  .hp .mfoot .lnks a, .hp .mfoot .lnks span { display: flex; align-items: center; min-height: 44px; }
+  /* the footer's 44px link rows live in home.css (.mfoot .lnks a); the ring band bleeds past the side padding */
+  .hp .mfoot .pulse { margin-right: calc(-1 * var(--pad) - 44px); }
   /* the nav lockup: the link is the 44px box, the image sits inside it */
   .hp .nav2 .in > a[aria-label] { position: absolute; left: 24px; top: 22px; width: 160px; height: 44px; display: block; pointer-events: auto; }
   .hp .nav2 .logo, .hp .nav2.solid .logo { left: 0; top: 7px; }
@@ -211,6 +219,8 @@
   .hp #coo > .sheet:first-child { padding-top: 64px !important; padding-bottom: 32px !important; }
   .hp #coo > .sheet:last-child { padding-top: 32px !important; padding-bottom: 64px !important; }
   .hp .ideas-open .ideas-one { padding-top: 64px; padding-bottom: 8px; }
+  /* 2026-10-06 spacing pass: 87px of empty white sat between the last product column and the rules panel (56 + the column's 28) */
+  .hp #next { padding-bottom: 32px !important; }
   .hp.jp #idea { padding-top: 56px !important; padding-bottom: 56px !important; }
 
   /* light effects: blur ≤8px, one soft shadow per card, no drop-shadow filters */

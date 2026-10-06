@@ -230,8 +230,10 @@ export class DotField {
       if (target) {
         const on = (e: PointerEvent) => {
           const b = cv.getBoundingClientRect();
-          this.mx = e.clientX - b.left;
-          this.my = e.clientY - b.top;
+          // pointer in CSS px: above 1440 the page is zoomed (app/scale.css) and the rect is in zoomed px
+          const z = cv.offsetWidth ? b.width / cv.offsetWidth : 1;
+          this.mx = (e.clientX - b.left) / z;
+          this.my = (e.clientY - b.top) / z;
         };
         const off = () => {
           this.mx = -9999;

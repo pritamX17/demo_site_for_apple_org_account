@@ -32,4 +32,7 @@ if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
 export const EASE = "power3.out";
 export const EASE_EXPO = "expo.out";
 
+// reveal() + REVEAL live in lib/gsap-lite.ts so /start (which imports only the lite module) runs the same timing.
+export { reveal, REVEAL } from "./gsap-lite";
+
 export { gsap, useGSAP, ScrollTrigger, SplitText, ScrambleTextPlugin, Observer, CustomEase, ScrollToPlugin, DrawSVGPlugin };
