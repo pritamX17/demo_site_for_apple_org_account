@@ -88,6 +88,11 @@
   .ideas-form .topic button { width: 24px; height: 24px; padding: 0; border: 0; border-radius: 6px; background: none; color: inherit; font-size: 17px; line-height: 1; }
   .ideas-form .topic button:hover { background: rgba(0, 90, 158, .12); }
 
+  /* ---------- 07 · close (the homepage close component is gone; its rules live here now) ---------- */
+  .close14 { padding-top: 120px; padding-bottom: 120px; text-align: center; }
+  .close14 .hh { max-width: 820px; margin: 0 auto; }
+  .close14 .ctas { display: flex; gap: 24px; justify-content: center; align-items: center; margin-top: 36px; flex-wrap: wrap; }
+
   /* ---------- tablets and phones ---------- */
   @media (max-width: 900px) {
     --edge: 24px;
@@ -139,6 +144,11 @@
     .door .go { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0; margin-top: 8px; line-height: 20px; }
     .ideas-form .topic { height: 44px; border-radius: 12px; padding-right: 4px; }
     .ideas-form .topic button { width: 40px; height: 40px; border-radius: 8px; }
+    .close14 { padding-top: 80px; padding-bottom: 80px; text-align: left; }
+    .close14 .hh { margin: 0; }
+    .close14 .ctas { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 18px; margin-top: 28px; }
+    .close14 .ctas .cta2 { width: 100%; display: flex; justify-content: center; }
+    .close14 .ctas .lnk { align-self: center; }
   }
   @media (max-width: 700px) {
     --edge: 20px;
