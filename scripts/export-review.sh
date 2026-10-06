@@ -19,6 +19,6 @@ find "$OUT" -name '*.html' -print0 \
   | xargs -0 perl -0pi -e 's#<head>#<head><meta name="robots" content="noindex,nofollow"/>#'
 echo "export ready in $OUT/"
 if [ "$1" = "--publish" ]; then
-  python3 "$HOME/onestop-site/tools/publish.py" --title "${HUB_TITLE:-OneStop website — homepage + Jarvis + the movement}" --slug "$SLUG" \
-    --dir "$PWD/$OUT" --blurb "The real site: / (homepage), /jarvis (product page, copy v5) and /movement (the movement page, draft copy). Desktop + phone." --push
+  python3 "$HOME/onestop-site/tools/publish.py" --title "${HUB_TITLE:-OneStop website — homepage + Jarvis + the movement + /start}" --slug "$SLUG" \
+    --dir "$PWD/$OUT" --blurb "The real site: / (homepage), /jarvis (product page), /movement (the movement page) and /start (the Instagram-ads landing page). Plus the /lab prototypes (/lab, /lab/glass). Desktop + phone. Round 3 applied (homepage list, Jarvis + movement mobile pass, new /start), 6 Oct 2026." --push
 fi

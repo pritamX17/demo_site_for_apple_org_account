@@ -1,3 +1,5 @@
+/* Round 3 (2026-10-06): phones and tablets (coarse pointer) get a capped DPR (1.5) and a half-resolution backing store
+   that CSS scales up; `backingScale` + `isLowPower` are shared with components/home/FooterPulse.tsx. */
 /* DotField — the brand's dot-matrix as a living system.
    One field = N dots. Each dot has a place in every FORMATION (scatter, clouds, ring, swarm, the orbit mark).
    progress(p) moves every dot between formation floor(p) and floor(p)+1 with an ease.
@@ -9,6 +11,26 @@ export type Pt = { x: number; y: number };
 export type Box = { x: number; y: number; w: number; h: number };
 
 const TAU = Math.PI * 2;
+
+/** True on touch devices (phones, tablets): the canvas is the biggest CPU cost on the page there. */
+export function isCoarsePointer() {
+  return typeof window !== "undefined" && typeof window.matchMedia === "function" && window.matchMedia("(pointer: coarse)").matches;
+}
+
+/** How many backing pixels per CSS pixel: devicePixelRatio capped at 2 (1.5 on touch devices), and on touch devices
+ *  the canvas renders at half the CSS size and CSS scales it up. */
+export function backingScale() {
+  const coarse = isCoarsePointer();
+  const dpr = Math.min(coarse ? 1.5 : 2, window.devicePixelRatio || 1);
+  return dpr * (coarse ? 0.5 : 1);
+}
+
+/** Weak device, or the person asked for less motion: draw one still frame, never run a loop. */
+export function isLowPower() {
+  if (typeof window === "undefined") return false;
+  const cores = navigator.hardwareConcurrency ?? 8;
+  return cores <= 4 || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 function rng(seed: number) {
   let s = seed >>> 0 || 1;
@@ -226,13 +248,15 @@ export class DotField {
   }
   resize() {
     const cv = this.cv,
-      dpr = Math.min(2, window.devicePixelRatio || 1);
+      k = backingScale();
+    cv.style.width = "100%";
+    cv.style.height = "100%";
     this.W = cv.clientWidth;
     this.H = cv.clientHeight;
-    cv.width = this.W * dpr;
-    cv.height = this.H * dpr;
+    cv.width = Math.round(this.W * k);
+    cv.height = Math.round(this.H * k);
     this.g = cv.getContext("2d");
-    this.g?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    this.g?.setTransform(k, 0, 0, k, 0, 0);
   }
   setForms(list: Pt[][], cx?: number, cy?: number) {
     this.forms = list.map((f) => sortByAngle(f, cx, cy));

@@ -1,15 +1,16 @@
-import Image from "next/image";
+/* Round 3b (2026-10-06): frame, bell, tab icons and verified glyph are inline SVG (components/jarvis/PhoneIcons.tsx) — no image fetches. */
 import { OrbitMark } from "@/components/jarvis/logos";
+import { DevFrame, IconBell, IconHome, IconNotebook, IconUser, IconWallet, VerifiedGlyph } from "@/components/jarvis/PhoneIcons";
 
-const glyph = (
-  <Image src="/figma/verified-glyph.svg" width={16} height={16} alt="" />
-);
+const glyph = <VerifiedGlyph />;
 
+/** Round 3 (2026-10-06): the Portfolio screen became the Home screen — greeting, "what changed" with one receipt,
+ *  "your rules" with the quote card. The three ticker rows (PLTR / AMAT / AIR) are gone: no real tickers (compliance). */
 /** The Figma phone (212:1265) built natively in HTML — the only product visual on the page. */
 export function Phone() {
   return (
     <div className="phone">
-      <Image className="devframe" src="/figma/phone-frame.png" alt="" width={413} height={844} />
+      <DevFrame />
       <div className="screen">
         <div className="sbar">
           <span>9:41</span>
@@ -22,25 +23,23 @@ export function Phone() {
           </span>
         </div>
         <div className="phead">
-          <h3>Portfolio</h3>
-          <Image src="/figma/icon-bell.svg" width={24} height={24} alt="" />
+          <h3>Home</h3>
+          <IconBell />
         </div>
         <div className="pcontent">
           <div className="block">
-            <p className="ey">① What changed</p>
-            <p className="t">Three holdings moved more than usual today.</p>
-            <p className="b">Here’s the picture, checked.</p>
-            <div className="rows">
-              {/* TODO(compliance): the Figma uses real tickers (PLTR, AMAT, AIR). Swap for neutral labels before launch if counsel asks. */}
-              <div className="row"><span className="tk">PLTR</span><span className="receipt">{glyph}Verified · NASDAQ · 16:01</span></div>
-              <div className="row"><span className="tk">AMAT</span><span className="receipt">{glyph}Verified · NASDAQ · 16:01</span></div>
-              <div className="row"><span className="tk">AIR</span><span className="receipt">{glyph}Verified · Euronext · 16:01</span></div>
-            </div>
+            <p className="ey">Good morning</p>
+            <p className="t">Nothing needs you today.</p>
+            <p className="b">Three holdings moved more than usual. The picture is unchanged.</p>
           </div>
           <div className="block">
-            <p className="ey">② What your rules say</p>
-            <p className="t">Still your call. I’m just holding you to it.</p>
-            <p className="b">You wrote, 12 Mar:</p>
+            <p className="ey">What changed</p>
+            <p className="t">Markets down 3%. Your plan is not.</p>
+            <p className="b">You wrote this one is for 2040. A bad Tuesday has no opinion on 2040.</p>
+            <span className="receipt tint">{glyph}Verified · as of 16 Jul 16:01</span>
+          </div>
+          <div className="block">
+            <p className="ey">Your rules</p>
             <div className="quote">
               <span className="bar" />
               <div>
@@ -49,19 +48,13 @@ export function Phone() {
               </div>
             </div>
           </div>
-          <div className="block">
-            <p className="ey">③ What needs nothing</p>
-            <p className="t">The rest of your picture is unchanged.</p>
-            <p className="b">Nothing here needs you today.</p>
-            <span className="receipt tint">{glyph}Verified · as of 16 Jul 16:01</span>
-          </div>
           <div className="askpill"><OrbitMark size={17} />Ask Jarvis</div>
         </div>
         <div className="tabs">
-          <div className="on"><Image src="/figma/icon-home.svg" width={24} height={24} alt="" />Home<i /></div>
-          <div><Image src="/figma/icon-wallet.svg" width={24} height={24} alt="" />Portfolio<i /></div>
-          <div><Image src="/figma/icon-notebook.svg" width={24} height={24} alt="" />Ledger<i /></div>
-          <div><Image src="/figma/icon-user.svg" width={24} height={24} alt="" />Profile<i /></div>
+          <div className="on"><IconHome />Home<i /></div>
+          <div><IconWallet />Portfolio<i /></div>
+          <div><IconNotebook />Ledger<i /></div>
+          <div><IconUser />Profile<i /></div>
         </div>
       </div>
     </div>

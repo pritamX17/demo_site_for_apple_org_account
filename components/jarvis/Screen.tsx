@@ -1,12 +1,13 @@
-import Image from "next/image";
+/* Round 3b (2026-10-06): the frame, bell, tab icons and verified glyph are inline SVG (PhoneIcons.tsx) — no image fetches. */
 import { OrbitMark } from "./logos";
+import { DevFrame, IconBell, IconHome, IconNotebook, IconUser, IconWallet, VerifiedGlyph } from "./PhoneIcons";
 
 export type ScreenName = "chat-hero" | "home" | "quiet" | "ask";
 
 /* App screens inside the Figma phone (212:1265). The Portfolio screen is the one measured from Figma
    (components/home/Phone.tsx); these four follow the same system: Briefing Blocks, mono receipts, the Ask pill, the tab bar.
    TODO(figma): correct against the OneStop-App file (bxBcAtug99IjCGZO9yTmhY) once it is readable. */
-const glyph = <Image src="/figma/verified-glyph.svg" width={16} height={16} alt="" />;
+const glyph = <VerifiedGlyph />;
 
 function SBar() {
   return (
@@ -22,13 +23,13 @@ function SBar() {
     </div>
   );
 }
-const TABS: [string, string][] = [["home", "Home"], ["wallet", "Portfolio"], ["notebook", "Ledger"], ["user", "Profile"]];
+const TABS: [React.ReactNode, string][] = [[<IconHome key="i" />, "Home"], [<IconWallet key="i" />, "Portfolio"], [<IconNotebook key="i" />, "Ledger"], [<IconUser key="i" />, "Profile"]];
 function Tabs({ on }: { on: string }) {
   return (
     <div className="tabs">
       {TABS.map(([icon, label]) => (
         <div key={label} className={label === on ? "on" : ""}>
-          <Image src={`/figma/icon-${icon}.svg`} width={24} height={24} alt="" />{label}<i />
+          {icon}{label}<i />
         </div>
       ))}
     </div>
@@ -54,7 +55,7 @@ export function Screen({ name, typed }: { name: ScreenName; typed?: string }) {
   const chat = name === "chat-hero" || name === "ask";
   return (
     <div className="phone">
-      <Image className="devframe" src="/figma/phone-frame.png" alt="" width={413} height={844} />
+      <DevFrame />
       <div className={`screen${chat ? " chat" : ""}`}>
         <SBar />
         {name === "chat-hero" && (
@@ -75,7 +76,7 @@ export function Screen({ name, typed }: { name: ScreenName; typed?: string }) {
           <>
             <div className="phead">
               <div><p className="sub">Unprompted · 6:40 am</p><h3>Home</h3></div>
-              <Image src="/figma/icon-bell.svg" width={24} height={24} alt="" />
+              <IconBell />
             </div>
             <div className="pcontent">
               <div className="block nudge">
@@ -99,7 +100,7 @@ export function Screen({ name, typed }: { name: ScreenName; typed?: string }) {
           <>
             <div className="phead">
               <div><p className="sub">Tuesday · 6:00 pm</p><h3>Home</h3></div>
-              <Image src="/figma/icon-bell.svg" width={24} height={24} alt="" />
+              <IconBell />
             </div>
             <div className="pcontent">
               <div className="block quiet">

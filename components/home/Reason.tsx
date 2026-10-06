@@ -24,6 +24,7 @@ function Row({ items, cls }: { items: string[]; cls: string }) {
   );
 }
 
+/** Round 3b (2026-10-06): the marquee rows pause while off-screen and run slower on phones. */
 /** 02 · The reason — copy, then the tab storm: two marquees whose speed and skew
  *  follow scroll velocity, then the team's close line. */
 export function Reason() {
@@ -44,9 +45,17 @@ export function Reason() {
         gsap.set([p, close], { opacity: 1 });
         return;
       }
-      const ta = gsap.to(a, { xPercent: -50, ease: "none", duration: 48, repeat: -1 });
-      const tb = gsap.fromTo(b, { xPercent: -50 }, { xPercent: 0, ease: "none", duration: 60, repeat: -1 });
+      // Round 3b (2026-10-06): phones (≤700px) run the rows at ~60% speed, and both rows pause while the storm is off-screen.
+      const phone = matchMedia("(max-width: 700px)").matches;
+      const ta = gsap.to(a, { xPercent: -50, ease: "none", duration: phone ? 80 : 48, repeat: -1 });
+      const tb = gsap.fromTo(b, { xPercent: -50 }, { xPercent: 0, ease: "none", duration: phone ? 100 : 60, repeat: -1 });
       const px = { ts: 1 };
+      ScrollTrigger.create({
+        trigger: sec.querySelector(".storm"),
+        start: "top bottom",
+        end: "bottom top",
+        onToggle(self) { if (self.isActive) { ta.play(); tb.play(); } else { ta.pause(); tb.pause(); } },
+      });
       ScrollTrigger.create({
         trigger: sec,
         start: "top bottom",

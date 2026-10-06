@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { gsap, useGSAP, ScrollTrigger, SplitText, CustomEase } from "@/lib/gsap";
 
+/** Round 3 (2026-10-06): the frosted promise chip under the CTAs is now a plain .trust line ("Answers to you. No one else."), no pill. */
 /** 01 · Hero — boxed panel. Headline lines rise behind a mask, the photo settles
  *  on a custom ease, then the copy parallaxes out as the page scrolls. */
 export function Hero() {
@@ -80,7 +81,7 @@ export function Hero() {
                 <Magnetic><Link className="cta2 light" href="/jarvis">Try Jarvis — Live now</Link></Magnetic>
                 <a className="lnk" href="#next" data-to>See what’s coming →</a>
               </div>
-              <p className="trust chip" style={{ marginTop: 20 }}><i aria-hidden="true" />No product to sell you. No agenda but yours.</p>
+              <p className="trust" style={{ marginTop: 20 }}>Answers to you. No one else.</p>
             </div>
           </div>
         </div>

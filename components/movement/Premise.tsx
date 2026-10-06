@@ -9,11 +9,14 @@ const BEATS: [string, string][] = [
   ["No data sold.", "What you tell a companion stays between you and it."],
   ["No products pushed.", "Nothing here earns a commission when you act on it."],
   ["Answers to you.", "Decisions here answer to you, not to outside shareholders."],
+  // TODO(counsel): a promise about shares. The wording is the team lead's (2026-10-01); get the approved text before publish.
+  ["Owned by you.", "From the start, OneStop is setting aside half its value as shares for the people who use it."],
 ];
 
-/** 02 · Why a movement — on the white sheet, not a second box under the hero (Saurabh, 2026-09-22).
+/** 03 · Why a movement — on the white sheet, not a second box under the hero (Saurabh, 2026-09-22).
  *  Copy left; on the right, scattered dots gather into the orbit mark as the section scrolls in.
- *  The three beats sit on one hairline row below; they are the approved "How we're built" lines. */
+ *  The four beats sit on one hairline row below: the three approved "How we're built" lines plus
+ *  "Owned by you" (team lead, 2026-10-01). The second paragraph is the chatbot-incentive point from the same note. */
 export function Premise() {
   const ref = useRef<HTMLElement>(null);
   const cv = useRef<HTMLCanvasElement>(null);
@@ -73,6 +76,9 @@ export function Premise() {
           <p className="bd lg" data-v>
             Not just the corporations spending billions to build it. That is the whole idea, and it changes how the company is run.
           </p>
+          <p className="bd" data-v>
+            Even a general AI chatbot has an incentive. Its business grows the more you use it, so agreeing with you pays better than correcting you. We would rather be honest with you than pleasant.
+          </p>
         </div>
         <div className="why-mark" aria-hidden="true" />
       </div>
@@ -84,10 +90,6 @@ export function Premise() {
           </div>
         ))}
       </div>
-      {/* TODO(counsel): review before publish, even in this soft form (team doc, July 2026). */}
-      <p className="bd soft" data-v>
-        If OneStop succeeds, we want that success to reach the people who helped build it, not just outside investors.
-      </p>
     </section>
   );
 }

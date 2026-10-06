@@ -4,8 +4,10 @@ import { useRef } from "react";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { gsap, useGSAP, ScrollTrigger, SplitText, CustomEase } from "@/lib/gsap";
 
-/** 01 · Hero — the same boxed panel as the homepage hero, one column of copy in the sky
- *  (the man in the field walks right; the copy owns the left). Lines rise behind a mask,
+/** Round 3b (2026-10-06): the frosted promise chip under the CTAs is the same plain .trust line as the homepage ("Answers to you. No one else."). */
+/** 01 · Hero — the same boxed panel as the homepage hero (the box stays: Saurabh, 2026-10-01),
+ *  one column of copy in the sky (the man in the field walks right; the copy owns the left).
+ *  The statement opens with the problem (team lead, 2026-10-01). Lines rise behind a mask,
  *  the photo settles, the copy parallaxes out on scroll. */
 export function MoveHero() {
   const ref = useRef<HTMLElement>(null);
@@ -52,18 +54,18 @@ export function MoveHero() {
           </p>
           <h1 className="h11">
             <span>Own what AI</span>
-            <span>makes for you.</span>
+            <span>does for you.</span>
           </h1>
           <div className="hero-grid mv-grid">
             <p className="bd lg" style={{ maxWidth: 560 }} data-h>
-              Every AI product today answers to the company that built it. This one answers to you. Help us build it.
+              Like every technology before it, AI is owned by corporations and large institutions, and it serves their purpose. OneStop AI is a movement to put AI on your side. Always.
             </p>
             <div data-h>
               <div className="hero-ctas">
-                <Magnetic><a className="cta2 light" href="#door" data-to>Send an idea</a></Magnetic>
-                <a className="lnk" href="#why" data-to>Why a movement →</a>
+                <Magnetic><a className="cta2 light" href="#door" data-to>Join the movement</a></Magnetic>
+                <a className="lnk" href="#building" data-to>What we are building →</a>
               </div>
-              <p className="trust chip" style={{ marginTop: 20 }}><i aria-hidden="true" />No product to sell you. No agenda but yours.</p>
+              <p className="trust" style={{ marginTop: 20 }}>Answers to you. No one else.</p>
             </div>
           </div>
         </div>
