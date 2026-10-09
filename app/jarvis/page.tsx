@@ -28,12 +28,6 @@ export const metadata: Metadata = {
   },
 };
 
-const LINKS: [string, string, string?][] = [
-  ["The idea", "#idea"],
-  ["Compared", "#versus"],
-  ["Moments", "#moments"],
-  ["Request access", "#gate"],
-];
 const DISCLAIMER =
   "Jarvis is a OneStop product. Jarvis is in invite-only beta. Jarvis provides education and information, not financial advice. We don’t sell financial products or recommend securities.";
 
@@ -44,7 +38,7 @@ export default function JarvisPage() {
     <div className="hp jp">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav cta="Request access" ctaHref="#gate" links={LINKS} page="jarvis" />
+      <HomeNav page="jarvis" />
       <JarvisHero />
       <Idea />
       <Proof />
@@ -53,7 +47,8 @@ export default function JarvisPage() {
       <Moments />
       <Quiet />
       <Gate />
-      <FigmaFooter disclaimer={DISCLAIMER} button="Request access" product={["Jarvis", "/jarvis"]} cta={["Request access", "#gate"]} where />
+      {/* Round 3 (2026-10-06): the footer lost its email field, so the `button` label prop is gone. */}
+      <FigmaFooter disclaimer={DISCLAIMER} product={["Jarvis", "/jarvis"]} cta={["Request access", "#gate"]} where />
       <MobileCta label="Request access" href="#gate" hideAt="#gate" />
     </div>
   );

@@ -1,29 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
+import { gsap, useGSAP, ScrollTrigger, reveal } from "@/lib/gsap";
 
 /** Page-level motion: the generic [data-r] reveals, in-page anchor scrolling,
- *  and one ScrollTrigger refresh once fonts have loaded (SplitText line breaks). */
+ *  and one ScrollTrigger refresh once fonts have loaded (SplitText line breaks).
+ *  2026-10-06: the reveals use lib/gsap `reveal()` — start "top 95%", 280 ms, first viewport at once (was "top 85%", 800 ms). */
 export function HomeMotion() {
   useGSAP(() => {
     ScrollTrigger.config({ ignoreMobileResize: true });
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const items = gsap.utils.toArray<HTMLElement>(".hp [data-r]");
-    if (reduced) {
-      gsap.set(items, { opacity: 1 });
-    } else {
-      items.forEach((el) =>
-        // fromTo, never from(): the CSS guard already holds these at opacity 0.
-        gsap.fromTo(el, { y: 22, opacity: 0 }, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
-        }),
-      );
-    }
+    reveal(".hp [data-r]");
     document.fonts?.ready.then(() => ScrollTrigger.refresh());
   });
 

@@ -12,7 +12,6 @@ import { Jarvis } from "@/components/home/Jarvis";
 import { NextUp } from "@/components/home/NextUp";
 import { Built } from "@/components/home/Built";
 import { Ideas } from "@/components/home/Ideas";
-import { CloseLine } from "@/components/home/CloseLine";
 import { FigmaFooter } from "@/components/home/FigmaFooter";
 import { MobileCta } from "@/components/home/MobileCta";
 
@@ -35,7 +34,7 @@ export default function HomePage() {
     <div className="hp">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav />
+      <HomeNav page="home" />
       <main>
         <Hero />
         <Reason />
@@ -44,10 +43,9 @@ export default function HomePage() {
         <NextUp />
         <Built />
         <Ideas />
-        <CloseLine />
       </main>
       <FigmaFooter />
-      <MobileCta label="Try Jarvis — Live now" href="/jarvis" hideAt="#close" />
+      <MobileCta label="Try Jarvis — Live now" href="/jarvis" hideAt="#ideas" />
     </div>
   );
 }

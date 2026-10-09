@@ -35,6 +35,7 @@ html {
 }
 
 body {
+  margin: 0; /* no reset is loaded since Tailwind left the repo: the default 8px margin framed every page */
   background: var(--color-foam);
   color: var(--color-ink);
   font-family: var(--font-sans);

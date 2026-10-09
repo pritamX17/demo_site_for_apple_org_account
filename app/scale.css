@@ -1,0 +1,27 @@
+/* ============================================================
+   scale.css — big screens (2026-10-06, from Saurabh's recording on a 1512-px-wide display).
+   The site is laid out at 1440px. Above that, the whole page scales with the window like a Figma frame:
+   type, panels, hero, nav and footer grow together, in the proportions of the 1440 design.
+   Cap at 2560px — beyond that the frame stops growing and centres on the page background.
+
+   Mechanism: CSS `zoom` on the page root (.hp). Unlike transform: scale(), zoom keeps layout, position: fixed
+   (nav, sticky bar, scroll hairline) and position: sticky working, and the layout box stays 1440 CSS px wide,
+   so JS that reads clientWidth (the Figma footer + Jarvis hero scalers, the dot-field canvases) keeps seeing
+   1440 and scales for free. ScrollTrigger + Lenis read getBoundingClientRect/scrollY, which Chromium and Safari
+   report in zoomed (real) px — consistent, so no trigger moves.
+
+   The one thing zoom does NOT scale is viewport units: 100svh inside a zoomed subtree is still the real
+   viewport height, then multiplied by the zoom. Every vh/vw that is not already saturated by its clamp() at
+   1440 is divided by --z in a `@media (min-width: 1441px)` block at the end of the page CSS that owns it
+   (home.css, movement.css, start.css). Nothing here applies at ≤1440px.
+   ============================================================ */
+@media (min-width: 1441px) {
+  .hp {
+    /* 1 at 1440, 1.333 at 1920, 1.778 at 2560 and beyond */
+    --z: clamp(1, 100vw / 1440px, 2560 / 1440);
+    zoom: var(--z);
+    /* the frame is 1440 CSS px wide; above 2560 real px it stops growing and centres */
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+}

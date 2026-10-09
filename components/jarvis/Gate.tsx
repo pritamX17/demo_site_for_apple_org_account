@@ -52,13 +52,17 @@ export function Gate() {
             <p className="bd" style={{ marginTop: 24, maxWidth: 520 }} data-r>One good decision can be worth lakhs. Tell us the one you’re wrestling with right now — that’s the whole application. Real decisions go first.</p>
             {/* Copy is locked to v5: no invented confirmation line. On submit the form locks (TODO(copy): approved confirmation sentence). */}
             <form onSubmit={onSubmit} data-r>
-              <textarea placeholder="The decision you’re wrestling with" aria-label="Your decision" value={typed} onChange={(e) => setTyped(e.target.value)} required disabled={sent} />
+              {/* Visible labels (team feedback: the form was not clear). The words are the v5 field names; Waitlist, not WhatsApp-direct (Saurabh, 2026-10-03), so one line says what the number is for. DRAFT, not v5. */}
+              <label className="lab" htmlFor="gate-decision">The decision you’re wrestling with</label>
+              <textarea id="gate-decision" value={typed} onChange={(e) => setTyped(e.target.value)} required disabled={sent} />
+              <label className="lab" htmlFor="gate-phone">Your phone number</label>
               <div className="phone-row">
                 <select aria-label="Country code" value={code} onChange={(e) => setCode(e.target.value)} disabled={sent}>
                   {CODES.map(([iso, dial]) => <option key={iso} value={iso}>{COUNTRY[iso]} {dial}</option>)}
                 </select>
-                <input type="tel" inputMode="numeric" autoComplete="tel-national" pattern="[0-9][0-9 ]{5,13}" title="Digits only, without the country code" placeholder="Phone number" aria-label="Phone number without the country code" required disabled={sent} />
+                <input id="gate-phone" type="tel" inputMode="numeric" autoComplete="tel-national" pattern="[0-9][0-9 ]{5,13}" title="Digits only, without the country code" placeholder="Phone number" aria-label="Phone number without the country code" required disabled={sent} />
               </div>
+              <p className="why">We message this number when your access opens. Nothing else.</p>
               <Magnetic className="self-start"><button className="cta2 light" type="submit" disabled={sent}>Request access</button></Magnetic>
             </form>
             <p className="fine" data-r>Free while in beta. Never sells you anything. Never tells you what to buy.</p>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { gsap, useGSAP, ScrollTrigger, SplitText, CustomEase } from "@/lib/gsap";
+import { JARVIS_WA } from "@/lib/whatsapp";
 
+/** Round 3 (2026-10-06): the frosted promise chip under the CTAs is now a plain .trust line ("Answers to you. No one else."), no pill. */
 /** 01 · Hero — boxed panel. Headline lines rise behind a mask, the photo settles
  *  on a custom ease, then the copy parallaxes out as the page scrolls. */
 export function Hero() {
@@ -41,9 +42,12 @@ export function Hero() {
         ease: "none",
         scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
       });
+      // 2026-10-06: on phones and tablets (≤900px, the copy sits above the photo band) the copy keeps full opacity while
+      // it parallaxes out — the scrubbed fade read as "the buttons are half-transparent while I scroll" in the recording.
+      const phone = matchMedia("(max-width: 900px)").matches;
       gsap.to(copy, {
-        y: -120,
-        opacity: 0.2,
+        y: phone ? -60 : -120,
+        opacity: phone ? 1 : 0.2,
         ease: "none",
         scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true },
       });
@@ -77,10 +81,10 @@ export function Hero() {
             <div data-h>
               <p className="st2">On your side. Always.</p>
               <div className="hero-ctas">
-                <Magnetic><Link className="cta2 light" href="/jarvis">Try Jarvis — Live now</Link></Magnetic>
+                <Magnetic><a className="cta2 light" href={JARVIS_WA} target="_blank" rel="noopener">Try Jarvis — Live now</a></Magnetic>
                 <a className="lnk" href="#next" data-to>See what’s coming →</a>
               </div>
-              <p className="trust chip" style={{ marginTop: 20 }}><i aria-hidden="true" />No product to sell you. No agenda but yours.</p>
+              <p className="trust" style={{ marginTop: 20 }}>Answers to you. No one else.</p>
             </div>
           </div>
         </div>

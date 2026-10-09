@@ -13,19 +13,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const LINKS: [string, string, string?][] = [
-  ["Homepage", "/"],
-  ["Jarvis", "/jarvis", "Live now"],
-  ["Motion lab", "/lab"],
-  ["Liquid glass", "/lab/glass"],
-];
-
 /** /lab/glass — the one prototype of liquid-glass-react (rdev) requested before it touches `/` or `/jarvis`. */
 export default function GlassPage() {
   return (
     <div className="hp lab">
       <HomeMotion />
-      <HomeNav cta="Back to site" ctaHref="/" links={LINKS} />
+      <HomeNav cta="Back to site" ctaHref="/" page={null} plain />
       <main>
         <div className="lab-hero">
           <p className="k2" style={{ color: "var(--tide)" }}>Prototype · liquid-glass-react 1.1.1</p>
