@@ -1,205 +1,323 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import "../home.css";
 import "../mobile.css";
 import "../legal/legal.css";
-import { LegalPage } from "@/components/legal/LegalPage";
+import { ADDRESS, AddressBlock, LegalPage } from "@/components/legal/LegalPage";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How OneStop AI collects, uses, stores and deletes your data — including the portfolio information Jarvis reads. We do not sell your data and we do not train models on it.",
+    "What Jarvis collects, who it goes to, how long we keep it, and how you see, correct or delete it. We do not sell your data and we do not use it to train AI models.",
 };
 
-/** TODO(counsel): reviewed by counsel before we take money or leave beta.
- *  TODO(launch): replace the placeholder entity name, address, grievance
- *  officer and contact addresses below with the registered details. */
+/** Source: "Jarvis Privacy Policy (draft v0.1)". Not reviewed by a lawyer
+ *  yet. TODO(launch): fill the [square bracket] placeholders (address,
+ *  domains, privacy email, payment gateway, grievance officer, retention
+ *  periods still being decided) before Jarvis takes money. */
+
+const COLLECT: [string, string, string, string][] = [
+  ["Account details", "Name, email, profile photo", "You, or Google when you sign in with Google", "To create your account and sign you in"],
+  ["WhatsApp number", "Your phone number and WhatsApp display name", "WhatsApp, when you message Jarvis", "To reply to you and link WhatsApp to your account"],
+  ["Your questions and Jarvis’s answers", "Chat messages on the app, web and WhatsApp", "You", "To answer you and keep your chat history"],
+  ["Portfolio", "Holdings, quantities, buy prices, watchlist", "You type it, or upload a screenshot, PDF or CSV", "So Jarvis can answer questions about your own money"],
+  ["Uploaded files", "Broker statements, screenshots", "You", "To read your holdings out of them"],
+  ["What Jarvis remembers about you", "Goals, time horizon, risk comfort, past decisions you shared", "Built from your chats", "So you do not have to repeat yourself"],
+  ["Preferences", "Horizon (short/mid/long), risk (growth/balanced/cautious), currency", "You", "To shape answers to you"],
+  ["Voice (app only)", "Short recordings when you tap the mic", "You", "To turn your speech into text"],
+  ["Payments", "Plan, amount, date, payment ID", "Apple, Google or [PAYMENT GATEWAY]", "To give you Pro and keep tax records"],
+  ["Device and sign-in details", "Device type, operating system, browser", "Your device", "To keep your account secure and show your active sessions"],
+  ["Feedback", "Thumbs up or down, comments", "You", "To improve answers"],
+  ["Support messages", "Anything you send us", "You", "To help you"],
+];
+
+const SHARE: [string, string, string][] = [
+  ["Amazon Web Services (Mumbai, India)", "Hosting and storage", "Everything we store"],
+  ["OpenRouter, and the model companies behind it (e.g. Google, OpenAI)", "Writing answers, speech to text", "The question and context for each answer"],
+  ["WATI and Meta (WhatsApp)", "Delivering WhatsApp messages", "Your number and the messages between you and Jarvis"],
+  ["Google", "Sign in with Google", "Sign-in only"],
+  ["Resend", "Sending sign-in codes by email", "Your email"],
+  ["Firecrawl", "Web search for answers", "Search words"],
+  ["Apple, Google, RevenueCat, [PAYMENT GATEWAY]", "Payments", "Payment details. We never see your full card number."],
+  ["[Analytics / crash reporting, if added]", "Finding bugs", "Device and error details, no chat text"],
+];
+
+const KEEP: [string, string, string][] = [
+  ["Account details (name, email, WhatsApp number)", "While your account is open", "You delete your account"],
+  ["Chats on the app, web and WhatsApp", "While your account is open", "You delete a chat, or your account"],
+  ["What Jarvis remembers about you", "While your account is open", "You clear it, send /reset on WhatsApp, or delete your account"],
+  ["Portfolio and watchlist", "While your account is open", "You remove holdings, or delete your account"],
+  ["Uploaded files (statements, screenshots, CSV)", "Up to 14 days", "Deleted automatically once your holdings are read"],
+  ["Voice recordings (app mic)", "Minutes", "Deleted straight after they are turned into text. The text is kept like a chat message."],
+  ["Preferences (horizon, risk, currency)", "While your account is open", "You change them, or delete your account"],
+  ["Feedback on answers", "[2 years]", "Time"],
+  ["Technical records of how an answer was made", "90 days", "Time"],
+  ["Security and sign-in logs", "180 days", "Time"],
+  ["Server logs", "180 days", "Time"],
+  ["Payment and invoice records", "8 years", "Required by tax and company law"],
+  ["Complaints and support requests", "[2 years] after they are closed", "Time"],
+  ["Backups", "7 days, rolling", "Overwritten automatically"],
+];
+
+const OTHERS: [string, string, string][] = [
+  ["Meta (WhatsApp)", "Messages between you and Jarvis on WhatsApp", "Up to 30 days on its servers. Your own phone keeps the chat until you delete it."],
+  ["WATI (our WhatsApp provider)", "WhatsApp messages between you and Jarvis", "[To be confirmed]"],
+  ["AI model providers, reached through OpenRouter", "The question and context for an answer", "[To be confirmed]"],
+  ["Firecrawl (web search)", "Search words", "[To be confirmed]"],
+  ["Apple, Google, [PAYMENT GATEWAY]", "Payment records", "Under their own policies"],
+];
+
+function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
+  return (
+    <div className="tbl">
+      <table>
+        <thead>
+          <tr>{head.map((h) => <th key={h}>{h}</th>)}</tr>
+        </thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i}>{r.map((c, j) => (j === 0 ? <th key={j} scope="row">{c}</th> : <td key={j}>{c}</td>))}</tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export default function PrivacyPage() {
   return (
     <LegalPage
       eyebrow="Legal"
       title="Privacy Policy"
-      intro="Jarvis reads the money you put in front of it. This page says exactly what we collect, where it goes, and how you get it back or get rid of it."
-      updated="10 September 2026"
+      intro="What Jarvis collects, who it goes to, how long we keep it, and how you see, correct or delete it."
+      updated="9 October 2026"
     >
       <section>
         <div className="draft">
           <p>
-            <b>Draft.</b> This policy is published for the invite-only beta and is under
-            review by counsel. It will be updated before Jarvis is generally available.
+            <b>Draft.</b> This policy is under review and will be updated before Jarvis is
+            generally available. Anything in [square brackets] is still to be confirmed.
           </p>
         </div>
       </section>
 
       <section>
-        <h2>Who we are</h2>
-        <p>
-          OneStop AI (&ldquo;OneStop&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) builds AI
-          companions for the decisions you carry. Our first product, Jarvis, is a companion
-          for money. This policy covers this website and the Jarvis application.
-        </p>
-        <p>
-          <b>Entity:</b> [REGISTERED ENTITY NAME] &middot; [REGISTERED ADDRESS]<br />
-          <b>Privacy contact:</b>{" "}
-          <a href="mailto:privacy@onestop.ai">privacy@onestop.ai</a>
-        </p>
+        <h2>1. Who we are</h2>
+        <ul>
+          <li>
+            Jarvis is made by <b>OneStop AI Private Limited</b> (&ldquo;OneStop AI&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), {ADDRESS}.
+          </li>
+          <li>
+            This policy covers Jarvis on:
+            <ul>
+              <li>the mobile app (iPhone and Android)</li>
+              <li>the web app ([app domain])</li>
+              <li>WhatsApp</li>
+              <li>our website ([website domain])</li>
+            </ul>
+          </li>
+          <li>Under India&rsquo;s Digital Personal Data Protection Act, 2023, we are the &ldquo;Data Fiduciary&rdquo; for your data.</li>
+        </ul>
       </section>
 
       <section>
-        <h2>What we collect</h2>
-        <h3>You give us</h3>
-        <ul>
-          <li>
-            <b>Account information</b> — your name, email address, and authentication
-            details when you create an account or join the waitlist.
-          </li>
-          <li>
-            <b>Portfolio and financial information</b> — holdings, transactions, balances,
-            goals and anything you write into the Ledger. This is the data Jarvis reads in
-            order to be useful to you.
-          </li>
-          <li>
-            <b>Conversations</b> — the questions you ask Jarvis and the context you give it.
-          </li>
-          <li>
-            <b>Support correspondence</b> — anything you send us by email.
-          </li>
-        </ul>
-
-        <h3>We collect automatically</h3>
-        <ul>
-          <li>
-            <b>Usage and device data</b> — pages viewed, features used, approximate location
-            derived from IP, browser and device type, and error diagnostics.
-          </li>
-        </ul>
-
-        <h3>From connected accounts</h3>
-        <p>
-          If you choose to connect a broker, bank or other financial account, we receive the
-          holdings and transaction data that connection returns. We request read-only access.
-          We do not place trades, move money, or write to your accounts. You can disconnect a
-          connected account at any time, and disconnecting stops any further data flowing to us.
-        </p>
-      </section>
-
-      <section>
-        <h2>Why we use it</h2>
-        <ul>
-          <li>To provide Jarvis — answering your questions and reflecting your position back to you.</li>
-          <li>To create and secure your account, and to prevent fraud and abuse.</li>
-          <li>To fix problems, monitor reliability and improve the product.</li>
-          <li>To contact you about the service, and about the beta if you asked us to.</li>
-          <li>To meet legal, regulatory and tax obligations.</li>
-        </ul>
-        <p>
-          Under India&rsquo;s Digital Personal Data Protection Act, 2023, we process your
-          personal data for these stated purposes on the basis of the consent you give when
-          you create an account and connect data, or where processing is necessary for
-          legitimate uses the Act permits. You may withdraw consent at any time (see{" "}
-          <b>Your choices</b> below); withdrawing it may mean Jarvis can no longer function.
-        </p>
-      </section>
-
-      <section>
-        <h2>We do not train models on your data</h2>
+        <h2>2. The short version</h2>
         <div className="note">
-          <p>
-            We do not sell your personal data. We do not share it with advertisers. We do not
-            use your portfolio data, your Ledger, or your conversations with Jarvis to train
-            or fine-tune AI models &mdash; ours or anyone else&rsquo;s.
-          </p>
+          <ul>
+            <li>We collect what you give Jarvis so it can answer you: your questions, your portfolio, and what you tell it about your goals.</li>
+            <li>AI models run by other companies write Jarvis&rsquo;s answers. We send them only what an answer needs.</li>
+            <li>We do not sell your data. We do not use it for ads.</li>
+            <li>We do not use your data to train AI models, and neither do the model companies we use.</li>
+            <li>Your data is stored in India (AWS, Mumbai).</li>
+            <li>You can see, correct or delete your data at any time.</li>
+          </ul>
         </div>
-        <p>
-          Jarvis is built on large language models operated by third parties. When Jarvis
-          answers you, the context needed for that answer is sent to the model provider under
-          agreements that prohibit using it for training. We send the minimum required and we
-          do not send credentials for connected accounts.
-        </p>
       </section>
 
       <section>
-        <h2>Who processes it</h2>
-        <p>
-          We share personal data only with service providers who process it on our
-          instructions, under contract, for the purposes above:
-        </p>
+        <h2>3. What we collect</h2>
+        <Table head={["What", "Examples", "Where it comes from", "Why we need it"]} rows={COLLECT} />
+        <p>We do not collect:</p>
         <ul>
-          <li><b>Cloud hosting and storage</b> — [PROVIDER], for running the service and storing data.</li>
-          <li><b>AI model providers</b> — [PROVIDER(S)], to generate Jarvis&rsquo;s responses, under no-training terms.</li>
-          <li><b>Account connectivity</b> — [PROVIDER], where you connect a broker or bank.</li>
-          <li><b>Analytics and error monitoring</b> — [PROVIDER], for reliability and diagnostics.</li>
-          <li><b>Email delivery</b> — [PROVIDER], for service and beta correspondence.</li>
+          <li>your broker or bank login</li>
+          <li>your PAN, Aadhaar or bank account number (please do not send them; if a statement you upload contains them, see section 8)</li>
+          <li>your exact location</li>
+          <li>your contacts</li>
         </ul>
-        <p>
-          We may also disclose data where the law requires it, to enforce our terms, or as
-          part of a merger or acquisition &mdash; in which case we will tell you before your
-          data becomes subject to a different policy.
-        </p>
+        <p>Jarvis does not connect to your broker or bank. It cannot place trades or move money.</p>
       </section>
 
       <section>
-        <h2>Where it is stored, and how long</h2>
-        <p>
-          Data is stored on servers operated by our cloud provider and may be processed
-          outside your country, including in jurisdictions with different data protection
-          laws. Where we transfer personal data internationally we rely on the safeguards the
-          applicable law requires.
-        </p>
-        <p>
-          We keep your data for as long as your account is open. If you close your account we
-          delete or irreversibly anonymise your personal data within <b>90 days</b>, except
-          where we must keep records longer to meet a legal, tax or regulatory obligation, or
-          to resolve a dispute.
-        </p>
-      </section>
-
-      <section>
-        <h2>Security</h2>
-        <p>
-          We encrypt data in transit and at rest, restrict internal access to those who need
-          it, and use read-only access for connected accounts. No system is perfectly secure,
-          and we cannot guarantee absolute security. If a breach affects your personal data we
-          will notify you and the relevant authority as the law requires.
-        </p>
-      </section>
-
-      <section>
-        <h2>Your choices</h2>
-        <p>You can, at any time:</p>
+        <h2>4. How we use it</h2>
         <ul>
-          <li><b>Access</b> a copy of the personal data we hold about you.</li>
-          <li><b>Correct</b> data that is wrong or incomplete.</li>
-          <li><b>Delete</b> your account and the data associated with it.</li>
-          <li><b>Withdraw consent</b> for processing, or disconnect a linked account.</li>
-          <li><b>Nominate</b> another person to exercise these rights if you die or become incapacitated, as the DPDP Act provides.</li>
-          <li><b>Complain</b> to a data protection authority.</li>
+          <li>To run Jarvis: answer your questions, read your portfolio, remember your context.</li>
+          <li>To send you updates about your holdings on WhatsApp, if you have them switched on (see section 7).</li>
+          <li>To keep Jarvis safe: stop abuse, spam and account takeovers, and enforce daily limits.</li>
+          <li>To fix problems and make answers better. Our team may read a conversation when you report it, give feedback on it, or when we need to fix a fault or stop misuse.</li>
+          <li>To handle payments, refunds and tax records.</li>
+          <li>To meet the law.</li>
         </ul>
-        <p>
-          To exercise any of these, email{" "}
-          <a href="mailto:privacy@onestop.ai">privacy@onestop.ai</a>. We respond within 30
-          days. If you are in the EU or UK, you have the rights the GDPR provides, including
-          data portability and objecting to processing.
-        </p>
-        <p>
-          <b>Grievance Officer (India):</b> [NAME] &middot;{" "}
-          <a href="mailto:grievance@onestop.ai">grievance@onestop.ai</a>
-        </p>
       </section>
 
       <section>
-        <h2>Children</h2>
-        <p>
-          Jarvis is not for anyone under 18. We do not knowingly collect data from children.
-          If we learn we have, we delete it.
-        </p>
+        <h2>5. AI and your data</h2>
+        <ul>
+          <li>Jarvis&rsquo;s answers are written by large language models run by other companies.</li>
+          <li>We reach these models through OpenRouter. Today they include models from Google and OpenAI.</li>
+          <li>For each answer we send the model your question and the context it needs (for example your holdings or what Jarvis remembers). We do not send your email, phone number or account details.</li>
+          <li>In-app voice recordings are turned into text by one of these models. We delete the recording straight after. We keep the text like any other message.</li>
+          <li>We use these providers only on terms where they do not use your data to train their models. Some keep a copy for a short time to check for abuse (see section 8).</li>
+          <li>We do not use your data to train or fine-tune AI models. Messages you send on WhatsApp are never used to train AI models.</li>
+          <li>Jarvis can look up the web to answer you. The search words it uses may come from your question. We do not attach your name or contact details to a search.</li>
+          <li>AI answers can be wrong. See our <Link href="/terms">Terms</Link>.</li>
+        </ul>
       </section>
 
       <section>
-        <h2>Changes</h2>
-        <p>
-          If we change this policy we will update the date above, and for material changes we
-          will tell you by email or in the product before the change takes effect.
-        </p>
+        <h2>6. Who we share it with</h2>
+        <p>We share data only with companies that help us run Jarvis, only for the reasons above.</p>
+        <Table head={["Who", "What they do", "What they get"]} rows={SHARE} />
+        <ul>
+          <li>We may also share data if the law requires it, or to protect our users or our rights.</li>
+          <li>If OneStop AI is sold or merged, we will tell you before your data falls under a different policy.</li>
+          <li>WhatsApp is run by Meta, and your chats there are also covered by WhatsApp&rsquo;s own privacy policy.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>7. WhatsApp messages from Jarvis</h2>
+        <ul>
+          <li>If you start a chat with Jarvis on WhatsApp, we reply there.</li>
+          <li>Jarvis may also send you updates about your holdings on WhatsApp.</li>
+          <li>To stop them, reply STOP or tell Jarvis to stop. We will stop straight away.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>8. How long we keep your data</h2>
+        <h3>The rule we follow</h3>
+        <ul>
+          <li>We keep your data only as long as we need it to run Jarvis for you.</li>
+          <li>We keep some records longer when the law makes us.</li>
+          <li>When we no longer need data, we delete it, or strip it so it can no longer be linked to you.</li>
+        </ul>
+
+        <h3>Each kind of data</h3>
+        <Table head={["Data", "How long we keep it", "What ends it"]} rows={KEEP} />
+
+        <h3>When you delete a chat</h3>
+        <ul>
+          <li>It disappears from your chat list straight away.</li>
+          <li>It is removed from our systems within [30] days.</li>
+          <li>On WhatsApp, /reset clears what Jarvis remembers and starts fresh. Your past messages are removed within [30] days.</li>
+        </ul>
+
+        <h3>When you delete your account</h3>
+        <ul>
+          <li>You can delete your account [in the app, on the web at [URL], or on WhatsApp].</li>
+          <li>You have [30] days to change your mind by signing back in.</li>
+          <li>After that, we delete your account, chats, memory, portfolio and preferences within [30] days.</li>
+          <li>We send you a message when it is done.</li>
+          <li>If you have Pro through Apple or Google, deleting your account does not stop their billing. Cancel in your phone settings first.</li>
+        </ul>
+        <p>We keep only:</p>
+        <ul>
+          <li>payment and invoice records, for 8 years, because tax and company law require it</li>
+          <li>security logs, for up to 180 days</li>
+          <li>[from May 2027: records of how your data was processed, for 1 year, as India&rsquo;s data protection rules require]</li>
+          <li>anything we must keep because of a legal claim or a request from a government authority</li>
+        </ul>
+        <p>These are kept separately and are not used for anything else.</p>
+
+        <h3>Backups</h3>
+        <ul>
+          <li>We keep backups for 7 days, to recover from a system failure.</li>
+          <li>Deleted data drops out of backups within 7 days.</li>
+          <li>We never restore a backup to bring back data you deleted.</li>
+        </ul>
+
+        <h3>Copies other companies hold</h3>
+        <Table head={["Company", "What they hold", "How long"]} rows={OTHERS} />
+        <ul>
+          <li>When you delete your account, we ask these companies to delete your data too, where they hold it for us.</li>
+        </ul>
+
+        <h3>Accounts nobody uses</h3>
+        <ul>
+          <li>[e.g. if you have not used Jarvis for 3 years, we delete your account. We warn you at least 48 hours before, by email or WhatsApp.]</li>
+        </ul>
+
+        <h3>Data that no longer identifies you</h3>
+        <ul>
+          <li>We may keep totals and statistics that cannot be linked back to you, such as &ldquo;how many people asked about gold this week&rdquo;.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>9. Where it is stored</h2>
+        <ul>
+          <li>Your data is stored in India, on Amazon Web Services in Mumbai.</li>
+          <li>To write an answer, parts of a conversation are processed by model companies that may be outside India. We use only providers that protect it as this policy says.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>10. How we protect it</h2>
+        <ul>
+          <li>Data is encrypted when it travels and when it is stored.</li>
+          <li>Only team members who need it can access it, and access is logged.</li>
+          <li>No system is perfectly secure. If a breach affects your data, we will tell you and the Data Protection Board of India as the law requires.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>11. Your rights</h2>
+        <p>You can:</p>
+        <ul>
+          <li>See the data we hold about you.</li>
+          <li>Correct anything that is wrong.</li>
+          <li>Delete your account and data: [in the app, on the web at [URL], or by messaging Jarvis on WhatsApp].</li>
+          <li>Withdraw consent at any time. Jarvis may not be able to work without some data.</li>
+          <li>Nominate someone to use these rights for you if you die or cannot act.</li>
+          <li>Complain to our Grievance Officer (section 15). If you are not satisfied, you can complain to the Data Protection Board of India.</li>
+        </ul>
+        <p>To use any of these, email [privacy email] or message Jarvis on WhatsApp. We reply within [30] days.</p>
+      </section>
+
+      <section>
+        <h2>12. Children</h2>
+        <ul>
+          <li>Jarvis is for people aged 18 and over.</li>
+          <li>We do not knowingly collect data from anyone under 18. If we find we have, we delete it.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>13. Cookies</h2>
+        <ul>
+          <li>The web app uses cookies needed to keep you signed in and secure.</li>
+          <li>We do not use advertising cookies inside Jarvis.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>14. Users in the US</h2>
+        <ul>
+          <li>We do not sell or share your personal information for advertising.</li>
+          <li>California residents can ask what we collect, ask us to delete it, and will not be treated differently for asking. Email [privacy email].</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>15. Changes and contact</h2>
+        <ul>
+          <li>We will update the date at the top when this policy changes.</li>
+          <li>For bigger changes, we tell you by email, in the app or on WhatsApp before they apply.</li>
+          <li>Contact: [privacy email]</li>
+          <li>Grievance Officer: [NAME], [DESIGNATION], [grievance email]</li>
+        </ul>
+        <AddressBlock />
       </section>
     </LegalPage>
   );

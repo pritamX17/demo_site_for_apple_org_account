@@ -40,6 +40,18 @@
   .doc .note { border-left: 2px solid var(--aqua); padding: 4px 0 4px 20px; margin: 0 0 20px; }
   .doc .note p { margin: 0; color: var(--deep); }
 
+  .doc ul ul { margin: 10px 0 0; }
+  .doc .note ul { margin: 0; }
+  .doc .note li:last-child { margin-bottom: 0; }
+
+  /* Tables (privacy: what we collect, who gets it, how long). Scroll sideways on phones. */
+  .doc .tbl { overflow-x: auto; margin: 0 0 20px; border: 1px solid var(--line); border-radius: 12px; }
+  .doc table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
+  .doc th, .doc td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); color: var(--ink2); }
+  .doc thead th { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--muted); }
+  .doc tbody th { font-weight: 600; color: var(--deep); }
+  .doc tbody tr:last-child th, .doc tbody tr:last-child td { border-bottom: 0; }
+
   /* ---------- draft banner ---------- */
   .draft { max-width: var(--measure); margin: 0 0 8px; padding: 14px 18px; border-radius: 12px;
            background: rgba(0, 208, 255, .07); border: 1px solid rgba(0, 208, 255, .28); }

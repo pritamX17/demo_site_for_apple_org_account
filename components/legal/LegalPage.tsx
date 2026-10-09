@@ -34,3 +34,27 @@ export function LegalPage({
     </div>
   );
 }
+
+/** Registered office, used inline (ADDRESS) and as a block (AddressBlock). */
+export const ADDRESS_LINES = [
+  "B-1006, Brigade Gardenia",
+  "9th Cross Road RBI Layout, J.P. Nagar, Bangalore South",
+  "Bengaluru 560078",
+  "Karnataka",
+  "India",
+];
+export const ADDRESS = ADDRESS_LINES.join(", ");
+
+export function AddressBlock() {
+  return (
+    <p>
+      <b>OneStop AI Private Limited</b>
+      {ADDRESS_LINES.map((l) => (
+        <span key={l}>
+          <br />
+          {l}
+        </span>
+      ))}
+    </p>
+  );
+}

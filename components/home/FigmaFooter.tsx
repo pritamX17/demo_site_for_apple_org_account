@@ -85,7 +85,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
           <p className="abs lbl" style={{ left: 704 }}>Product</p>
           <Link className="abs lnk" style={{ left: 704 }} href={product[1]}>{product[0]}</Link>
           <a className="abs lnk" style={{ left: 704 + 64 }} href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a>
-          <p className="abs legal">© 2026 OneStop. All rights reserved &nbsp;|&nbsp; <b><Link href="/privacy">Privacy Policy</Link> &nbsp;|&nbsp; <Link href="/terms">Terms of Service</Link></b></p>
+          <p className="abs legal">© 2026 OneStop. All rights reserved &nbsp;|&nbsp; <b><Link href="/privacy">Privacy Policy</Link> &nbsp;|&nbsp; <Link href="/terms">Terms and Conditions</Link></b></p>
           <p className="abs disc">{disclaimer}</p>
         </div>
       </div>
@@ -109,7 +109,7 @@ export function FigmaFooter({ disclaimer = DISCLAIMER, button = "Subscribe", pro
             <div><p className="lbl">Socials</p><div className="lnks">{SOCIAL.map((n) => <a key={n} href="#">{n}</a>)}</div></div>
             <div><p className="lbl">Product</p><div className="lnks"><Link href={product[1]}>{product[0]}</Link><a href={cta[1]} data-to={cta[1].startsWith("#") ? "" : undefined}>{cta[0]}</a></div></div>
           </div>
-          <p className="legal">© 2026 OneStop. All rights reserved<br /><b><Link href="/privacy">Privacy Policy</Link> &nbsp;|&nbsp; <Link href="/terms">Terms of Service</Link></b></p>
+          <p className="legal">© 2026 OneStop. All rights reserved<br /><b><Link href="/privacy">Privacy Policy</Link> &nbsp;|&nbsp; <Link href="/terms">Terms and Conditions</Link></b></p>
           <p className="disc">{disclaimer}</p>
         </div>
       </div>
