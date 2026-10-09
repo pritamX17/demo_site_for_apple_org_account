@@ -12,9 +12,8 @@ export const metadata: Metadata = {
 };
 
 /** Source: "Jarvis Terms and Conditions (draft v0.1)". Not reviewed by a
- *  lawyer yet. TODO(launch): fill the [square bracket] placeholders
- *  (address, support email, billing period, payment gateway, grievance
- *  officer, dispute forum) before Jarvis takes money. */
+ *  lawyer yet. Payments are not live, so the Pro plan and refund parts are
+ *  left out. TODO(launch): name the grievance officer. */
 export default function TermsPage() {
   return (
     <LegalPage
@@ -27,7 +26,7 @@ export default function TermsPage() {
         <div className="draft">
           <p>
             <b>Draft.</b> These terms are under review and will be updated before Jarvis is
-            generally available. Anything in [square brackets] is still to be confirmed.
+            generally available.
           </p>
         </div>
       </section>
@@ -40,7 +39,6 @@ export default function TermsPage() {
             <li>Jarvis&rsquo;s answers are written by AI and can be wrong. Check anything important before you act.</li>
             <li>Every decision is yours.</li>
             <li>One account works on the app, the web and WhatsApp.</li>
-            <li>You can cancel Pro at any time. See our Refund and Cancellation Policy.</li>
           </ul>
         </div>
       </section>
@@ -57,8 +55,7 @@ export default function TermsPage() {
             (together, &ldquo;Jarvis&rdquo;).
           </li>
           <li>
-            Our <Link href="/privacy">Privacy Policy</Link> and our Refund and Cancellation
-            Policy are part of these Terms.
+            Our <Link href="/privacy">Privacy Policy</Link> is part of these Terms.
           </li>
         </ul>
       </section>
@@ -112,7 +109,7 @@ export default function TermsPage() {
           <li>One Jarvis account works on the app, the web and WhatsApp.</li>
           <li>Your chats, portfolio and plan follow your account on all three.</li>
           <li>Keep your sign-in details and phone safe. You are responsible for what happens in your account.</li>
-          <li>Tell us at [support email] if you think someone else is using it.</li>
+          <li>Tell us at <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a> if you think someone else is using it.</li>
         </ul>
       </section>
 
@@ -121,7 +118,7 @@ export default function TermsPage() {
         <ul>
           <li>WhatsApp is run by Meta. Its own terms and privacy policy also apply to you there.</li>
           <li>Please do not send full bank or demat account numbers, PAN or Aadhaar on WhatsApp. Hide them before you share a statement, or upload it in the app.</li>
-          <li>To reach a person on our team, write &ldquo;talk to a human&rdquo; or email [support email].</li>
+          <li>To reach a person on our team, write &ldquo;talk to a human&rdquo; or email <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a>.</li>
         </ul>
       </section>
 
@@ -159,36 +156,15 @@ export default function TermsPage() {
       <section>
         <h2>10. Free plan and limits</h2>
         <ul>
-          <li>The free plan has a daily limit. The current limit is shown [on the pricing page / in the app].</li>
-          <li>Pro has higher limits, with a fair-use cap to stop abuse.</li>
+          <li>The free plan has a daily limit. The current limit is shown in the app.</li>
           <li>We may change limits. We will show the current ones in the app.</li>
           <li>If you hit a limit, Jarvis will tell you when it resets.</li>
         </ul>
       </section>
 
-      <section>
-        <h2>11. Pro plan and payments</h2>
-        <ul>
-          <li>Pro is a paid subscription, billed [weekly / monthly / yearly], and renews automatically until you cancel.</li>
-          <li>Prices are shown before you pay, [including GST].</li>
-          <li>
-            Where you pay decides how you are billed and how you cancel:
-            <ul>
-              <li><b>Web app or a payment link on WhatsApp:</b> billed by us through [PAYMENT GATEWAY]. Cancel in Settings or by messaging us.</li>
-              <li><b>iPhone:</b> billed by Apple. Apple&rsquo;s terms apply.</li>
-              <li><b>Android:</b> billed by Google. Google Play&rsquo;s terms apply.</li>
-            </ul>
-          </li>
-          <li>Pro bought in one place works in all three.</li>
-          <li>Cancel at least 24 hours before renewal to avoid the next charge. You keep Pro until the end of the period you paid for.</li>
-          <li>If we raise the price, we tell you at least [30] days before, and it applies from your next renewal.</li>
-          <li>If a payment fails, your account may move to the free plan.</li>
-          <li>Refunds follow our Refund and Cancellation Policy.</li>
-        </ul>
-      </section>
 
       <section>
-        <h2>12. What you must not do</h2>
+        <h2>11. What you must not do</h2>
         <ul>
           <li>Break any law, including securities laws.</li>
           <li>Use Jarvis for market manipulation or insider trading.</li>
@@ -203,7 +179,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>13. New features</h2>
+        <h2>12. New features</h2>
         <ul>
           <li>Some features are marked beta or early access.</li>
           <li>They may change, break or be removed without notice.</li>
@@ -211,14 +187,14 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>14. Feedback</h2>
+        <h2>13. Feedback</h2>
         <ul>
           <li>If you rate an answer or send us ideas, we may use them to improve Jarvis, without paying you.</li>
         </ul>
       </section>
 
       <section>
-        <h2>15. Our rights</h2>
+        <h2>14. Our rights</h2>
         <ul>
           <li>Jarvis, its software and design, and the names Jarvis and OneStop AI belong to us.</li>
           <li>We give you a personal, non-transferable right to use Jarvis under these Terms.</li>
@@ -226,25 +202,24 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>16. Other companies&rsquo; services</h2>
+        <h2>15. Other companies&rsquo; services</h2>
         <ul>
-          <li>Jarvis relies on other companies: Apple, Google, Meta (WhatsApp), WATI, AI model providers, market data providers and payment providers.</li>
+          <li>Jarvis relies on other companies: Apple, Google, Meta (WhatsApp), WATI, AI model providers and market data providers.</li>
           <li>We are not responsible for their services being down or their data being wrong.</li>
         </ul>
       </section>
 
       <section>
-        <h2>17. Ending your account</h2>
+        <h2>16. Ending your account</h2>
         <ul>
           <li>You can stop using Jarvis at any time.</li>
-          <li>You can delete your account [in the app, on the web or on WhatsApp].</li>
-          <li>We may suspend or close your account if you break these Terms, if the law requires it, or to protect other users. We will tell you why where we can, and you can ask us to review it at [support email].</li>
-          <li>If we shut Jarvis down, we will refund the unused part of any Pro plan you bought from us.</li>
+          <li>You can delete your account in the app, or by emailing us.</li>
+          <li>We may suspend or close your account if you break these Terms, if the law requires it, or to protect other users. We will tell you why where we can, and you can ask us to review it at <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a>.</li>
         </ul>
       </section>
 
       <section>
-        <h2>18. Disclaimers</h2>
+        <h2>17. Disclaimers</h2>
         <ul>
           <li>Jarvis is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo;.</li>
           <li>We do not promise it will be error-free or always available, or that its information will be complete or current.</li>
@@ -252,7 +227,7 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>19. Limits on our liability</h2>
+        <h2>18. Limits on our liability</h2>
         <ul>
           <li>
             As far as the law allows, we are not liable for:
@@ -261,43 +236,35 @@ export default function TermsPage() {
               <li>indirect losses, lost profits or lost data</li>
             </ul>
           </li>
-          <li>
-            As far as the law allows, our total liability to you is capped at the greater of:
-            <ul>
-              <li>what you paid us in the [12] months before the claim, or</li>
-              <li>[&#8377; AMOUNT].</li>
-            </ul>
-          </li>
           <li>Nothing in these Terms limits rights you have by law as a consumer.</li>
         </ul>
       </section>
 
       <section>
-        <h2>20. Your responsibility</h2>
+        <h2>19. Your responsibility</h2>
         <ul>
           <li>If you break these Terms or the law and someone makes a claim against us because of it, you agree to cover our reasonable losses and legal costs.</li>
         </ul>
       </section>
 
       <section>
-        <h2>21. Complaints and disputes</h2>
+        <h2>20. Complaints and disputes</h2>
         <ul>
           <li>
             Tell us first. Most problems can be sorted quickly:
             <ul>
-              <li>Support: [support email]</li>
-              <li>Grievance Officer: [NAME], [DESIGNATION], [grievance email], [phone]</li>
+              <li>Support: <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a></li>
+              <li>Grievance Officer: <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a></li>
               <li>We acknowledge a complaint within 48 hours and resolve it within one month.</li>
             </ul>
           </li>
           <li>These Terms are governed by the laws of India.</li>
-          <li>If we cannot settle a dispute, it will be resolved [by arbitration under the Arbitration and Conciliation Act, 1996, with one arbitrator chosen by both sides, seated in [CITY], in English / or by the courts of [CITY]].</li>
           <li>You can still go to a consumer commission under the Consumer Protection Act, 2019.</li>
         </ul>
       </section>
 
       <section>
-        <h2>22. Apple users</h2>
+        <h2>21. Apple users</h2>
         <p>If you downloaded Jarvis from the App Store:</p>
         <ul>
           <li>These Terms are between you and us, not Apple.</li>
@@ -307,16 +274,16 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>23. Changes to these Terms</h2>
+        <h2>22. Changes to these Terms</h2>
         <ul>
           <li>We will update the date at the top.</li>
-          <li>For changes that affect you, we tell you by email, in the app or on WhatsApp at least [30] days before they apply.</li>
+          <li>For changes that affect you, we tell you by email, in the app or on WhatsApp at least 30 days before they apply.</li>
           <li>If you keep using Jarvis after that, the new Terms apply.</li>
         </ul>
       </section>
 
       <section>
-        <h2>24. General</h2>
+        <h2>23. General</h2>
         <ul>
           <li>If part of these Terms cannot be enforced, the rest still applies.</li>
           <li>We may transfer these Terms if OneStop AI is sold or merged. You may not transfer them.</li>
@@ -326,9 +293,9 @@ export default function TermsPage() {
       </section>
 
       <section>
-        <h2>25. Contact</h2>
+        <h2>24. Contact</h2>
         <AddressBlock />
-        <p>[support email]</p>
+        <p><a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a></p>
       </section>
     </LegalPage>
   );

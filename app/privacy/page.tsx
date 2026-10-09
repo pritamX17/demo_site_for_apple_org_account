@@ -13,9 +13,8 @@ export const metadata: Metadata = {
 };
 
 /** Source: "Jarvis Privacy Policy (draft v0.1)". Not reviewed by a lawyer
- *  yet. TODO(launch): fill the [square bracket] placeholders (address,
- *  domains, privacy email, payment gateway, grievance officer, retention
- *  periods still being decided) before Jarvis takes money. */
+ *  yet. Payments are not live, so payment data is left out.
+ *  TODO(launch): name the grievance officer. */
 
 const COLLECT: [string, string, string, string][] = [
   ["Account details", "Name, email, profile photo", "You, or Google when you sign in with Google", "To create your account and sign you in"],
@@ -26,7 +25,6 @@ const COLLECT: [string, string, string, string][] = [
   ["What Jarvis remembers about you", "Goals, time horizon, risk comfort, past decisions you shared", "Built from your chats", "So you do not have to repeat yourself"],
   ["Preferences", "Horizon (short/mid/long), risk (growth/balanced/cautious), currency", "You", "To shape answers to you"],
   ["Voice (app only)", "Short recordings when you tap the mic", "You", "To turn your speech into text"],
-  ["Payments", "Plan, amount, date, payment ID", "Apple, Google or [PAYMENT GATEWAY]", "To give you Pro and keep tax records"],
   ["Device and sign-in details", "Device type, operating system, browser", "Your device", "To keep your account secure and show your active sessions"],
   ["Feedback", "Thumbs up or down, comments", "You", "To improve answers"],
   ["Support messages", "Anything you send us", "You", "To help you"],
@@ -39,8 +37,6 @@ const SHARE: [string, string, string][] = [
   ["Google", "Sign in with Google", "Sign-in only"],
   ["Resend", "Sending sign-in codes by email", "Your email"],
   ["Firecrawl", "Web search for answers", "Search words"],
-  ["Apple, Google, RevenueCat, [PAYMENT GATEWAY]", "Payments", "Payment details. We never see your full card number."],
-  ["[Analytics / crash reporting, if added]", "Finding bugs", "Device and error details, no chat text"],
 ];
 
 const KEEP: [string, string, string][] = [
@@ -51,21 +47,16 @@ const KEEP: [string, string, string][] = [
   ["Uploaded files (statements, screenshots, CSV)", "Up to 14 days", "Deleted automatically once your holdings are read"],
   ["Voice recordings (app mic)", "Minutes", "Deleted straight after they are turned into text. The text is kept like a chat message."],
   ["Preferences (horizon, risk, currency)", "While your account is open", "You change them, or delete your account"],
-  ["Feedback on answers", "[2 years]", "Time"],
+  ["Feedback on answers", "2 years", "Time"],
   ["Technical records of how an answer was made", "90 days", "Time"],
   ["Security and sign-in logs", "180 days", "Time"],
   ["Server logs", "180 days", "Time"],
-  ["Payment and invoice records", "8 years", "Required by tax and company law"],
-  ["Complaints and support requests", "[2 years] after they are closed", "Time"],
+  ["Complaints and support requests", "2 years after they are closed", "Time"],
   ["Backups", "7 days, rolling", "Overwritten automatically"],
 ];
 
 const OTHERS: [string, string, string][] = [
   ["Meta (WhatsApp)", "Messages between you and Jarvis on WhatsApp", "Up to 30 days on its servers. Your own phone keeps the chat until you delete it."],
-  ["WATI (our WhatsApp provider)", "WhatsApp messages between you and Jarvis", "[To be confirmed]"],
-  ["AI model providers, reached through OpenRouter", "The question and context for an answer", "[To be confirmed]"],
-  ["Firecrawl (web search)", "Search words", "[To be confirmed]"],
-  ["Apple, Google, [PAYMENT GATEWAY]", "Payment records", "Under their own policies"],
 ];
 
 function Table({ head, rows }: { head: string[]; rows: ReactNode[][] }) {
@@ -97,7 +88,7 @@ export default function PrivacyPage() {
         <div className="draft">
           <p>
             <b>Draft.</b> This policy is under review and will be updated before Jarvis is
-            generally available. Anything in [square brackets] is still to be confirmed.
+            generally available.
           </p>
         </div>
       </section>
@@ -112,9 +103,9 @@ export default function PrivacyPage() {
             This policy covers Jarvis on:
             <ul>
               <li>the mobile app (iPhone and Android)</li>
-              <li>the web app ([app domain])</li>
+              <li>the web app</li>
               <li>WhatsApp</li>
-              <li>our website ([website domain])</li>
+              <li>our website</li>
             </ul>
           </li>
           <li>Under India&rsquo;s Digital Personal Data Protection Act, 2023, we are the &ldquo;Data Fiduciary&rdquo; for your data.</li>
@@ -155,7 +146,6 @@ export default function PrivacyPage() {
           <li>To send you updates about your holdings on WhatsApp, if you have them switched on (see section 7).</li>
           <li>To keep Jarvis safe: stop abuse, spam and account takeovers, and enforce daily limits.</li>
           <li>To fix problems and make answers better. Our team may read a conversation when you report it, give feedback on it, or when we need to fix a fault or stop misuse.</li>
-          <li>To handle payments, refunds and tax records.</li>
           <li>To meet the law.</li>
         </ul>
       </section>
@@ -167,7 +157,7 @@ export default function PrivacyPage() {
           <li>We reach these models through OpenRouter. Today they include models from Google and OpenAI.</li>
           <li>For each answer we send the model your question and the context it needs (for example your holdings or what Jarvis remembers). We do not send your email, phone number or account details.</li>
           <li>In-app voice recordings are turned into text by one of these models. We delete the recording straight after. We keep the text like any other message.</li>
-          <li>We use these providers only on terms where they do not use your data to train their models. Some keep a copy for a short time to check for abuse (see section 8).</li>
+          <li>We use these providers only on terms where they do not use your data to train their models. Some keep a copy for a short time to check for abuse.</li>
           <li>We do not use your data to train or fine-tune AI models. Messages you send on WhatsApp are never used to train AI models.</li>
           <li>Jarvis can look up the web to answer you. The search words it uses may come from your question. We do not attach your name or contact details to a search.</li>
           <li>AI answers can be wrong. See our <Link href="/terms">Terms</Link>.</li>
@@ -209,23 +199,21 @@ export default function PrivacyPage() {
         <h3>When you delete a chat</h3>
         <ul>
           <li>It disappears from your chat list straight away.</li>
-          <li>It is removed from our systems within [30] days.</li>
-          <li>On WhatsApp, /reset clears what Jarvis remembers and starts fresh. Your past messages are removed within [30] days.</li>
+          <li>It is removed from our systems within 30 days.</li>
+          <li>On WhatsApp, /reset clears what Jarvis remembers and starts fresh. Your past messages are removed within 30 days.</li>
         </ul>
 
         <h3>When you delete your account</h3>
         <ul>
-          <li>You can delete your account [in the app, on the web at [URL], or on WhatsApp].</li>
-          <li>You have [30] days to change your mind by signing back in.</li>
-          <li>After that, we delete your account, chats, memory, portfolio and preferences within [30] days.</li>
+          <li>You can delete your account in the app, or by emailing <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a>.</li>
+          <li>You have 30 days to change your mind by signing back in.</li>
+          <li>After that, we delete your account, chats, memory, portfolio and preferences within 30 days.</li>
           <li>We send you a message when it is done.</li>
-          <li>If you have Pro through Apple or Google, deleting your account does not stop their billing. Cancel in your phone settings first.</li>
         </ul>
         <p>We keep only:</p>
         <ul>
-          <li>payment and invoice records, for 8 years, because tax and company law require it</li>
           <li>security logs, for up to 180 days</li>
-          <li>[from May 2027: records of how your data was processed, for 1 year, as India&rsquo;s data protection rules require]</li>
+          <li>from May 2027, records of how your data was processed, for 1 year, as India&rsquo;s data protection rules require</li>
           <li>anything we must keep because of a legal claim or a request from a government authority</li>
         </ul>
         <p>These are kept separately and are not used for anything else.</p>
@@ -241,11 +229,6 @@ export default function PrivacyPage() {
         <Table head={["Company", "What they hold", "How long"]} rows={OTHERS} />
         <ul>
           <li>When you delete your account, we ask these companies to delete your data too, where they hold it for us.</li>
-        </ul>
-
-        <h3>Accounts nobody uses</h3>
-        <ul>
-          <li>[e.g. if you have not used Jarvis for 3 years, we delete your account. We warn you at least 48 hours before, by email or WhatsApp.]</li>
         </ul>
 
         <h3>Data that no longer identifies you</h3>
@@ -277,12 +260,12 @@ export default function PrivacyPage() {
         <ul>
           <li>See the data we hold about you.</li>
           <li>Correct anything that is wrong.</li>
-          <li>Delete your account and data: [in the app, on the web at [URL], or by messaging Jarvis on WhatsApp].</li>
+          <li>Delete your account and data: in the app, or by emailing <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a>.</li>
           <li>Withdraw consent at any time. Jarvis may not be able to work without some data.</li>
           <li>Nominate someone to use these rights for you if you die or cannot act.</li>
           <li>Complain to our Grievance Officer (section 15). If you are not satisfied, you can complain to the Data Protection Board of India.</li>
         </ul>
-        <p>To use any of these, email [privacy email] or message Jarvis on WhatsApp. We reply within [30] days.</p>
+        <p>To use any of these, email <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a> or message Jarvis on WhatsApp. We reply within 30 days.</p>
       </section>
 
       <section>
@@ -305,7 +288,7 @@ export default function PrivacyPage() {
         <h2>14. Users in the US</h2>
         <ul>
           <li>We do not sell or share your personal information for advertising.</li>
-          <li>California residents can ask what we collect, ask us to delete it, and will not be treated differently for asking. Email [privacy email].</li>
+          <li>California residents can ask what we collect, ask us to delete it, and will not be treated differently for asking. Email <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a>.</li>
         </ul>
       </section>
 
@@ -314,8 +297,8 @@ export default function PrivacyPage() {
         <ul>
           <li>We will update the date at the top when this policy changes.</li>
           <li>For bigger changes, we tell you by email, in the app or on WhatsApp before they apply.</li>
-          <li>Contact: [privacy email]</li>
-          <li>Grievance Officer: [NAME], [DESIGNATION], [grievance email]</li>
+          <li>Contact: <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a></li>
+          <li>Grievance Officer: <a href="mailto:admin@onestopai.ai">admin@onestopai.ai</a></li>
         </ul>
         <AddressBlock />
       </section>
