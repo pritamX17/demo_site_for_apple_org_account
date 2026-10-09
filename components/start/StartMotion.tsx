@@ -13,7 +13,7 @@ import { WaIcon } from "./WaIcon";
    - the FAQ <summary> mirrors its <details> open state as aria-expanded
    - the phone-only sticky bar (.mcta, styled in mobile.css) shows after the hero, steps aside while the in-page
      button in "how it starts" is on screen (.off2), and hides at the close (.off) */
-const WA_NUMBER = "918755520499"; // the JARVIS WhatsApp number (Saurabh, 2026-10-06), digits only with the country code
+export const WA_NUMBER = "918755520499"; // the JARVIS WhatsApp number (Saurabh, 2026-10-06), digits only with the country code
 
 export function StartMotion() {
   const ref = useRef<HTMLDivElement>(null);

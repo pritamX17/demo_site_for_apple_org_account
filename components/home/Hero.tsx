@@ -1,9 +1,12 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { Magnetic } from "@/components/motion/Magnetic";
+import { WA_NUMBER } from "@/components/start/StartMotion";
 import { gsap, useGSAP, ScrollTrigger, SplitText, CustomEase } from "@/lib/gsap";
+
+/* The hero "Try Jarvis" opens the JARVIS WhatsApp chat, prefilled in the /start format with "home" as the source. */
+const HERO_WA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi JARVIS 👋 I'd like to start. (home)")}`;
 
 /** Round 3 (2026-10-06): the frosted promise chip under the CTAs is now a plain .trust line ("Answers to you. No one else."), no pill. */
 /** 01 · Hero — boxed panel. Headline lines rise behind a mask, the photo settles
@@ -81,7 +84,7 @@ export function Hero() {
             <div data-h>
               <p className="st2">On your side. Always.</p>
               <div className="hero-ctas">
-                <Magnetic><Link className="cta2 light" href="/jarvis">Try Jarvis — Live now</Link></Magnetic>
+                <Magnetic><a className="cta2 light" href={HERO_WA} target="_blank" rel="noopener">Try Jarvis — Live now</a></Magnetic>
                 <a className="lnk" href="#next" data-to>See what’s coming →</a>
               </div>
               <p className="trust" style={{ marginTop: 20 }}>Answers to you. No one else.</p>
