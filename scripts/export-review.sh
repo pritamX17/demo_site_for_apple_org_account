@@ -1,5 +1,5 @@
 #!/bin/sh
-# Static export of / and /jarvis for the team review hub, then publish it.
+# Static export of /, /jarvis and /movement for the team review hub, then publish it.
 #   sh scripts/export-review.sh            # build + patch into out/
 #   sh scripts/export-review.sh --publish  # …and push to the hub (needs ~/onestop-site)
 # Next's basePath covers routes, /_next assets and next/link; it does NOT touch
@@ -19,6 +19,6 @@ find "$OUT" -name '*.html' -print0 \
   | xargs -0 perl -0pi -e 's#<head>#<head><meta name="robots" content="noindex,nofollow"/>#'
 echo "export ready in $OUT/"
 if [ "$1" = "--publish" ]; then
-  python3 "$HOME/onestop-site/tools/publish.py" --title "${HUB_TITLE:-OneStop website — homepage + Jarvis}" --slug "$SLUG" \
-    --dir "$PWD/$OUT" --blurb "The real site: / (homepage) and /jarvis (product page, copy v5). Desktop + phone." --push
+  python3 "$HOME/onestop-site/tools/publish.py" --title "${HUB_TITLE:-OneStop website — homepage + Jarvis + the movement + /start}" --slug "$SLUG" \
+    --dir "$PWD/$OUT" --blurb "The real site: / (homepage), /jarvis (product page), /movement (the movement page) and /start (the Instagram-ads landing page). Plus the /lab prototypes (/lab, /lab/glass). Desktop + phone. Round 4 (7 Oct 2026): one nav on every page, big-screen scaling, new footer, hero seam + faster reveals." --push
 fi

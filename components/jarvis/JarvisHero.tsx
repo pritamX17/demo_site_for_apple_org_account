@@ -1,7 +1,8 @@
 "use client";
 
+/* Round 3b (2026-10-06): the Handled-card marks are the inline CardIcon (no image fetch). */
 import { useEffect, useRef } from "react";
-import Image from "next/image";
+import { CardIcon } from "./PhoneIcons";
 import { gsap, useGSAP, SplitText, CustomEase } from "@/lib/gsap";
 import { Magnetic } from "@/components/motion/Magnetic";
 import { Screen } from "./Screen";
@@ -76,9 +77,9 @@ export function JarvisHero() {
           </div>
           <h1 className="abs h1" data-h1 data-x>{H1}</h1>
           <div className="abs phonepos" data-x><Screen name="chat-hero" /></div>
-          <div className="hcard a" data-card data-x><Image className="mk" src="/figma/card-icon.svg" width={11} height={11} alt="" /><div><p>Electricity bill is due Friday. I set the reminder.</p><small>Handled by Jarvis</small></div></div>
+          <div className="hcard a" data-card data-x><CardIcon className="mk" /><div><p>Electricity bill is due Friday. I set the reminder.</p><small>Handled by Jarvis</small></div></div>
           {/* TODO(compliance): this Figma line reads as a recommendation; confirm with counsel before launch */}
-          <div className="hcard b" data-card data-x><Image className="mk" src="/figma/card-icon.svg" width={11} height={11} alt="" /><div><p>New balanced portfolio recommendation is live now.</p><small>Handled by Jarvis</small></div></div>
+          <div className="hcard b" data-card data-x><CardIcon className="mk" /><div><p>New balanced portfolio recommendation is live now.</p><small>Handled by Jarvis</small></div></div>
           <p className="abs statement" data-cta data-x>{STATEMENT}</p>
           <p className="abs sub" data-cta data-x>{SUB}</p>
           <a className="abs cta" href="#gate" data-to data-cta data-x>Request access</a>

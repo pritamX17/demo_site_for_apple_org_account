@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, useGSAP, reveal } from "@/lib/gsap";
 import { DotForms } from "@/lib/dotfield";
 import { useDotField } from "./useDotField";
 
@@ -41,7 +41,8 @@ export function Built() {
         gsap.set(rules, { opacity: 1 });
         return;
       }
-      gsap.fromTo(rules, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.18, ease: "power3.out", scrollTrigger: { trigger: sec, start: "top 55%", once: true } });
+      // 2026-10-06: each rule reveals on its own edge (280 ms, 50 ms stagger) — the section-level tween from "top 55%" left rows half-faded on phones
+      reveal(rules, { stagger: 0.05 });
     },
     { scope: ref },
   );

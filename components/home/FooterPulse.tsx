@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
-import { inOrbitMark } from "@/lib/dotfield";
+import { inOrbitMark, backingScale, isLowPower } from "@/lib/dotfield";
 
+/** Round 3 (2026-10-06): same backing-store rule as the dot fields (DPR capped at 1.5 and half resolution on touch
+ *  devices); weak devices draw one still frame like reduced motion. The "only while on screen" gating is unchanged. */
 /** The footer's living dot-matrix: the orbit mark itself, drawn in pixels, breathing.
  *  A wave travels outward through the mark's dots, and echoes of the mark's own
  *  silhouette expand out of it and fade — so the pulse keeps the shape of the logo.
@@ -19,17 +21,18 @@ export function FooterPulse({ className = "", cell = 10, mark = 300 }: { classNa
     if (!el || !c) return;
     const ctx = c.getContext("2d");
     if (!ctx) return;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let W = 0, H = 0, dpr = 1, cols = 0, rows = 0;
+    const reduced = isLowPower();
+    let W = 0, H = 0, cols = 0, rows = 0;
     const dot = Math.max(3, Math.round(cell * 0.4));
     // inOrbitMark works in units of the mark's box; the ring's outer diameter is .666 of the box
     const S = mark / 0.666;
 
     const resize = () => {
       W = el.clientWidth; H = el.clientHeight;
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      c.width = Math.round(W * dpr); c.height = Math.round(H * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const k = backingScale();
+      c.style.width = "100%"; c.style.height = "100%";
+      c.width = Math.round(W * k); c.height = Math.round(H * k);
+      ctx.setTransform(k, 0, 0, k, 0, 0);
       cols = Math.floor(W / cell); rows = Math.floor(H / cell);
     };
     const frac = (n: number) => n - Math.floor(n);

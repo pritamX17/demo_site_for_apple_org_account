@@ -13,12 +13,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const LINKS: [string, string, string?][] = [
-  ["Homepage", "/"],
-  ["Jarvis", "/jarvis", "Live now"],
-  ["Lab", "/lab"],
-];
-
 /** Branch explore/motion only. A catalogue of the micro-motion candidates:
  *  each one live, with the library, where it would sit, and why. */
 export default function LabPage() {
@@ -26,7 +20,7 @@ export default function LabPage() {
     <div className="hp lab">
       <HomeMotion />
       <MotionLayer />
-      <HomeNav cta="Back to site" ctaHref="/" links={LINKS} />
+      <HomeNav cta="Back to site" ctaHref="/" page={null} plain />
       <main>
         <div className="lab-hero">
           <p className="k2" style={{ color: "var(--tide)" }}>Motion lab · explore/motion</p>

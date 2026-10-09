@@ -2,10 +2,12 @@
 
 import type { RefObject } from "react";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
-import { DotField, type DotFieldOptions, type Pt } from "@/lib/dotfield";
+import { DotField, type DotFieldOptions, type Pt, isLowPower } from "@/lib/dotfield";
 
 type Scrub = { to: number; start: string; end: string };
 
+/** Round 3 (2026-10-06): dot count by screen width (<700: 260 · 700–1100: 700 · else the existing 4000 cap);
+ *  weak devices (≤4 cores) and reduced motion get one still frame and never start the loop. */
 /** Mounts a DotField on a canvas, keeps it alive only while its section is on screen,
  *  scrubs its progress with scroll, and rebuilds formations on resize. */
 export function useDotField(
@@ -20,13 +22,14 @@ export function useDotField(
       const cv = canvas.current,
         sec = section.current;
       if (!cv || !sec) return;
-      const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
       // Fewer dots on small screens: the canvas is the biggest CPU cost on the page.
-      const n = Math.min(opts.n ?? 1200, window.innerWidth < 700 ? 480 : 4000);
+      const w = window.innerWidth;
+      const cap = w < 700 ? 260 : w <= 1100 ? 700 : 4000;
+      const n = Math.min(opts.n ?? 1200, cap);
       const f = new DotField(cv, { ...opts, n });
       f.setForms(build(f));
 
-      if (reduced) {
+      if (isLowPower()) {
         f.progress(scrub.to).still();
       } else {
         ScrollTrigger.create({

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap, useGSAP, ScrollTrigger, SplitText } from "@/lib/gsap";
+import { gsap, useGSAP, ScrollTrigger, SplitText, reveal } from "@/lib/gsap";
 
 const ROW_A = [
   "Zerodha · Portfolio", "Groww · SIP", "Amazon · Cart (4)", "Google Flights · 3 tabs", "ChatGPT · “should I sell”",
@@ -24,6 +24,7 @@ function Row({ items, cls }: { items: string[]; cls: string }) {
   );
 }
 
+/** Round 3b (2026-10-06): the marquee rows pause while off-screen and run slower on phones. */
 /** 02 · The reason — copy, then the tab storm: two marquees whose speed and skew
  *  follow scroll velocity, then the team's close line. */
 export function Reason() {
@@ -44,9 +45,17 @@ export function Reason() {
         gsap.set([p, close], { opacity: 1 });
         return;
       }
-      const ta = gsap.to(a, { xPercent: -50, ease: "none", duration: 48, repeat: -1 });
-      const tb = gsap.fromTo(b, { xPercent: -50 }, { xPercent: 0, ease: "none", duration: 60, repeat: -1 });
+      // Round 3b (2026-10-06): phones (≤700px) run the rows at ~60% speed, and both rows pause while the storm is off-screen.
+      const phone = matchMedia("(max-width: 700px)").matches;
+      const ta = gsap.to(a, { xPercent: -50, ease: "none", duration: phone ? 80 : 48, repeat: -1 });
+      const tb = gsap.fromTo(b, { xPercent: -50 }, { xPercent: 0, ease: "none", duration: phone ? 100 : 60, repeat: -1 });
       const px = { ts: 1 };
+      ScrollTrigger.create({
+        trigger: sec.querySelector(".storm"),
+        start: "top bottom",
+        end: "bottom top",
+        onToggle(self) { if (self.isActive) { ta.play(); tb.play(); } else { ta.pause(); tb.pause(); } },
+      });
       ScrollTrigger.create({
         trigger: sec,
         start: "top bottom",
@@ -76,8 +85,8 @@ export function Reason() {
         });
       });
       Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]).then(() => run?.());
-      gsap.fromTo(p, { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: p, start: "top 85%", once: true } });
-      gsap.fromTo(close, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: close, start: "top 85%", once: true } });
+      // 2026-10-06: 280 ms from "top 95%" (was 900–1000 ms from "top 85%")
+      reveal([p, close].filter((e): e is HTMLElement => !!e));
     },
     { scope: ref },
   );

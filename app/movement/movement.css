@@ -1,0 +1,184 @@
+/* ============================================================
+   The movement page (/movement) · additions on top of home.css, scoped under .mp
+   Rhythm, tokens, nav, footer, form styles all come from home.css; this file only
+   adds the page's own scenes: field hero, what we are building, the premise,
+   the decision reads, three doors, the form band.
+   Round 2 (2026-10-01, "the layout feels too contained"): the box stays, but there are fewer of them.
+   Three boxes carry the page (hero, the Jarvis panel, the form); everything else sits on the sheet
+   as open columns on hairlines.
+   ============================================================ */
+.hp.mp {
+  /* one left edge for every section: the same x as the Jarvis panel copy and the footer headline */
+  --edge: calc(var(--gutter) + var(--pad));
+
+  /* reveal guards for this page's own sequences */
+  [data-door] { opacity: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-door] { opacity: 1 !important; transform: none !important; }
+  }
+
+  /* ---------- 01 hero: the field photo in the box, one column of copy on the left ---------- */
+  .hero-img.field-img { background-image: url(/img/field.jpg); background-position: right 40%; }
+  .mv-grid { grid-template-columns: 1fr; max-width: 640px; gap: 28px; }
+  .h11 { max-width: 760px; }
+  /* less sky above the copy than on the homepage: the statement is longer and the chip must stay in the first screen */
+  @media (min-width: 901px) {
+    #hero .hero-copy { padding: clamp(190px, 25vh, 420px) var(--pad) 72px; }
+  }
+
+  /* ---------- 02 what we are building: head on the sheet, the Jarvis panel, then open columns ---------- */
+  .build-sec { padding: 150px var(--edge) 72px; }
+  .build-head { max-width: 900px; }
+  .build-head .hh { font-size: clamp(40px, 4.4vw, 64px); }
+  .build-head .bd.lg { margin-top: 28px; max-width: 640px; }
+  .next-sec { padding: 88px var(--edge) 24px; }
+  /* .cols3 / .col come from home.css (shared with the homepage "what's next") */
+
+  /* ---------- 03 premise: on the white sheet, copy left, the mark gathers on the right ---------- */
+  .why-sec { position: relative; padding: 168px var(--edge) 40px; overflow: hidden; }
+  .why-sec .dots { z-index: 0; }
+  .why-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 6fr 6fr; gap: 72px; align-items: center; }
+  .why-copy .hh { font-size: clamp(40px, 4.4vw, 64px); }
+  .why-copy .bd.lg { margin-top: 28px; max-width: 520px; }
+  .why-copy .bd:not(.lg) { margin-top: 20px; max-width: 520px; }
+  .why-mark { aspect-ratio: 1 / 1; max-height: 560px; justify-self: center; width: min(100%, 560px); }
+  .beats { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 96px; padding-top: 40px; border-top: 1px solid var(--line); }
+  .beat .t { margin: 0; font-weight: 600; font-size: 24px; line-height: 1.15; color: var(--deep); }
+  .beat .s { margin: 10px 0 0; font-size: 15px; line-height: 24px; color: var(--ink2); }
+
+  /* ---------- 04 the decisions: five areas on the left, one read on the right ---------- */
+  .dec-sec { padding: 150px var(--edge) 0; }
+  .dec-head { max-width: 820px; }
+  .dec-head .bd { margin-top: 24px; max-width: 560px; }
+  .dec { display: grid; grid-template-columns: 5fr 7fr; gap: 88px; margin-top: 64px; border-top: 1px solid var(--line); }
+  .dec-tabs { display: flex; flex-direction: column; }
+  .dec-tabs button { display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 8px; padding: 22px 0; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; color: #9fb0bc; transition: color .25s ease, padding .35s cubic-bezier(.2, .7, .2, 1); }
+  .dec-tabs .n { font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; }
+  .dec-tabs .l { font-weight: 600; font-size: clamp(28px, 2.8vw, 40px); line-height: 1.05; }
+  .dec-tabs .st { font-family: var(--mono); font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--tide); padding: 5px 9px; border: 1px solid rgba(0, 90, 158, .3); border-radius: 8px; white-space: nowrap; }
+  .dec-tabs button:hover { color: var(--tide); }
+  .dec-tabs button.on { color: var(--deep); padding-left: 12px; }
+  .dec-tabs button.on .n { color: var(--current); }
+  .dec-panel { padding: 44px 0 0; animation: mp-dec-in .5s cubic-bezier(.2, .7, .2, 1) both; }
+  .dec-panel .read { margin: 0; max-width: 640px; font-weight: 500; font-size: clamp(22px, 2vw, 28px); line-height: 1.4; color: var(--deep); }
+  .dec-panel .k2 { margin: 40px 0 14px; }
+  .dec-panel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .dec-panel li { padding: 12px 18px; border-radius: 18px 18px 18px 6px; border: 1px solid var(--line); background: var(--canvas); font-weight: 500; font-size: 17px; line-height: 24px; color: var(--deep); }
+  .dec-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin-top: 36px; }
+
+  /* ---------- 05 doors: three open columns on one hairline ---------- */
+  .doors-sec { padding: 150px var(--edge) 140px; }
+  .doors-head { max-width: 820px; }
+  .doors-head .bd { margin-top: 24px; max-width: 560px; }
+  .doors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; margin-top: 64px; border-top: 1px solid var(--line); }
+  .door { position: relative; display: flex; flex-direction: column; padding: 36px 0 0; }
+  .door::before { content: ""; position: absolute; left: 0; top: -1px; width: 0; height: 2px; background: var(--aqua); transition: width .5s cubic-bezier(.2, .7, .2, 1); }
+  .door:hover::before { width: 100%; }
+  .door .n { margin: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 1.8px; color: var(--current); }
+  .door .t { margin: 18px 0 0; font-weight: 600; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.05; color: var(--deep); }
+  .door .s { margin: 14px 0 0; font-size: 17px; line-height: 26px; color: var(--ink2); }
+  .door .go { display: inline-block; margin-top: 24px; font-weight: 700; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--tide); }
+  .door:hover .go { color: var(--current); }
+
+  /* ---------- 06 the door: the form panel, one notch bigger than on the homepage ---------- */
+  .door-panel .ideas-grid { padding-top: 120px; padding-bottom: 120px; }
+  .door-panel .ideas-form { max-width: 560px; }
+  .door-panel .ideas-form textarea { min-height: 160px; }
+  .ideas-form .topic { display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; height: 34px; margin: 0; padding: 0 6px 0 14px; border-radius: 10px; background: rgba(0, 90, 158, .08); font-size: 13px; color: var(--tide); }
+  .ideas-form .topic button { width: 24px; height: 24px; padding: 0; border: 0; border-radius: 6px; background: none; color: inherit; font-size: 17px; line-height: 1; }
+  .ideas-form .topic button:hover { background: rgba(0, 90, 158, .12); }
+
+  /* ---------- 07 · close (the homepage close component is gone; its rules live here now) ---------- */
+  .close14 { padding-top: 120px; padding-bottom: 120px; text-align: center; }
+  .close14 .hh { max-width: 820px; margin: 0 auto; }
+  .close14 .ctas { display: flex; gap: 24px; justify-content: center; align-items: center; margin-top: 36px; flex-wrap: wrap; }
+
+  /* ---------- tablets and phones ---------- */
+  @media (max-width: 900px) {
+    --edge: 24px;
+    /* seam fix (2026-10-06): the field's sky is multiplied into Tide so the band's top is the panel colour, and the
+       panel-coloured scrim (below) fades over the top 44% of the band; the man's head sits at ~23% of the band, so the
+       tint and most of the fade are spent on sky. Shared structure with the homepage hero (app/mobile.css). */
+    .hero-img.field-img { background-image: linear-gradient(180deg, rgba(0, 90, 158, .9) 0%, rgba(0, 90, 158, .65) 10%, rgba(0, 90, 158, .35) 18%, rgba(0, 90, 158, .12) 26%, rgba(0, 90, 158, 0) 34%), url(/img/field.jpg); background-blend-mode: multiply, normal; background-size: auto, cover; background-position: center top; }
+    .hero-panel .scrim2 { background: linear-gradient(180deg, #002e51 0%, rgba(0, 46, 81, .85) 6%, rgba(0, 46, 81, .55) 13%, rgba(0, 46, 81, .3) 21%, rgba(0, 46, 81, .14) 30%, rgba(0, 46, 81, .05) 38%, rgba(0, 46, 81, 0) 48%, rgba(0, 21, 38, 0) 72%, rgba(0, 21, 38, .4) 100%) !important; }
+    .build-sec { padding: 80px var(--edge) 40px; }
+    .build-head .hh, .why-copy .hh { font-size: clamp(32px, 9.2vw, 40px); }
+    .build-head .bd.lg { margin-top: 20px; }
+    .next-sec { padding-top: 56px; }
+    .beats { grid-template-columns: 1fr; gap: 24px; margin-top: 48px; padding-top: 28px; }
+    .why-sec { padding: 80px var(--edge) 0; }
+    .why-sec .dots { opacity: .6; }
+    .why-grid { grid-template-columns: 1fr; gap: 24px; }
+    .why-mark { order: -1; width: min(100%, 300px); }
+    .dec-sec { padding-top: 88px; }
+    .dec { grid-template-columns: 1fr; gap: 0; margin-top: 32px; border-top: 0; }
+    .dec-tabs { flex-direction: row; gap: 8px; margin: 0 calc(-1 * var(--edge)); padding: 0 var(--edge) 4px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .dec-tabs::-webkit-scrollbar { display: none; }
+    .dec-tabs button, .dec-tabs button.on { display: inline-flex; flex: none; height: 40px; padding: 0 16px; border: 1px solid rgba(0, 90, 158, .3); border-radius: 12px; color: var(--tide); }
+    .dec-tabs button.on { background: var(--deep); border-color: var(--deep); color: #fff; }
+    .dec-tabs .n, .dec-tabs .st { display: none; }
+    .dec-tabs .l { font-size: 15px; line-height: 1; }
+    .dec-panel { padding-top: 28px; }
+    .dec-panel .read { font-size: 20px; line-height: 1.45; }
+    .dec-panel .k2 { margin-top: 28px; }
+    .dec-panel li { font-size: 15.5px; line-height: 22px; padding: 11px 15px; }
+    .dec-ctas { flex-direction: column; align-items: stretch; gap: 18px; margin-top: 28px; }
+    .dec-ctas .cta2 { width: 100%; }
+    .dec-ctas .lnk { align-self: center; }
+    .doors-sec { padding: 88px var(--edge) 80px; }
+    .doors { grid-template-columns: 1fr; gap: 0; margin-top: 36px; border-top: 0; }
+    .door { padding: 26px 0; border-top: 1px solid var(--line); }
+    .door::before { display: none; }
+    .door .t { margin-top: 14px; font-size: 26px; }
+    .door .s { font-size: 16px; line-height: 25px; }
+    .door .go { margin-top: 18px; }
+    .door-panel .ideas-grid { padding-top: 56px; padding-bottom: 56px; }
+  }
+  @media (max-width: 760px) {
+    /* field-mobile.jpg is re-cropped 800×889 from field.jpg (the man centred, the full sky above him) */
+    .hero-img.field-img { background-image: linear-gradient(180deg, rgba(0, 90, 158, .9) 0%, rgba(0, 90, 158, .65) 10%, rgba(0, 90, 158, .35) 18%, rgba(0, 90, 158, .12) 26%, rgba(0, 90, 158, 0) 34%), url(/img/field-mobile.jpg); background-position: center; }
+  }
+  /* Round 3b (2026-10-06) · phones ≤700px (the shared rules are in app/mobile.css; these must sit here because this
+     file is emitted after mobile.css in the production bundle): 20px gutter, 56–72px section rhythm, headlines ≤34px,
+     body ≥15px/1.5, 44px tap targets. */
+  @media (max-width: 900px) {
+    /* touch: body ≥15px/1.5, tap targets ≥44px */
+    .dec-panel .read { line-height: 1.5; }
+    .dec-panel li { font-size: 15.5px; line-height: 23.5px; }
+    .dec-tabs button, .dec-tabs button.on { height: 44px; }
+    .door .go { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 0; margin-top: 8px; line-height: 20px; }
+    .ideas-form .topic { height: 44px; border-radius: 12px; padding-right: 4px; }
+    .ideas-form .topic button { width: 40px; height: 40px; border-radius: 8px; }
+    .close14 { padding-top: 56px; padding-bottom: 48px; text-align: left; } /* 2026-10-06: was 80/80 — 85px and 89px of empty white above and below the close on a 390 phone */
+    .close14 .hh { margin: 0; }
+    .close14 .ctas { flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 18px; margin-top: 28px; }
+    .close14 .ctas .cta2 { width: 100%; display: flex; justify-content: center; }
+    .close14 .ctas .lnk { align-self: center; }
+  }
+  @media (max-width: 700px) {
+    --edge: 20px;
+    .build-head .hh, .why-copy .hh { font-size: clamp(30px, 8.7vw, 34px); line-height: 1.06; }
+    .build-sec { padding: 64px var(--edge) 40px; }
+    /* spacing pass (2026-10-06, Saurabh's recording, "What else? … Tell us →"): 152px of white sat between the link and
+       the dot mark. The columns end on their own hairline rhythm (28px), the mark's slot starts right after, and the
+       mark brings its own air. 152 → ~70px. The same pass closes the doors → form (106 → ~74) and form → close (85 → ~61) gaps. */
+    .next-sec { padding: 56px var(--edge) 0; }
+    .why-sec { padding: 16px var(--edge) 0; }
+    .why-mark { margin-top: -20px; } /* the ring sits ~40px inside its square; this closes the last of the white */
+    .dec-sec { padding: 64px var(--edge) 0; }
+    .doors-sec { padding: 64px var(--edge) 32px; }
+  }
+}
+
+@keyframes mp-dec-in {
+  from { opacity: 0; transform: translateY(12px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp.mp .dec-panel { animation: none; }
+}
+
+/* ---------- big screens (>1440px, app/scale.css zooms .hp by --z): viewport units divided by the zoom ---------- */
+@media (min-width: 1441px) {
+  .hp.mp #hero .hero-copy { padding-top: clamp(190px, 25vh / var(--z, 1), 420px); }
+  .hp.mp .build-head .hh, .hp.mp .why-copy .hh { font-size: clamp(40px, 4.4vw / var(--z, 1), 64px); }
+}

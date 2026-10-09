@@ -24,7 +24,8 @@ export function Moments() {
       cards.forEach((c, i) => {
         gsap.set(c, { opacity: 1 });
         gsap.fromTo(c.querySelector(".img"), { scale: 1.18 }, { scale: 1, ease: "none", scrollTrigger: { trigger: c, start: "top bottom", end: "bottom top", scrub: 0.8 } });
-        gsap.fromTo(c.querySelector(".glass"), { y: 60, opacity: 0, scale: 0.85 }, { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: "elastic.out(1,.55)", delay: i * 0.2, scrollTrigger: { trigger: c, start: "top 70%", once: true } });
+        // 2026-10-06: the chat card pops when its card is 5% in view, 320 ms (was 1.1 s elastic from "top 70%" + a per-card delay)
+        gsap.fromTo(c.querySelector(".glass"), { y: 24, opacity: 0, scale: 0.92 }, { y: 0, opacity: 1, scale: 1, duration: 0.32, ease: "back.out(1.6)", delay: Math.min(i, 2) * 0.05, scrollTrigger: { trigger: c, start: "top bottom+=40", once: true } });
       });
     },
     { scope: ref },
