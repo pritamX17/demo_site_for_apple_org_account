@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { Magnetic } from "@/components/motion/Magnetic";
+import { JARVIS_WA } from "@/lib/whatsapp";
 
 /* Plain top bar (team feedback, 2026-10-01: the MENU button + full-screen panel is gone).
    Lockup at the Figma position (77,61), then the three pages as text links and one CTA, always visible.
@@ -17,10 +18,9 @@ const PAGES: { key: PageKey; label: string; href: string }[] = [
 export type PageKey = "home" | "jarvis" | "movement";
 
 /* One nav everywhere (Saurabh, 2026-10-06 screen recording): the same three links and the same "Try Jarvis" button
-   on every page, so nothing shifts between / , /jarvis and /movement. On /jarvis the button scrolls to the access
-   form (#gate); elsewhere it links to /jarvis. The lab pages still pass their own "Back to site" label. */
-export function HomeNav({ cta = "Try Jarvis", ctaHref, page = "home", plain = false }: { cta?: string; ctaHref?: string; page?: PageKey | null; /** no hero under the bar: stay white from the top */ plain?: boolean } = {}) {
-  const href = ctaHref ?? (page === "jarvis" ? "#gate" : "/jarvis");
+   on every page, so nothing shifts between / , /jarvis and /movement. The button opens the JARVIS WhatsApp chat
+   (lib/whatsapp.ts) in a new tab on every page. The lab pages still pass their own "Back to site" label. */
+export function HomeNav({ cta = "Try Jarvis", ctaHref: href = JARVIS_WA, page = "home", plain = false }: { cta?: string; ctaHref?: string; page?: PageKey | null; /** no hero under the bar: stay white from the top */ plain?: boolean } = {}) {
   const ref = useRef<HTMLDivElement>(null);
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
@@ -44,7 +44,9 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref, page = "home", plain = fa
     <Link key={pg.key} href={pg.href} aria-current={pg.key === page ? "page" : undefined} onClick={close}>{pg.label}</Link>
   ));
   const button = (cls: string) =>
-    href.startsWith("#") ? <a className={cls} href={href} data-to onClick={close}>{cta}</a> : <Link className={cls} href={href} onClick={close}>{cta}</Link>;
+    href.startsWith("#") ? <a className={cls} href={href} data-to onClick={close}>{cta}</a>
+    : href.startsWith("http") ? <a className={cls} href={href} target="_blank" rel="noopener" onClick={close}>{cta}</a>
+    : <Link className={cls} href={href} onClick={close}>{cta}</Link>;
 
   return (
     <div ref={ref}>
@@ -55,7 +57,6 @@ export function HomeNav({ cta = "Try Jarvis", ctaHref, page = "home", plain = fa
           </Link>
           <div className="right">
             <div className="pages">{links}</div>
-            {/* TODO(launch): point at the live Jarvis product URL */}
             <Magnetic strength={0.22} reach={16}>{button("pill")}</Magnetic>
             <button className="menu" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="nav-drop" onClick={() => setOpen((o) => !o)}>
               <i />
