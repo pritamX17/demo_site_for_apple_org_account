@@ -5,8 +5,8 @@ import { Magnetic } from "@/components/motion/Magnetic";
 import { WA_NUMBER } from "@/components/start/StartMotion";
 import { gsap, useGSAP, ScrollTrigger, SplitText, CustomEase } from "@/lib/gsap";
 
-/* The hero "Try Jarvis" opens the JARVIS WhatsApp chat, prefilled in the /start format with "home" as the source. */
-const HERO_WA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi JARVIS 👋 I'd like to start. (home)")}`;
+/* The hero "Try Jarvis" opens the JARVIS WhatsApp chat with a plain-text hello (no emoji: WhatsApp showed it as �). */
+const HERO_WA = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi JARVIS, I'd like to start.")}`;
 
 /** Round 3 (2026-10-06): the frosted promise chip under the CTAs is now a plain .trust line ("Answers to you. No one else."), no pill. */
 /** 01 · Hero — boxed panel. Headline lines rise behind a mask, the photo settles
